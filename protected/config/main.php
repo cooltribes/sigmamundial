@@ -8,7 +8,10 @@
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'Sigma Mundial',
-
+	'theme'=>'bootstrap',
+        'aliases' => array(
+            'bootstrap' => 'ext.bootstrap',
+        ),
 	// preloading 'log' component
 	'preload'=>array('log'),
 
@@ -17,7 +20,10 @@ return array(
 		'application.models.*',
 		'application.components.*',
 		'application.modules.user.models.*',
-        'application.modules.user.components.*',
+                'application.modules.user.components.*',
+                'bootstrap.behaviors.*',
+                'bootstrap.helpers.*',
+                'bootstrap.widgets.*'
 	),
 
 	'modules'=>array(
@@ -70,10 +76,14 @@ return array(
 	'components'=>array( 
 		'user'=>array(
 			// enable cookie-based authentication
-            'class' => 'WebUser',
-            'allowAutoLogin'=>true,
-            'loginUrl' => array('/user/login'), 
-		),
+                    'class' => 'WebUser',
+                    'allowAutoLogin'=>true,
+                    'loginUrl' => array('/user/login'),
+                        ),
+            
+                'bootstrap' => array(
+                    'class' => 'bootstrap.components.BsApi'
+                ),
 		// uncomment the following to enable URLs in path-format
 		/*
 		'urlManager'=>array(

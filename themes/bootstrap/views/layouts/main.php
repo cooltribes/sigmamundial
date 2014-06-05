@@ -5,15 +5,30 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="language" content="en" />
 
-	<!-- blueprint CSS framework -->
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/screen.css" media="screen, projection" />
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/print.css" media="print" />
-	<!--[if lt IE 8]>
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/ie.css" media="screen, projection" />
-	<![endif]-->
+	<?php
+        $cs = Yii::app()->clientScript;
+        $themePath = Yii::app()->theme->baseUrl;
+        /**
+         * StyleSHeets
+         */
+        $cs
+            ->registerCssFile($themePath.'/assets/css/bootstrap.css')
+            ->registerCssFile($themePath.'/assets/css/bootstrap-theme.css');
 
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css" />
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css" />
+        /**
+         * JavaScripts
+         */
+        $cs
+            ->registerCoreScript('jquery',CClientScript::POS_END)
+            ->registerCoreScript('jquery.ui',CClientScript::POS_END)
+            ->registerScriptFile($themePath.'/assets/js/bootstrap.min.js',CClientScript::POS_END)
+
+            ->registerScript('tooltip',
+                "$('[data-toggle=\"tooltip\"]').tooltip();
+                $('[data-toggle=\"popover\"]').tooltip()"
+                ,CClientScript::POS_READY);
+
+        ?>
 
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>
@@ -53,6 +68,10 @@
 	</div><!-- footer -->
 
 </div><!-- page -->
-
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+    <script src="<?php echo Yii::app()->theme->baseUrl ?>/assets/js/html5shiv.js"></script>
+    <script src="<?php echo Yii::app()->theme->baseUrl ?>/assets/js/respond.min.js"></script>
+<![endif]-->
 </body>
 </html>
