@@ -53,23 +53,26 @@ return array(
             'returnLogoutUrl' => array('/user/login'),
         ),
 		// uncomment the following to enable the Gii tool
-		/*
+		
 		'gii'=>array(
 			'class'=>'system.gii.GiiModule',
-			'password'=>'Enter Your Password Here',
+			'password'=>'12345678',
 			// If removed, Gii defaults to localhost only. Edit carefully to taste.
-			'ipFilters'=>array('127.0.0.1','::1'),
+			'ipFilters'=>array('*'),
+					 'generatorPaths'=>array(
+                'bootstrap.gii',
+            ),
 		),
-		*/
+		
 	),
 
 	// application components
-	'components'=>array(
+	'components'=>array( 
 		'user'=>array(
 			// enable cookie-based authentication
             'class' => 'WebUser',
             'allowAutoLogin'=>true,
-            'loginUrl' => array('/user/login'),
+            'loginUrl' => array('/user/login'), 
 		),
 		// uncomment the following to enable URLs in path-format
 		/*
@@ -94,7 +97,7 @@ return array(
 			'username' => 'sigmatiendas',
 			'password' => 'DFRG5%re',
 			'charset' => 'utf8',
-			'tablePrefix' => 'tbl_',
+			'tablePrefix' => 'tbl_', 
 		),
 		
 		'errorHandler'=>array(

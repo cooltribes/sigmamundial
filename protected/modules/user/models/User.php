@@ -22,6 +22,10 @@ class User extends CActiveRecord
 	 * @var integer $status
      * @var timestamp $create_at
      * @var timestamp $lastvisit_at
+	 * @var string fecha_nacimiento
+	 * @var twitter
+	 * @var twitter_id
+	 * @var puntos
 	 */
 
 	/**
@@ -59,9 +63,9 @@ class User extends CActiveRecord
 			array('superuser', 'in', 'range'=>array(0,1)),
             array('create_at', 'default', 'value' => date('Y-m-d H:i:s'), 'setOnEmpty' => true, 'on' => 'insert'),
             array('lastvisit_at', 'default', 'value' => '0000-00-00 00:00:00', 'setOnEmpty' => true, 'on' => 'insert'),
-			array('username, email, superuser, status', 'required'),
+			array('username, email, superuser, fecha_nacimiento, status', 'required'),
 			array('superuser, status', 'numerical', 'integerOnly'=>true),
-			array('id, username, password, email, activkey, create_at, lastvisit_at, superuser, status', 'safe', 'on'=>'search'),
+			array('id, username, password, email, activkey, create_at, lastvisit_at, superuser, status, puntos, fecha_nacimiento, twitter, twitter_id', 'safe', 'on'=>'search'),
 		):((Yii::app()->user->id==$this->id)?array(
 			array('username, email', 'required'),
 			array('username', 'length', 'max'=>20, 'min' => 3,'message' => UserModule::t("Incorrect username (length between 3 and 20 characters).")),
@@ -102,6 +106,10 @@ class User extends CActiveRecord
 			'lastvisit_at' => UserModule::t("Last visit"),
 			'superuser' => UserModule::t("Superuser"),
 			'status' => UserModule::t("Status"),
+			'fecha_nacimiento' => 'Fecha de nacimiento',
+			'twitter' => 'Twitter',
+			'twitter_id' => 'twitter_id',
+			'puntos' => 'Puntos',
 		);
 	}
 	
@@ -172,7 +180,11 @@ class User extends CActiveRecord
         $criteria->compare('lastvisit_at',$this->lastvisit_at);
         $criteria->compare('superuser',$this->superuser);
         $criteria->compare('status',$this->status);
-
+		$criteria->compare('fecha_nacimiento',$this->fecha_nacimiento);
+		$criteria->compare('twitter',$this->twitter);
+		$criteria->compare('twitter_id',$this->twitter_id);
+		$criteria->compare('puntos',$this->puntos);
+		
         return new CActiveDataProvider(get_class($this), array(
             'criteria'=>$criteria,
         	'pagination'=>array(
