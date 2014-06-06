@@ -139,6 +139,10 @@ return array(
             'transportType'=>'php',
             'viewPath' => 'application.views.mail',             
         ),
+        /*
+		'request' => array(
+            'baseUrl' => 'http://www.sigmatiendas.com/mundial',
+        ), */
 		
 	),
 

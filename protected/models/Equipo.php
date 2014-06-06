@@ -59,8 +59,8 @@ class Equipo extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'nombre' => 'Nombre',
-			'url' => 'Url',
+			'nombre' => '´País',
+			'url' => 'Url Imagen',
 		);
 	}
 

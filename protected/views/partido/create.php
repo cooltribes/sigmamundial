@@ -6,15 +6,16 @@
 		
         <div class="col-md-10 col-md-push-2 main-content" role="main">
         	
-        		<?php
+<?php
+
 $this->breadcrumbs=array(
-	'Equipos'=>array('admin'),
+	'Partidos'=>array('admin'),
 	'Agregar',
 );
 
 ?>
         	
-			<h1>Equipo <small> - Nuevo</small></h1>
+			<h1>Partido <small> - Nuevo</small></h1> 
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
 
