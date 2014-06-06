@@ -23,7 +23,8 @@ return array(
                 'application.modules.user.components.*',
                 'bootstrap.behaviors.*',
                 'bootstrap.helpers.*',
-                'bootstrap.widgets.*'
+                'bootstrap.widgets.*',
+        'ext.yii-mail.YiiMailMessage',
 	),
 
 	'modules'=>array(
@@ -129,6 +130,13 @@ return array(
 				*/
 			),
 		),
+		
+		'mail' => array(
+       		'class' => 'application.extensions.yii-mail.YiiMail',
+            'transportType'=>'php',
+            'viewPath' => 'application.views.mail',             
+        ),
+		
 	),
 
 	// application-level parameters that can be accessed
