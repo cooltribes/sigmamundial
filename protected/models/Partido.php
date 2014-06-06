@@ -43,7 +43,7 @@ class Partido extends CActiveRecord
 			// @todo Please remove those attributes that should not be searched.
 			array('id, id_local, id_visitante, sede, fecha, gol_local, gol_visitante, estado', 'safe', 'on'=>'search'),
 		);
-	}
+	} 
 
 	/**
 	 * @return array relational rules.

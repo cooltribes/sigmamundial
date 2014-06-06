@@ -2,35 +2,86 @@
 
 class EquipoController extends Controller
 {
+	
+	/**
+	 * @return array action filters
+	 */
+	public function filters()
+	{
+		return array(
+			'accessControl', // perform access control for CRUD operations
+		);
+	}
+
+	/**
+	 * Specifies the access control rules.
+	 * This method is used by the 'accessControl' filter.
+	 * @return array access control rules
+	 */
+	public function accessRules()
+	{
+		return array(
+			array('allow',  // allow all users to perform 'index' and 'view' actions
+				'actions'=>array('ver'),
+				'users'=>array('*'),
+			),
+			array('allow', // allow authenticated user to perform 'create' and 'update' actions
+				'actions'=>array(), 
+				'users'=>array('@'),
+			),
+			array('allow', // allow admin user to perform 'admin' and 'delete' actions
+				'actions'=>array('admin','create','delete'),
+				'users'=>array('admin'),
+			),
+			array('deny',  // deny all users
+				'users'=>array('*'),
+			),
+		);
+	}
+	
+	
 	public function actionAdmin()
 	{
 		$this->render('admin');
 	}
-
-	// Uncomment the following methods and override them if needed
-	/*
-	public function filters()
+	
+	public function actionCreate($id = null)
 	{
-		// return the filter configuration for this controller, e.g.:
-		return array(
-			'inlineFilterName',
-			array(
-				'class'=>'path.to.FilterClass',
-				'propertyName'=>'propertyValue',
-			),
-		);
+		if(!$id){
+			$equipo = new Equipo;
+		}else{
+			$equipo = Equipo::model()->findByPk($id);
+		}
+		
+		if(isset($_POST['Equipo'])){
+			$equipo->attributes = $_POST['Equipo'];
+			
+			if($equipo->save())
+			{
+				$message = new YiiMailMessage;				
+				$message->view = "mail_template";
+				$subject = '¡Equipo agregado en Sigma Mundial!';
+				
+				$body = "Un equipo acaba de ser agregado en Sigma<br/>
+						<br/>
+						Equipo: ".$equipo->nombre."<br/>
+						Bandera: <img src='".Yii::app()->request->baseUrl."/".$equipo->url."' /> <br/>
+						<br/>
+						¡LALALA PRUEBA!<br/> 
+						";
+				$params = array('subject'=>$subject, 'body'=>$body);
+				$message->subject    = $subject;
+				$message->setBody($params, 'text/html');                
+				$message->addTo("dduque@upsidecorp.ch");
+				$message->from = array('info@sigmatiendas.com' => 'Sigma Tiendas');
+				Yii::app()->mail->send($message);
+				
+				Yii::app()->user->setFlash('success',"Equipo agregado correctamente.");
+				$this->redirect(array('admin'));
+			}
+		}
+		
+		$this->render('create',array('model'=>$equipo));
 	}
 
-	public function actions()
-	{
-		// return external action classes, e.g.:
-		return array(
-			'action1'=>'path.to.ActionClass',
-			'action2'=>array(
-				'class'=>'path.to.AnotherActionClass',
-				'propertyName'=>'propertyValue',
-			),
-		);
-	}
-	*/
 }

@@ -6,7 +6,7 @@
  * The followings are the available columns in table '{{equipo}}':
  * @property integer $id
  * @property string $nombre
- * @property string $url
+ * @property string $url 
  *
  * The followings are the available model relations:
  * @property Partido[] $partidos

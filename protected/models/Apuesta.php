@@ -23,7 +23,7 @@ class Apuesta extends CActiveRecord
 	public function tableName()
 	{
 		return '{{apuesta}}';
-	}
+	} 
 
 	/**
 	 * @return array validation rules for model attributes.
