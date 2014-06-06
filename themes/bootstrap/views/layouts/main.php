@@ -12,7 +12,7 @@
         /** StyleSHeets*/
         $cs->registerCssFile($themePath.'/assets/css/bootstrap.css')
             ->registerCssFile($themePath.'/assets/css/bootstrap-theme.css')
-            ->registerCssFile($themePath.'/assets/css/cover.css');
+            ->registerCssFile($themePath.'/assets/css/estilos.css');
         
         /** JavaScripts*/
         $cs->registerCoreScript('jquery',CClientScript::POS_END)
@@ -107,19 +107,39 @@ $this->widget('bootstrap.widgets.BsNavbar', array(
 }
 ?>
     
+
+
     
-
 <div class="container" id="page">       
-
+    
+    <div class="row main-header">
+        <div class="col-md-3">
+            <?php echo CHtml::image(Yii::app()->getBaseUrl(true)."/images/logo.png", "Logo"); ?>            
+        </div>
+        <div class="col-md-6 text-center">
+            <h1>Vive la Experiencia</h1>
+            <h2>#SigmaEsMundial</h2>
+        </div>
+        <div class="col-md-3">
+            <div class="row">
+                <div class="col-md-12">
+                    Nelson Ramirez
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
     <?php echo $content; ?>
 
     <div class="clear"></div>
-    <hr>
-    <div id="footer">
+    <!--<hr>-->
+<!--    <div id="footer">
             Copyright &copy; <?php echo date('Y'); ?> by My Company.<br/>
             All Rights Reserved.<br/>
             <?php echo Yii::powered(); ?>
-    </div><!-- footer -->
+    </div>-->
+        <!-- footer -->
 
 </div><!-- page -->
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
