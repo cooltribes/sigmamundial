@@ -13,9 +13,29 @@ $this->pageTitle = Yii::app()->name;
         echo BsHtml::linkButton('Log in', array(
             'color' => BsHtml::BUTTON_COLOR_DANGER,
             'url' => array(
-                        '/site/login'
+                        '/user/login'
                     ),
         ));
         ?>
+        <?php
+        if($verified){
+            $this->renderPartial('_registration',array(
+                'model'=>$user,
+                'twitter_user'=>$twitter_user,
+            ));
+        }else{
+            echo BsHtml::linkButton('Twitter', array(
+                'color' => BsHtml::BUTTON_COLOR_INFO,
+                'url' => array(
+                            '/user/registration/twitter'
+                        ),
+            ));
+        }
+        ?>
     </p>
+    <div>
+        <?php
+        /**/
+        ?>
+    </div>
 </div>
