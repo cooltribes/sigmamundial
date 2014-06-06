@@ -5,33 +5,29 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="language" content="en" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
+        <!--<link rel="stylesheet" type="text/css" href="<?php // echo Yii::app()->theme->baseUrl; ?>/css/cover.css" />-->
 	<?php
         $cs = Yii::app()->clientScript;
         $themePath = Yii::app()->theme->baseUrl;
-        /**
-         * StyleSHeets
-         */
-        $cs
-            ->registerCssFile($themePath.'/assets/css/bootstrap.css')
-            ->registerCssFile($themePath.'/assets/css/bootstrap-theme.css');
-
-        /**
-         * JavaScripts
-         */
-        $cs
-            ->registerCoreScript('jquery',CClientScript::POS_END)
+        /** StyleSHeets*/
+        $cs->registerCssFile($themePath.'/assets/css/bootstrap.css')
+            ->registerCssFile($themePath.'/assets/css/bootstrap-theme.css')
+            ->registerCssFile($themePath.'/assets/css/cover.css');
+        
+        /** JavaScripts*/
+        $cs->registerCoreScript('jquery',CClientScript::POS_END)
             ->registerCoreScript('jquery.ui',CClientScript::POS_END)
             ->registerScriptFile($themePath.'/assets/js/bootstrap.min.js',CClientScript::POS_END)
+                
 
             ->registerScript('tooltip',
                 "$('[data-toggle=\"tooltip\"]').tooltip();
                 $('[data-toggle=\"popover\"]').tooltip()"
-                ,CClientScript::POS_READY);
+                ,CClientScript::POS_READY)->coreScriptPosition = CClientScript::POS_END;
 
         ?>
         <!--<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/styles.css" />-->
-        <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/cover.css" />
+        
         
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>
@@ -50,8 +46,7 @@
             <?php echo Yii::powered(); ?>
     </div><!-- footer -->
 
-</div>
-<!-- page -->
+</div><!-- page -->
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
     <script src="<?php echo Yii::app()->theme->baseUrl ?>/assets/js/html5shiv.js"></script>
