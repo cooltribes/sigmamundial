@@ -33,6 +33,81 @@
 </head>
 
 <body>
+ 
+<?php
+//Solo si es admin puede ver la barra
+if(UserModule::isAdmin()){
+
+$this->widget('bootstrap.widgets.BsNavbar', array(
+    'collapse' => true,
+    'brandLabel' => BsHtml::icon(BsHtml::GLYPHICON_HOME),
+    'brandUrl' => Yii::app()->homeUrl,
+    'items' => array(
+        array(
+            'class' => 'bootstrap.widgets.BsNav',
+            'type' => 'navbar',
+            'activateParents' => true,
+            'items' => array(
+                array(
+                    'label' => 'Home',
+                    'url' => array(
+                        '/site/index'
+                    ),
+                    
+                )
+            )
+        ),
+        array(
+            'class' => 'bootstrap.widgets.BsNav',
+            'type' => 'navbar',
+            'activateParents' => true,
+            'items' => array(                
+                array(
+                    'label' => 'Login',
+                    'url' => array(
+                        '/site/login'
+                    ),
+                    'pull' => BsHtml::NAVBAR_NAV_PULL_RIGHT,
+                    'visible' => Yii::app()->user->isGuest
+                ),
+                
+                array(
+                    'label' => 'Opciones de Usuario',
+                    'url' => '',
+                    'pull' => BsHtml::NAVBAR_NAV_PULL_RIGHT,                    
+                    'visible' => !Yii::app()->user->isGuest,
+                    'items' => array(                       
+                        array(
+                            'label' => 'Login',
+                            'url' => array(
+                                '/site/login'
+                            ),
+                            'visible' => Yii::app()->user->isGuest,
+                            'icon' => BsHtml::GLYPHICON_LOG_IN
+                        ),
+                        array(
+                            'label' => 'Logout (' . Yii::app()->user->name . ')',
+                            'url' => array(
+                                '/site/logout'
+                            ),
+                            'visible' => !Yii::app()->user->isGuest
+                        ),                        
+                    )
+                ),
+                
+            ),
+            'htmlOptions' => array(
+                'pull' => BsHtml::NAVBAR_NAV_PULL_RIGHT
+            )
+        )
+        
+    )
+));
+
+}
+?>
+    
+    
 
 <div class="container" id="page">       
 

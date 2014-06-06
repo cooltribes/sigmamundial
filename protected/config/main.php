@@ -19,6 +19,7 @@ return array(
 	'import'=>array(
 		'application.models.*',
 		'application.components.*',
+		'application.modules.user.*',
 		'application.modules.user.models.*',
                 'application.modules.user.components.*',
                 'bootstrap.behaviors.*',
