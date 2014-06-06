@@ -7,7 +7,7 @@
 
 $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
    	'layout' => BsHtml::FORM_LAYOUT_HORIZONTAL,
-    'enableAjaxValidation' => true,
+    'enableAjaxValidation' => false,
     'id' => 'equipo-form',
     'htmlOptions' => array(
         'class' => 'bs-example',

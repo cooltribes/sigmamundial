@@ -12,12 +12,19 @@
  * @property integer $gol_local
  * @property integer $gol_visitante
  * @property integer $estado
+ * @property string $ronda
  *
  * The followings are the available model relations:
  * @property Apuesta[] $apuestas
  * @property Equipo $idLocal
  * @property Equipo $idVisitante
  */
+ 
+ /*
+  * Estados
+  * 0 - No disputado
+  * 1 - Disputado
+  */ 
 class Partido extends CActiveRecord
 {
 	/**
@@ -36,12 +43,12 @@ class Partido extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_local, id_visitante, sede, fecha, gol_local, gol_visitante', 'required'),
-			array('id_local, id_visitante, gol_local, gol_visitante, estado', 'numerical', 'integerOnly'=>true),
+			array('id_local, id_visitante, sede, fecha', 'required'),
+			array('id_local, id_visitante, estado', 'numerical', 'integerOnly'=>true),
 			array('sede', 'length', 'max'=>50),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, id_local, id_visitante, sede, fecha, gol_local, gol_visitante, estado', 'safe', 'on'=>'search'),
+			array('id, id_local, id_visitante, sede, fecha, gol_local, gol_visitante, estado, ronda', 'safe', 'on'=>'search'),
 		);
 	} 
 
@@ -73,6 +80,7 @@ class Partido extends CActiveRecord
 			'gol_local' => 'Gol Local',
 			'gol_visitante' => 'Gol Visitante',
 			'estado' => 'Estado',
+			'ronda' => 'Ronda',
 		);
 	}
 
@@ -102,6 +110,7 @@ class Partido extends CActiveRecord
 		$criteria->compare('gol_local',$this->gol_local);
 		$criteria->compare('gol_visitante',$this->gol_visitante);
 		$criteria->compare('estado',$this->estado);
+		$criteria->compare('ronda',$this->ronda);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

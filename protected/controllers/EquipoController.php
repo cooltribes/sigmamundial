@@ -37,12 +37,19 @@ class EquipoController extends Controller
 				'users'=>array('*'),
 			),
 		);
-	}
-	
+	}	
 	
 	public function actionAdmin()
 	{
-		$this->render('admin');
+		
+		$equipo = new Equipo;
+		$equipo->unsetAttributes();
+		
+		$dataProvider = $equipo->search();
+		
+		$this->render('admin', array('model'=>$equipo, 'dataProvider'=>$dataProvider,));	
+		
+		//$this->render('admin');
 	}
 	
 	public function actionCreate($id = null)
@@ -58,14 +65,14 @@ class EquipoController extends Controller
 			
 			if($equipo->save())
 			{
-				$message = new YiiMailMessage;				
+				/* $message = new YiiMailMessage;				
 				$message->view = "mail_template";
 				$subject = '¡Equipo agregado en Sigma Mundial!';
 				
 				$body = "Un equipo acaba de ser agregado en Sigma<br/>
 						<br/>
 						Equipo: ".$equipo->nombre."<br/>
-						Bandera: <img src='".Yii::app()->request->baseUrl."/".$equipo->url."' /> <br/>
+						Bandera: <img src='".Yii::app()->getBaseUrl(true).$equipo->url."' /> <br/>
 						<br/>
 						¡LALALA PRUEBA!<br/> 
 						";
@@ -74,7 +81,7 @@ class EquipoController extends Controller
 				$message->setBody($params, 'text/html');                
 				$message->addTo("dduque@upsidecorp.ch");
 				$message->from = array('info@sigmatiendas.com' => 'Sigma Tiendas');
-				Yii::app()->mail->send($message);
+				Yii::app()->mail->send($message); */
 				
 				Yii::app()->user->setFlash('success',"Equipo agregado correctamente.");
 				$this->redirect(array('admin'));

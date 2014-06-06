@@ -10,11 +10,20 @@
  * @property integer $local
  * @property integer $visitante
  * @property integer $estado
- *
+ * @property integer puntos
+ * 
  * The followings are the available model relations:
  * @property Users $idUser
  * @property Partido $idPartido
  */
+ 
+ /*
+  * Estados:
+  * 0- Sin revisar
+  * 1- Revisado
+  * 2- Ganador
+  * 
+  */ 
 class Apuesta extends CActiveRecord
 {
 	/**
@@ -34,10 +43,10 @@ class Apuesta extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('id_user, id_partido, local, visitante', 'required'),
-			array('id_user, id_partido, local, visitante, estado', 'numerical', 'integerOnly'=>true),
+			array('id_user, id_partido, local, visitante, estado, puntos', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, id_user, id_partido, local, visitante, estado', 'safe', 'on'=>'search'),
+			array('id, id_user, id_partido, local, visitante, estado, puntos', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -66,6 +75,7 @@ class Apuesta extends CActiveRecord
 			'local' => 'Local',
 			'visitante' => 'Visitante',
 			'estado' => 'Estado',
+			'puntos' => 'Puntos',
 		);
 	}
 
@@ -93,7 +103,8 @@ class Apuesta extends CActiveRecord
 		$criteria->compare('local',$this->local);
 		$criteria->compare('visitante',$this->visitante);
 		$criteria->compare('estado',$this->estado);
-
+		$criteria->compare('puntos',$this->puntos);
+		
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
