@@ -77,4 +77,23 @@ class RegistrationController extends Controller
 			    $this->render('/user/registration',array('model'=>$model,'profile'=>$profile));
 		    }
 	}
+
+	public function actionTwitter(){
+		$twitter = Yii::app()->twitter->getTwitter();  
+     	$request_token = $twitter->getRequestToken();
+ 
+         //set some session info
+         Yii::app()->session['oauth_token'] = $token =           $request_token['oauth_token'];
+         Yii::app()->session['oauth_token_secret'] = $request_token['oauth_token_secret'];
+ 
+        if($twitter->http_code == 200){
+            //get twitter connect url
+            $url = $twitter->getAuthorizeURL($token);
+            //send them
+            $this->redirect($url);
+        }else{
+            //error here
+            $this->redirect(Yii::app()->homeUrl);
+        }
+	}
 }

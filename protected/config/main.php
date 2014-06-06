@@ -78,14 +78,21 @@ return array(
 	'components'=>array( 
 		'user'=>array(
 			// enable cookie-based authentication
-                    'class' => 'WebUser',
-                    'allowAutoLogin'=>true,
-                    'loginUrl' => array('/user/login'),
-                        ),
+	        'class' => 'WebUser',
+	        'allowAutoLogin'=>true,
+	        'loginUrl' => array('/user/login'),
+	    ),
+		'twitter' => array(
+                'class' => 'ext.yiitwitteroauth.YiiTwitter',
+                'consumer_key' => 'evTmWmbK39TOdGIIQxEG8bcNx',
+                'consumer_secret' => 'BcOf1cMSHHuSroJ5NoVkjlVIxn5bTeTPWtCVpJga1bgJwJ3TQC',
+                'callback' => 'http://sigmatiendas.com/mundial/',
+        ),
+		
             
-                'bootstrap' => array(
-                    'class' => 'bootstrap.components.BsApi'
-                ),
+        'bootstrap' => array(
+            'class' => 'bootstrap.components.BsApi'
+        ),
 		// uncomment the following to enable URLs in path-format
 		
 		'urlManager'=>array(

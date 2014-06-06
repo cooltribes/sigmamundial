@@ -30,7 +30,7 @@ class WebUser extends CWebUser
     protected function afterLogin($fromCookie)
 	{
         parent::afterLogin($fromCookie);
-        $this->updateSession();
+        //$this->updateSession();
 	}
 
     public function updateSession() {
