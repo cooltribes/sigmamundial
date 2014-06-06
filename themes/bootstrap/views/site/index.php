@@ -3,12 +3,19 @@
 
 $this->pageTitle = Yii::app()->name;
 ?>
-<form class="form-signin" role="form">
-    <h2 class="form-signin-heading">Sigma Mundial</h2>
-    <input type="email" class="form-control" placeholder="Email address" required="" autofocus="">
-    <input type="password" class="form-control" placeholder="Password" required="">
-    <label class="checkbox">
-        <input type="checkbox" value="remember-me"> Remember me
-    </label>
-    <button class="btn btn-lg btn-primary btn-block btn-ttc" type="submit">Entrar</button>
-</form>
+<div class="jumbotron">
+
+    <h1>
+        Página principal - Sigma Mundial
+    </h1>
+    <p>
+        <?php
+        echo BsHtml::linkButton('Log in', array(
+            'color' => BsHtml::BUTTON_COLOR_DANGER,
+            'url' => array(
+                        '/site/login'
+                    ),
+        ));
+        ?>
+    </p>
+</div>
