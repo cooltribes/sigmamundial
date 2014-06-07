@@ -12,9 +12,9 @@
 		        <?php echo Yii::app()->user->getFlash('success'); ?>
 		    </div>
 		<?php } ?>
-		<?php if(Yii::app()->user->hasFlash('error')){?>
-		    <div class="alert in alert-block fade alert-error text_align_center">
-		        <?php echo Yii::app()->user->getFlash('error'); ?>
+		<?php if(Yii::app()->user->hasFlash('danger')){?>
+		    <div class="alert in alert-block fade alert-danger text_align_center">
+		        <?php echo Yii::app()->user->getFlash('danger'); ?>
 		    </div>
 		<?php } ?>
 		<h2 class="text-center">Partidos de hoy - <?php echo date("d/m/Y");  ?></h2>
@@ -23,10 +23,14 @@
 			foreach($partidos as $partido)
 			{
 		?>
-			
 			<a href="<?php echo Yii::app()->getBaseUrl(true)."/apuesta/jugar/".$partido->id; ?>">
 				<div class="panel panel-default col-md-6">
 					<div class="panel-body">
+						
+						<?php
+							$apuesta = Apuesta::model()->findByAttributes(array('id_partido'=>$partido->id,'id_user'=>Yii::app()->user->id));
+						?>
+						
 				    	<div class="row text-center"> <?php echo $partido->sede; ?></div>
 				    		
 				    		<div class="row">
@@ -38,6 +42,10 @@
 										echo $local->nombre."<br>";
 										
 										echo CHtml::image(Yii::app()->getBaseUrl(true).str_replace(".","_thumb.",$local->url), $local->nombre);
+										
+										if(isset($apuesta))
+											echo " ".$apuesta->local;
+										
 									echo "</div>";
 									?>
 								</div>
@@ -49,9 +57,12 @@
 								<div class="col-md-5">
 									<?php
 									echo "<div class='text-center'>";
-									
+										
 										$visitante = Equipo::model()->findByPk($partido->id_visitante);
 										echo $visitante->nombre."<br>";
+										
+										if(isset($apuesta))
+											echo $apuesta->visitante." ";
 										
 										echo CHtml::image(Yii::app()->getBaseUrl(true).str_replace(".","_thumb.",$visitante->url), $visitante->nombre);
 									

@@ -53,5 +53,34 @@ class ApuestaController extends Controller
 		
 		$this->render('partidos',array('partidos'=>$rows,));
 	}
+	
+	public function actionJugar($id)
+	{
+		$apuesta = Apuesta::model()->findByAttributes(array('id_user'=>Yii::app()->user->id,'id_partido'=>$id));
+		
+		if(isset($apuesta)){
+			Yii::app()->user->setFlash('danger',"Ya se realizó una apuesta a este partido.");
+			$this->redirect(array('partidos'));
+		}
+		else { // nueva apuesta
+			$apuesta = new Apuesta;
+		
+			if(isset($_POST['Apuesta'])){
+				$apuesta->attributes = $_POST['Apuesta'];
+				$apuesta->id_user = Yii::app()->user->id;
+				$apuesta->id_partido = $id;
+				
+				if($apuesta->save())
+				{				
+					Yii::app()->user->setFlash('success',"Apuesta guardada correctamente.");
+					$this->redirect(array('partidos'));
+				}
+			}
+
+			$partido = Partido::model()->findByPk($id);
+			$this->render('jugar',array('partido'=>$partido,'apuesta'=>$apuesta,));
+		}
+		
+	}
 
 }

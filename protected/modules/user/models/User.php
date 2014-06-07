@@ -26,6 +26,7 @@ class User extends CActiveRecord
 	 * @var twitter
 	 * @var twitter_id
 	 * @var puntos
+	 * @var nombre
 	 */
 
 	/**
