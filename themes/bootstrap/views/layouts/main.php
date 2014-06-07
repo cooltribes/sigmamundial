@@ -5,13 +5,12 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="language" content="en" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!--<link rel="stylesheet" type="text/css" href="<?php // echo Yii::app()->theme->baseUrl; ?>/css/cover.css" />-->
 	<?php
         $cs = Yii::app()->clientScript;
         $themePath = Yii::app()->theme->baseUrl;
         /** StyleSHeets*/
-        $cs->registerCssFile($themePath.'/assets/css/bootstrap.css')
-            ->registerCssFile($themePath.'/assets/css/bootstrap-theme.css')
+        $cs->registerCssFile($themePath.'/assets/css/bootstrap.min.css')
+//            ->registerCssFile($themePath.'/assets/css/bootstrap-theme.css')
             ->registerCssFile($themePath.'/assets/css/estilos.css');
         
         /** JavaScripts*/
@@ -26,7 +25,7 @@
                 ,CClientScript::POS_READY)->coreScriptPosition = CClientScript::POS_END;
 
         ?>
-        <!--<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/styles.css" />-->
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
         
         
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
@@ -107,23 +106,31 @@ $this->widget('bootstrap.widgets.BsNavbar', array(
 }
 ?>
     
-
-
     
 <div class="container" id="page">       
     
-    <div class="row main-header">
-        <div class="col-md-3">
+    <div class="row margin_top_medium main-header">
+        <div class="col-md-3 padding_top_small">
             <?php echo CHtml::image(Yii::app()->getBaseUrl(true)."/images/logo.png", "Logo"); ?>            
         </div>
-        <div class="col-md-6 text-center">
+        <div class="col-md-6 text-center main-title">
             <h1>Vive la Experiencia</h1>
-            <h2>#SigmaEsMundial</h2>
+            <h2 class="no_margin_top">#SigmaEsMundial</h2>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3 user-options">
             <div class="row">
-                <div class="col-md-12">
-                    Nelson Ramirez
+                <div class="col-md-11">
+                    <div class="row margin_top_small text-right user-name">
+                        <div class="col-md-12 ">
+                            Nelson Ramirez
+                            <span class="caret"></span>
+                        </div>
+                    </div>
+                    <div class="row text-right user-info">
+                        <div class="col-md-12">
+                            Puntos: 7 Posición: 4
+                        </div>
+                    </div>                    
                 </div>
             </div>
         </div>
@@ -133,13 +140,6 @@ $this->widget('bootstrap.widgets.BsNavbar', array(
     <?php echo $content; ?>
 
     <div class="clear"></div>
-    <!--<hr>-->
-<!--    <div id="footer">
-            Copyright &copy; <?php echo date('Y'); ?> by My Company.<br/>
-            All Rights Reserved.<br/>
-            <?php echo Yii::powered(); ?>
-    </div>-->
-        <!-- footer -->
 
 </div><!-- page -->
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->

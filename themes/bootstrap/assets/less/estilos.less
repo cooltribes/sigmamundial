@@ -3,23 +3,13 @@
 
 
 /*--- @ ---*/
-@color1: #ba1928;
-@color2: #005b8a;
-@color3: #cdcdcd;
-@naranja: #ed751c;
-@azul:       #65BCDF;
-@verde:   #18af91;
-@rojo:       #BF5077;
-@lila:       #C4BCCD;
+@rojo: #ba1928;
+@azul: #005b8a;
+@gris-viejo: #cdcdcd;
+@gris: #e2e2e2;
+@gris-hover: #cacaca;
+@blanco: #fff;
 @negro: #000;
-
-/*-- Funciones --*/
-.rounded(@radius: 3px) {
-    border-radius: @radius;
-    -moz-border-radius: @radius;
-    -webkit-border-radius: @radius;
-}
-
 
 /****************  MISCELANEOS *********************/
 /* Margins */
@@ -117,18 +107,118 @@
 
 /****   Estilos propios del proyecto    ****/
 
+/*-- Funciones --*/
+.rounded(@radius: 3px) {
+    border-radius: @radius;
+    -moz-border-radius: @radius;
+    -webkit-border-radius: @radius;
+}
+
+.text-shadow(@string: 0px 0px 5px rgba(0, 0, 0, 0.5)){
+     text-shadow: @string;
+     -moz-text-shadow: @string;
+     -webkit-text-shadow: @string;
+     -ms-text-shadow: @string;
+}
+//Fondo transparente gris-blanco
+.fondo-gris(){
+    background-color: fade(@gris, 70%);
+}
+.fondo-azul(){
+    background-color: @azul;
+}
+/* Transitions */
+.transition_all{
+    transition:all ease 0.5s;
+    -moz-transition:all ease 0.5s; /* Firefox 4 */
+    -webkit-transition:all ease 0.5s; /* Safari and Chrome */
+    -o-transition:all ease 0.5s; /* Opera */
+    }
+
 body{
-    /*background-image: url('../images/1.jpg');*/
+    background-image: url('../images/1.jpg');
     background-repeat: repeat-y;
     background-size: cover;
     background-attachment: fixed;
     background-position: 0 65%;
-}
-
-.main-header{
-    
+    font-family: 'Open Sans', sans-serif;
 }
 #footer{
     text-align: center;
     margin-top: 20px;
+}
+
+a{color:@blanco; .transition_all}
+a:hover{
+  color:@gris-hover;
+  text-decoration: underline;
+}
+
+
+
+/*Encabezado principal*/
+.main-header{
+    margin-bottom: 43px;
+    .main-title{
+        color: @blanco;
+        .text-shadow();
+        h1{
+           font-weight: bold; 
+           font-size: 43px;
+        }
+        h2{        
+           font-size: 40px;
+        }
+    }
+
+    .user-options{
+        .user-name{
+            .fondo-gris();
+            color: @azul;
+            font-size: 24px;
+            line-height: 50px;
+        }
+        .user-info{
+            background-color: @rojo;
+            color: @blanco;
+            div{
+                line-height: 23px;
+            }
+        }
+    }    
+}
+
+/*Paneles*/
+
+.panel-gris{
+    .fondo-gris();
+}
+.panel-azul{
+    .fondo-azul();
+}
+.panel-header{
+
+    background-color: @rojo;
+    color: @blanco;
+    margin: -31px 0 18px 0;
+
+    h2{
+        margin: 15px 0 15px 0;
+        text-align: center;       
+    }
+}
+
+.login-panel{
+    h3{
+        color: @blanco;
+        text-align: center;
+        font-weight: bold;
+        margin: 25px 15px 50px 15px;
+        line-height: 33px;
+    }
+
+    .link-recovery{
+        text-align: center;
+        margin: 30px 0;
+    }
 }

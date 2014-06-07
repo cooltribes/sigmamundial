@@ -3,39 +3,154 @@
 
 $this->pageTitle = Yii::app()->name;
 ?>
-<div class="jumbotron">
 
-    <h1>
-        Página principal - Sigma Mundial
-    </h1>
-    <p>
-        <?php
-        echo BsHtml::linkButton('Log in', array(
-            'color' => BsHtml::BUTTON_COLOR_DANGER,
-            'url' => array(
-                        '/user/login'
-                    ),
-        ));
-        ?>
-        <?php
-        if($verified){
-            $this->renderPartial('_registration',array(
-                'model'=>$user,
-                'twitter_user'=>$twitter_user,
-            ));
-        }else{
-            echo BsHtml::linkButton('Twitter', array(
-                'color' => BsHtml::BUTTON_COLOR_INFO,
-                'url' => array(
-                            '/user/registration/twitter'
-                        ),
-            ));
-        }
-        ?>
-    </p>
-    <div>
-        <?php
-        /**/
-        ?>
+<div class="row">
+    <div class="col-md-4 col-md-offset-2 panel-gris register-panel">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-12 panel-header">
+                    <h2>Crea tu cuenta</h2>                      
+                </div>
+            </div>
+        </div>
+        <div class="row panel-content">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-12">
+                        <form role="form">
+                          <div class="form-group">                            
+                            <?php
+                            if($verified){
+                                $this->renderPartial('_registration',array(
+                                    'model'=>$user,
+                                    'twitter_user'=>$twitter_user,
+                                ));
+                            }else{
+                                echo BsHtml::linkButton('Regístrate con Twitter', array(
+                                    'color' => BsHtml::BUTTON_COLOR_INFO,
+                                    'url' => array(
+                                                '/user/registration/twitter'
+                                            ),
+                                    'class' => 'btn-block',
+                                    'icon' => ''
+                                ));
+                            }
+                            ?> 
+                          </div>
+                          <div class="form-group">                            
+                            <?php echo BsHtml::textField("nombre", '', array(
+                                "placeholder" => "Nombre y Apellido"
+                            )) ?>                 
+                          </div>
+                          <div class="form-group">                            
+                            <?php echo BsHtml::dateField("fecha", '', array(
+                                "placeholder" => "Fecha de Nacimiento"
+                            )) ?>                 
+                          </div>
+                          <div class="form-group">                            
+                            <?php echo BsHtml::emailField("email", '', array(
+                                "placeholder" => "Email"
+                            )) ?>                 
+                          </div>                         
+                          <div class="form-group">                            
+                            <?php echo BsHtml::textField("password", '', array(
+                                "placeholder" => "Contraseña"
+                            )) ?>                                                                                               
+                          </div>
+                          <div class="form-group">                            
+                            <?php echo BsHtml::textField("twitter", '', array(
+                                "placeholder" => "Twitter"
+                            )) ?>                                                                                               
+                          </div>
+                          
+                          <div class="form-group text-center">
+                            
+                              <?php echo BsHtml::submitButton("Registrarse", array(
+                                  "color" => BsHtml::BUTTON_COLOR_DANGER,
+                                  'size' => BsHtml::BUTTON_SIZE_LARGE,
+                              )); ?>
+                              
+                          </div>
+                          <div class="form-group">                            
+<!--                              <div class="checkbox">
+                                <label>
+                                  <input type="checkbox"> Recordarme
+                                </label>
+                              </div>-->
+                            <?php echo BsHtml::link("Condiciones de Uso", array(""), array(
+                                
+                            )) ?>  
+                              
+                          </div>
+                                                      
+                              
+                          
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        
+    </div>
+    <div class="col-md-3 col-md-offset-1 panel-azul login-panel">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-12 panel-header">
+                    <h2>Ingresa</h2>                      
+                </div>
+            </div>
+        </div>
+        <div class="row panel-content">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3>Si ya estás registrado ingresa con tu cuenta</h3>                                                                  
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <form role="form">
+                          <div class="form-group">
+                            
+                            <?php echo BsHtml::textField("username", '', array(
+                                "placeholder" => "Email"
+                            )) ?>                                                                                             
+                            
+                          </div>
+                          <div class="form-group">
+                            
+                            <?php echo BsHtml::passwordField("password", '', array(
+                                "placeholder" => "Contraseña"
+                            )) ?>                                                                 
+                              
+                          </div>
+                          <div class="form-group link-recovery">                            
+<!--                              <div class="checkbox">
+                                <label>
+                                  <input type="checkbox"> Recordarme
+                                </label>
+                              </div>-->
+                            <?php echo BsHtml::link("Recuperar Contraseña", array("/user/recovery"), array(
+                                
+                            )) ?>  
+                              
+                          </div>
+                          <div class="form-group text-center">
+                            
+                              <?php echo BsHtml::submitButton("Entrar a jugar", array(
+                                  "color" => BsHtml::BUTTON_COLOR_DANGER,
+                                  'size' => BsHtml::BUTTON_SIZE_LARGE,
+                              )); ?>
+                              
+                          </div>
+                                                      
+                              
+                          
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
