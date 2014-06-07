@@ -98,14 +98,17 @@
 			?>
 				</div>
 			</div>
-			
+			<?php
+			//	echo date('Y-m-d H:i:s', strtotime('-30 minutes', strtotime(date('Y-m-d H:i:s'))));
+				
+			?>
 			<div class="well col-md-4">
 			<?php	
 				$this->widget('ext.duciscounter.DucisCounter', 
 		        array(
-		              'start_timestamp' => strtotime("2014-06-07 00:00:00"), 
-		              'end_timestamp' => strtotime("2014-06-07 20:00:00"), 
-		              'now' => strtotime(date('Y-m-d H:i:s'))
+		              'start_timestamp' => strtotime(date("Y-m-d 00:00:00")), 
+		              'end_timestamp' => strtotime('-10 minutes', strtotime($partido->fecha)),
+		              'now' => strtotime('-30 minutes', strtotime(date('Y-m-d H:i:s')))
 		            )
 		        );
 			?>
