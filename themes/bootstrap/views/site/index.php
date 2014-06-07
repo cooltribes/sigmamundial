@@ -17,75 +17,27 @@ $this->pageTitle = Yii::app()->name;
             <div class="col-md-12">
                 <div class="row">
                     <div class="col-md-12">
-                        <form role="form">
-                          <div class="form-group">                            
+                        <div class="form-group">                            
                             <?php
-                            if($verified){
-                                $this->renderPartial('_registration',array(
-                                    'model'=>$user,
-                                    'twitter_user'=>$twitter_user,
-                                ));
-                            }else{
-                                echo BsHtml::linkButton('Regístrate con Twitter', array(
-                                    'color' => BsHtml::BUTTON_COLOR_INFO,
-                                    'url' => array(
-                                                '/user/registration/twitter'
-                                            ),
-                                    'class' => 'btn-block',
-                                    'icon' => ''
-                                ));
-                            }
+                            echo BsHtml::linkButton('Regístrate con Twitter', array(
+                                'color' => BsHtml::BUTTON_COLOR_INFO,
+                                'url' => array(
+                                            '/user/registration/twitter'
+                                        ),
+                                'class' => 'btn-block',
+                                'icon' => ''
+                            ));
+                            ?>
+                        </div>
+                        <div class="form">
+                            <?php
+                            $this->renderPartial('_registration',array(
+                                'model'=>$user,
+                                'verified'=>$verified,
+                                //'twitter_user'=>$twitter_user,
+                            ));
                             ?> 
-                          </div>
-                          <div class="form-group">                            
-                            <?php echo BsHtml::textField("nombre", '', array(
-                                "placeholder" => "Nombre y Apellido"
-                            )) ?>                 
-                          </div>
-                          <div class="form-group">                            
-                            <?php echo BsHtml::dateField("fecha", '', array(
-                                "placeholder" => "Fecha de Nacimiento"
-                            )) ?>                 
-                          </div>
-                          <div class="form-group">                            
-                            <?php echo BsHtml::emailField("email", '', array(
-                                "placeholder" => "Email"
-                            )) ?>                 
-                          </div>                         
-                          <div class="form-group">                            
-                            <?php echo BsHtml::textField("password", '', array(
-                                "placeholder" => "Contraseña"
-                            )) ?>                                                                                               
-                          </div>
-                          <div class="form-group">                            
-                            <?php echo BsHtml::textField("twitter", '', array(
-                                "placeholder" => "Twitter"
-                            )) ?>                                                                                               
-                          </div>
-                          
-                          <div class="form-group text-center">
-                            
-                              <?php echo BsHtml::submitButton("Registrarse", array(
-                                  "color" => BsHtml::BUTTON_COLOR_DANGER,
-                                  'size' => BsHtml::BUTTON_SIZE_LARGE,
-                              )); ?>
-                              
-                          </div>
-                          <div class="form-group">                            
-<!--                              <div class="checkbox">
-                                <label>
-                                  <input type="checkbox"> Recordarme
-                                </label>
-                              </div>-->
-                            <?php echo BsHtml::link("Condiciones de Uso", array(""), array(
-                                
-                            )) ?>  
-                              
-                          </div>
-                                                      
-                              
-                          
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>

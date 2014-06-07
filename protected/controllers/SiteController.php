@@ -49,6 +49,20 @@ class SiteController extends Controller
 				$profile->lastname = 'a';
 				$profile->firstname = 'b';
 				$profile->save();
+
+				$activation_url = $this->createAbsoluteUrl('/user/activation/activation',array("activkey" => $user->activkey, "email" => $user->email));
+				$body = 'Te has registrado para vivir la experiencia Sigma. Por favor valida tu cuenta haciendo click en el siguiente enlace: <br/><br/><a href="'.$activation_url.'">Click aquí</a>.';
+
+				$message = new YiiMailMessage;
+				$message->view = 'mail_template';
+				 
+				//userModel is passed to the view
+				$message->setBody(array('body'=>$body), 'text/html');
+				 
+				 
+				$message->addTo($user->email);
+				$message->from = Yii::app()->params['adminEmail'];
+				Yii::app()->mail->send($message);
 				
 				/*if (Yii::app()->controller->module->sendActivationMail) {
 					$activation_url = $this->createAbsoluteUrl('/user/activation/activation',array("activkey" => $model->activkey, "email" => $model->email));
