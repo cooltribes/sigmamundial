@@ -47,7 +47,7 @@ class DucisCounter extends CWidget{
         
         public function init() {
             $path = Yii::app()->getAssetManager()->publish(
-                    Yii::getPathOfAlias('ext.duciscounter.src', -1, false));
+                    Yii::getPathOfAlias('ext.duciscounter.src', -1, false)); 
             
             $this->jsFile = $path . '/ducisclock.js';
             $this->cssFile = $path . '/ducisclock.css';
@@ -71,7 +71,7 @@ class DucisCounter extends CWidget{
                     startDate   : "'.$this->start_timestamp.'",
                     endDate     : "'.$this->end_timestamp.'",
                     now         : "'.$this->now.'",
-                    seconds     : "57"
+                    seconds     : "60"
                 });'; 
 			 
             $cs->registerScript('count-down-script', $script);
@@ -86,11 +86,19 @@ class DucisCounter extends CWidget{
 			$this->body = "<div class='row text-center' style='color:#fff;' >Tiempo restante para enviar tu resultado:";
 		}
 		
+		// echo date('Y-m-d H:i:s',  strtotime('2011-04-8 08:29:49')));
+		
+		if($this->end_timestamp < strtotime('-30 minutes', strtotime(date('Y-m-d H:i:s'))) )
+		{
+			Yii::app()->user->setFlash('danger',"Se agotó el tiempo para realizar la apuesta para el partido.");
+  			header( 'Location: http://www.sigmatiendas.com/mundial/apuesta/partidos' ) ;
+		}
+		
             echo '
 		<div class="" style="background-color:#005b8a;">	
 		<div class="contenedor">
 		'.$this->body.'
-		<div class="clock"><!--//-->
+		<div><!--//-->
 			
 			<div class="clock_days">
 				<div class="">
@@ -98,46 +106,46 @@ class DucisCounter extends CWidget{
 					<canvas id="canvas_days" width="0" height="0"> 
 					</canvas>
 					
-					<div class="text">
-						<p class="val" style="display: none;">  </p>
-						<p class="type_days"></p>
+					<div>
+						<p style="display: none;">  </p>
+						<p></p>
 					</div>
 				</div>
-			</div>
+			</div> 
 			
-			<div class="clock_hours">
+			<div class="clock_hours col-md-3">
 				<div class=""> 
 					
 					<canvas id="canvas_hours" width="40" height="40" style="display:none;"> 
 					</canvas>
 					
-					<div class="text">
+					<div>
 						<p class="val">5</p>
 						<p>Horas</p>
 					</div>
 				</div>
 			</div>
 			
-		<div class="clock_minutes">
-			<div class="">
+		<div class="clock_minutes col-md-3">
+			<div class=""> 
 				
-				<canvas id="canvas_minutes" width="40" height="40" style="color:#005b8a;"> 
+				<canvas id="canvas_minutes" width="40" height="40" style="display:none;"> 
 				</canvas>
 				
-				<div class="text">
+				<div>
 					<p class="val">46</p>
-					<p>Minutos</p>
+					<p class="">Minutos</p>
 				</div>
 			</div>
 		</div>
 		
-		<div class="clock_seconds">
+		<div class="clock_seconds col-md-3">
 			<div class="">
 				
-				<canvas id="canvas_seconds" width="40" height="40" style="color:#005b8a;"> 
+				<canvas id="canvas_seconds" width="40" height="40" style="display:none;"> 
 				</canvas>
 				
-				<div class="text">
+				<div>
 					<p class="val">42</p>
 					<p class="">Segundos</p>
 				</div>
