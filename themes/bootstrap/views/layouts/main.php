@@ -110,8 +110,9 @@ $this->widget('bootstrap.widgets.BsNavbar', array(
 <div class="container" id="page">       
     
     <div class="row margin_top_medium main-header">
-        <div class="col-md-3 padding_top_small">
-            <?php echo CHtml::image(Yii::app()->getBaseUrl(true)."/images/logo.png", "Logo"); ?>            
+        <div class="col-md-3 logo">
+            <?php echo CHtml::image(Yii::app()->getBaseUrl(true)."/images/logo.png", "Logo",
+                    array("height" => 73)); ?>            
         </div>
         <div class="col-md-6 text-center main-title">
             <h1>Vive la Experiencia</h1>
@@ -120,7 +121,7 @@ $this->widget('bootstrap.widgets.BsNavbar', array(
         <div class="col-md-3 user-options">
             <div class="row">
                 <div class="col-md-11">
-                    <div class="row margin_top_small text-right user-name">
+                    <div class="row text-right user-name">
                         <div class="col-md-12 ">
                             Nelson Ramirez
                             <span class="caret"></span>

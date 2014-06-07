@@ -148,10 +148,13 @@ body{
     margin-top: 20px;
 }
 
-a{color:@blanco; .transition_all}
+a{
+    color:@azul;
+    .transition_all
+}
 a:hover{
-  color:@gris-hover;
-  text-decoration: underline;
+  color:@azul;
+  text-decoration: none;
 }
 
 
@@ -159,6 +162,11 @@ a:hover{
 /*Encabezado principal*/
 .main-header{
     margin-bottom: 43px;
+    
+    .logo{
+        margin-top: 41px;
+    }
+    
     .main-title{
         color: @blanco;
         .text-shadow();
@@ -172,6 +180,7 @@ a:hover{
     }
 
     .user-options{
+        margin-top: 42px;
         .user-name{
             .fondo-gris();
             color: @azul;
@@ -208,6 +217,14 @@ a:hover{
     }
 }
 
+.register-panel{
+    color: @azul;
+    .about-link a{
+        font-weight: bold;
+    }
+
+}
+
 .login-panel{
     h3{
         color: @blanco;
@@ -219,6 +236,13 @@ a:hover{
 
     .link-recovery{
         text-align: center;
-        margin: 30px 0;
+        margin: 16px 0 30px;
+        a{
+            color: @blanco;
+            &:hover{
+                color: @gris;
+                text-decoration: underline;
+            }
+        }
     }
 }

@@ -50,25 +50,21 @@ if($verified){
 		)); ?>
 		<?php echo $form->hiddenField($model, "twitter_id"); ?>                                                                                               
 	</div>
+	<div class="form-group text-center about-link">      
+		Al hacer click en "Registrarse" estás indicando
+                que has leído y aceptado las 
+                    <?php echo BsHtml::link("Condiciones de Uso", array("site/about"), array(
 
-	<div class="form-group text-center">
+		)); ?>  
+
+	</div>
+        <div class="form-group text-center">
 
 		<?php echo BsHtml::submitButton("Registrarse", array(
 			"color" => BsHtml::BUTTON_COLOR_DANGER,
 			'size' => BsHtml::BUTTON_SIZE_LARGE,
 			"disabled" => $disabled,
 		)); ?>
-
-	</div>
-	<div class="form-group">                            
-		<!--                              <div class="checkbox">
-		<label>
-		<input type="checkbox"> Recordarme
-		</label>
-		</div>-->
-		<?php echo BsHtml::link("Condiciones de Uso", array(""), array(
-
-		)); ?>  
 
 	</div>
 	<?php $this->endWidget(); ?>
