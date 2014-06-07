@@ -58,7 +58,7 @@ $this->pageTitle = Yii::app()->name;
         <div class="row">
             <div class="col-md-12">
                 <div class="col-md-12 panel-header">
-                    <h2>Ingresa</h2>                      
+                    <h3>Ingresa</h3>                      
                 </div>
             </div>
         </div>
