@@ -127,8 +127,8 @@ $this->widget('bootstrap.widgets.BsNavbar', array(
                     <div class="row text-right user-name">
                         <div class="col-md-12 dropdown">
                             <a href="#" data-toggle="dropdown">
-                                <?php                                 
-                                    if($user->nombre) {
+                                <?php
+                                    if(isset($user->nombre) && $user->nombre != '') {
                                        $nombre = $user->nombre;
                                     }else{
                                        $nombre = $user->email;                                    

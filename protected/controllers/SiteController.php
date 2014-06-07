@@ -28,13 +28,14 @@ class SiteController extends Controller
 	public function actionIndex()
 	{
             
-            if(!Yii::app()->user->isGuest){
-                $this->redirect(array("apuesta/partidos"));
-            }
+        if(!Yii::app()->user->isGuest){
+            $this->redirect(array("apuesta/partidos"));
+        }
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
 		$user = new User;
 		$representante = new Representante;
+		$login = new UserLogin;
 
 		if(isset($_POST['User'])){
 			$user->attributes=$_POST['User'];
@@ -147,6 +148,7 @@ class SiteController extends Controller
 					'verified'=>true,
 					'twitter_user'=>$twuser,
 					'representante'=>$representante,
+					'login'=>$login,
 				));
 	 
 	        } else {
@@ -156,15 +158,31 @@ class SiteController extends Controller
 					'user'=>$user,
 					'verified'=>false,
 					'representante'=>$representante,
+					'login'=>$login,
 				));
 
 	        }
 
+	    }else if(isset($_POST['UserLogin'])){
+			$login->attributes=$_POST['UserLogin'];
+			// validate user input and redirect to previous page if valid
+			if($login->validate()) {
+				$login->lastViset();
+				$this->redirect(array('/apuesta/partidos'));
+			}else{
+				$this->render('index', array(
+					'user'=>$user,
+					'verified'=>false,
+					'representante'=>$representante,
+					'login'=>$login,
+				));
+			}
 	    }else{
 	    	$this->render('index', array(
 				'user'=>$user,
 				'verified'=>false,
 				'representante'=>$representante,
+				'login'=>$login,
 			));
 	    }
 		

@@ -19,24 +19,33 @@ $this->pageTitle = Yii::app()->name;
                     <div class="col-md-12">
                         <div class="form-group">                            
                             <?php
-                            echo BsHtml::linkButton('Regístrate con Twitter', array(
-                                'color' => BsHtml::BUTTON_COLOR_INFO,
-                                'url' => array(
-                                            '/user/registration/twitter'
-                                        ),
-                                'class' => 'btn-block',
-                                'icon' => ''
-                            ));
+                            if(!$verified){
+                                echo BsHtml::linkButton('Regístrate con Twitter', array(
+                                    'color' => BsHtml::BUTTON_COLOR_INFO,
+                                    'url' => array(
+                                                '/user/registration/twitter'
+                                            ),
+                                    'class' => 'btn-block',
+                                    'icon' => ''
+                                ));
+                            }
                             ?>
                         </div>
                         <div class="form">
                             <?php
-                            $this->renderPartial('_registration',array(
-                                'model'=>$user,
-                                'verified'=>$verified,
-                                'representante'=>$representante,
-                            ));
+                            if($verified){
+                                $this->renderPartial('_registration',array(
+                                    'model'=>$user,
+                                    'verified'=>$verified,
+                                    'representante'=>$representante,
+                                ));
+                            }
                             ?> 
+                        </div>
+                        <div class="form-group text-center about-link">      
+                            Al registrarte estás indicando
+                                que has leído y aceptado las 
+                                <?php echo BsHtml::link("Condiciones de Uso", array("site/about"), array()); ?>
                         </div>
                     </div>
                 </div>
@@ -62,44 +71,12 @@ $this->pageTitle = Yii::app()->name;
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <form role="form">
-                          <div class="form-group">
-                            
-                            <?php echo BsHtml::textField("username", '', array(
-                                "placeholder" => "Email"
-                            )) ?>                                                                                             
-                            
-                          </div>
-                          <div class="form-group">
-                            
-                            <?php echo BsHtml::passwordField("password", '', array(
-                                "placeholder" => "Contraseña"
-                            )) ?>                                                                 
-                              
-                          </div>
-                          <div class="form-group link-recovery">                            
-<!--                              <div class="checkbox">
-                                <label>
-                                  <input type="checkbox"> Recordarme
-                                </label>
-                              </div>-->
-                            <?php echo BsHtml::link("Recuperar Contraseña", array("/user/recovery"), array(
-                                
-                            )) ?>  
-                              
-                          </div>
-                          <div class="form-group text-center">
-                            
-                              <?php echo BsHtml::submitButton("Entrar a jugar", array(
-                                  "color" => BsHtml::BUTTON_COLOR_DANGER,
-                                  'size' => BsHtml::BUTTON_SIZE_LARGE,
-                              )); ?>
-                              
-                          </div>
-                                                      
-                              
-                          
-                        </form>
+                        <?php
+                        $this->renderPartial('_login',array(
+                            'model'=>$login,
+                            'verified'=>$verified,
+                        ));
+                        ?>
                     </div>
                 </div>
             </div>
@@ -129,8 +106,9 @@ function checkAge(dateofbirth) {
     yd = now.getUTCFullYear()-dateofbirth.getUTCFullYear();
     md = now.getUTCMonth()-dateofbirth.getUTCMonth();
     dd = now.getUTCDate()-dateofbirth.getUTCDate();
-    if(yd > 18) return true;
-    if(md > 0) return true;
+    console.log(yd+' - '+md+' - '+dd);
+    if(yd < 18) return false; else return true;;
+    if(md < 0) return false;
     return dd >= 0;
 }
 </script>
