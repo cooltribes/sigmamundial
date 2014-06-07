@@ -8,6 +8,8 @@
 @gris-viejo: #cdcdcd;
 @gris: #e2e2e2;
 @gris-hover: #cacaca;
+@gris-sombra: #4b4b4b;
+@gris-sombra-hover: #141414;
 @blanco: #fff;
 @negro: #000;
 
@@ -114,6 +116,11 @@
     -webkit-border-radius: @radius;
 }
 
+.box-shadow(@string: 0px 0px 20px 0px @gris-sombra){
+    -webkit-box-shadow: @string;
+    box-shadow: @string;
+}
+
 .text-shadow(@string: 0px 0px 5px rgba(0, 0, 0, 0.5)){
      text-shadow: @string;
      -moz-text-shadow: @string;
@@ -212,7 +219,7 @@ a:hover{
     margin: -31px 0 18px 0;
 
     h3{
-        margin: 15px 0 15px 0;
+        margin: 10px 0;
         text-align: center;       
     }
 }
@@ -250,10 +257,22 @@ a:hover{
     }
 }
 
-// Estandarizar
-.dropdown-menu>li>a:hover,
-.dropdown-menu>li>a:focus {
-    color:@azul;
+//Partidos de hoy
+
+.panel-partidos{
+    .box-partido{
+        .box-shadow();
+        background-color: fade(@blanco, 80%);
+        border: 1px solid @azul;        
+        .transition_all;
+
+        &:hover{
+            .box-shadow(0 0 30px 3px @gris-sombra-hover);
+            
+        }
+
+    }
+
 }
 
 

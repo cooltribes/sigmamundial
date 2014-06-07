@@ -9,7 +9,7 @@ $this->pageTitle = Yii::app()->name;
         <div class="row">
             <div class="col-md-12">
                 <div class="col-md-12 panel-header">
-                    <h2>Crea tu cuenta</h2>                      
+                    <h3>Crea tu cuenta</h3>                      
                 </div>
             </div>
         </div>
