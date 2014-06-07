@@ -57,21 +57,27 @@ class UserLogin extends CFormModel
 					Yii::app()->user->login($identity,$duration);
 					break;
 				case UserIdentity::ERROR_EMAIL_INVALID:
-					$this->addError("username",UserModule::t("Email is incorrect."));
+					$this->addError("username","Email incorrecto");
 					break;
 				case UserIdentity::ERROR_USERNAME_INVALID:
 					$this->addError("username",UserModule::t("Username is incorrect."));
 					break;
 				case UserIdentity::ERROR_STATUS_NOTACTIV:
-					$this->addError("status",UserModule::t("You account is not activated."));
+					$this->addError("status","Tu cuenta no se ha validado");
 					break;
 				case UserIdentity::ERROR_STATUS_BAN:
 					$this->addError("status",UserModule::t("You account is blocked."));
 					break;
 				case UserIdentity::ERROR_PASSWORD_INVALID:
-					$this->addError("password",UserModule::t("Password is incorrect."));
+					$this->addError("password","Contraseña incorrecta");
 					break;
 			}
 		}
+	}
+
+	public function lastViset() {
+		$lastVisit = User::model()->notsafe()->findByPk(Yii::app()->user->id);
+		$lastVisit->lastvisit = time();
+		$lastVisit->save();
 	}
 }

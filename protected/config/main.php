@@ -58,7 +58,7 @@ return array(
             'returnUrl' => array('/user/profile'),
  
             # page after logout
-            'returnLogoutUrl' => array('/user/login'),
+            'returnLogoutUrl' => array('/'),
         ),
 		// uncomment the following to enable the Gii tool
 		

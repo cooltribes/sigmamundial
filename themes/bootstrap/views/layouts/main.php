@@ -14,15 +14,15 @@
             ->registerCssFile($themePath.'/assets/css/estilos.css');
         
         /** JavaScripts*/
-        $cs->registerCoreScript('jquery',CClientScript::POS_END)
-            ->registerCoreScript('jquery.ui',CClientScript::POS_END)
-            ->registerScriptFile($themePath.'/assets/js/bootstrap.min.js',CClientScript::POS_END)
+        $cs->registerCoreScript('jquery',CClientScript::POS_HEAD)
+            ->registerCoreScript('jquery.ui',CClientScript::POS_HEAD)
+            ->registerScriptFile($themePath.'/assets/js/bootstrap.min.js',CClientScript::POS_HEAD)
                 
 
             ->registerScript('tooltip',
                 "$('[data-toggle=\"tooltip\"]').tooltip();
                 $('[data-toggle=\"popover\"]').tooltip()"
-                ,CClientScript::POS_READY)->coreScriptPosition = CClientScript::POS_END;
+                ,CClientScript::POS_READY)->coreScriptPosition = CClientScript::POS_HEAD;
 
         ?>
         <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
@@ -32,7 +32,9 @@
 </head>
 
 <body>
- 
+    <?php 
+    $user = User::model()->findByPk(Yii::app()->user->id); 
+    ?>
 <?php
 //Solo si es admin puede ver la barra
 if(UserModule::isAdmin()){
@@ -118,23 +120,41 @@ $this->widget('bootstrap.widgets.BsNavbar', array(
             <h1>Vive la Experiencia</h1>
             <h2 class="no_margin_top">#SigmaEsMundial</h2>
         </div>
+        <?php if(!Yii::app()->user->isGuest){ ?>
         <div class="col-md-3 user-options">
             <div class="row">
                 <div class="col-md-11">
                     <div class="row text-right user-name">
-                        <div class="col-md-12 ">
-                            Nelson Ramirez
-                            <span class="caret"></span>
+                        <div class="col-md-12 dropdown">
+                            <a href="#" data-toggle="dropdown">
+                                <?php
+                                    if(isset($user->nombre) && $user->nombre != '') {
+                                       $nombre = $user->nombre;
+                                    }else{
+                                       $nombre = $user->email;                                    
+                                    }                                
+                                    echo (strlen($nombre) > 13) ? substr($nombre,0,10).'...' : $nombre;                                
+                                ?>                                
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                            <li>
+                                <?php echo BsHtml::link("Cerrar Sesion", array("/user/logout")) ?>
+                            </li>                            
+                          </ul>
+                            
                         </div>
                     </div>
                     <div class="row text-right user-info">
                         <div class="col-md-12">
-                            Puntos: 7 Posición: 4
+                            Puntos: 7 Posición: 4                            
                         </div>
                     </div>                    
                 </div>
             </div>
         </div>
+        <?php } ?>
+        
     </div>
     
     

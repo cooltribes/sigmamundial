@@ -44,19 +44,23 @@ if($verified){
 		)); ?>                                                                                               
 	</div>
 	<div class="form-group">                            
-		<?php echo $form->textField($model, "twitter", array(
-			"disabled" => $disabled,
-			'prepend' => BsHtml::icon(BsHtml::GLYPHICON_USER)
+		<?php echo BsHtml::textField("twitter", $model->twitter, array(
+			"disabled" => 'disabled',
+			'prepend' => '@'
 		)); ?>
-		<?php echo $form->hiddenField($model, "twitter_id"); ?>                                                                                               
+		<?php echo $form->hiddenField($model, "twitter_id"); ?>
+		<?php echo $form->hiddenField($model, "twitter"); ?>  
 	</div>
-	<div class="form-group text-center about-link">      
-		Al hacer click en "Registrarse" estás indicando
-                que has leído y aceptado las 
-                    <?php echo BsHtml::link("Condiciones de Uso", array("site/about"), array(
 
-		)); ?>  
-
+	<div class="form-group" style="display:none;" id="nombre_representante">                            
+		<?php echo $form->textField($representante, "nombre", array(
+			"disabled" => $disabled,
+		)); ?>                 
+	</div>
+	<div class="form-group" style="display:none;" id="email_representante">                            
+		<?php echo $form->emailField($representante, "email", array(
+			"disabled" => $disabled,
+		)); ?>                 
 	</div>
         <div class="form-group text-center">
 

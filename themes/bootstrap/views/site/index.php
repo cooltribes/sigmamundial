@@ -19,24 +19,33 @@ $this->pageTitle = Yii::app()->name;
                     <div class="col-md-12">
                         <div class="form-group">                            
                             <?php
-                            echo BsHtml::linkButton('Regístrate con Twitter', array(
-                                'color' => BsHtml::BUTTON_COLOR_INFO,
-                                'url' => array(
-                                            '/user/registration/twitter'
-                                        ),
-                                'class' => 'btn-block',
-                                'icon' => ''
-                            ));
+                            if(!$verified){
+                                echo BsHtml::linkButton('Regístrate con Twitter', array(
+                                    'color' => BsHtml::BUTTON_COLOR_INFO,
+                                    'url' => array(
+                                                '/user/registration/twitter'
+                                            ),
+                                    'class' => 'btn-block',
+                                    'icon' => ''
+                                ));
+                            }
                             ?>
                         </div>
                         <div class="form">
                             <?php
-                            $this->renderPartial('_registration',array(
-                                'model'=>$user,
-                                'verified'=>$verified,
-                                //'twitter_user'=>$twitter_user,
-                            ));
+                            if($verified){
+                                $this->renderPartial('_registration',array(
+                                    'model'=>$user,
+                                    'verified'=>$verified,
+                                    'representante'=>$representante,
+                                ));
+                            }
                             ?> 
+                        </div>
+                        <div class="form-group text-center about-link">      
+                            Al registrarte estás indicando
+                                que has leído y aceptado las 
+                                <?php echo BsHtml::link("Condiciones de Uso", array("site/about"), array()); ?>
                         </div>
                     </div>
                 </div>
@@ -49,7 +58,7 @@ $this->pageTitle = Yii::app()->name;
         <div class="row">
             <div class="col-md-12">
                 <div class="col-md-12 panel-header">
-                    <h2>Ingresa</h2>                      
+                    <h3>Ingresa</h3>                      
                 </div>
             </div>
         </div>
@@ -62,47 +71,44 @@ $this->pageTitle = Yii::app()->name;
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <form role="form">
-                          <div class="form-group">
-                            
-                            <?php echo BsHtml::textField("username", '', array(
-                                "placeholder" => "Email"
-                            )) ?>                                                                                             
-                            
-                          </div>
-                          <div class="form-group">
-                            
-                            <?php echo BsHtml::passwordField("password", '', array(
-                                "placeholder" => "Contraseña"
-                            )) ?>                                                                 
-                              
-                          </div>
-                          <div class="form-group link-recovery">                            
-<!--                              <div class="checkbox">
-                                <label>
-                                  <input type="checkbox"> Recordarme
-                                </label>
-                              </div>-->
-                            <?php echo BsHtml::link("Recuperar Contraseña", array("/user/recovery"), array(
-                                
-                            )) ?>  
-                              
-                          </div>
-                          <div class="form-group text-center">
-                            
-                              <?php echo BsHtml::submitButton("Entrar a jugar", array(
-                                  "color" => BsHtml::BUTTON_COLOR_DANGER,
-                                  'size' => BsHtml::BUTTON_SIZE_LARGE,
-                              )); ?>
-                              
-                          </div>
-                                                      
-                              
-                          
-                        </form>
+                        <?php
+                        $this->renderPartial('_login',array(
+                            'model'=>$login,
+                            'verified'=>$verified,
+                        ));
+                        ?>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+$('#User_fecha_nacimiento').on('blur', function(){
+    var res = $(this).val().split("-");
+
+    if (checkAge(new Date(res[0], res[1], res[2]), 18)) {
+        console.log('mayor');
+        $('#nombre_representante').hide();
+        $('#email_representante').hide();
+    } else {
+        console.log('menor');
+        $('#nombre_representante').show();
+        $('#email_representante').show();
+    }
+
+    
+});
+
+function checkAge(dateofbirth) {
+    var yd, md, dd, now = new Date();
+    yd = now.getUTCFullYear()-dateofbirth.getUTCFullYear();
+    md = now.getUTCMonth()-dateofbirth.getUTCMonth();
+    dd = now.getUTCDate()-dateofbirth.getUTCDate();
+    console.log(yd+' - '+md+' - '+dd);
+    if(yd < 18) return false; else return true;;
+    if(md < 0) return false;
+    return dd >= 0;
+}
+</script>

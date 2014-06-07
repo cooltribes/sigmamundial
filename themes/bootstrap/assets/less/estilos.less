@@ -129,10 +129,10 @@
 }
 /* Transitions */
 .transition_all{
-    transition:all ease 0.5s;
-    -moz-transition:all ease 0.5s; /* Firefox 4 */
-    -webkit-transition:all ease 0.5s; /* Safari and Chrome */
-    -o-transition:all ease 0.5s; /* Opera */
+    transition:all ease 0.3s;
+    -moz-transition:all ease 0.3s; /* Firefox 4 */
+    -webkit-transition:all ease 0.3s; /* Safari and Chrome */
+    -o-transition:all ease 0.3s; /* Opera */
     }
 
 body{
@@ -211,7 +211,7 @@ a:hover{
     color: @blanco;
     margin: -31px 0 18px 0;
 
-    h2{
+    h3{
         margin: 15px 0 15px 0;
         text-align: center;       
     }
@@ -226,23 +226,34 @@ a:hover{
 }
 
 .login-panel{
-    h3{
-        color: @blanco;
-        text-align: center;
-        font-weight: bold;
-        margin: 25px 15px 50px 15px;
-        line-height: 33px;
-    }
-
-    .link-recovery{
-        text-align: center;
-        margin: 16px 0 30px;
-        a{
+    
+    .panel-content{
+        h3{
             color: @blanco;
-            &:hover{
-                color: @gris;
-                text-decoration: underline;
+            text-align: center;
+            font-weight: bold;
+            margin: 25px 15px 50px 15px;
+            line-height: 33px;
+        }
+
+        .link-recovery{
+            text-align: center;
+            margin: 16px 0 30px;
+            a{
+                color: @blanco;
+                &:hover{
+                    color: @gris;
+                    text-decoration: underline;
+                }
             }
         }
     }
 }
+
+// Estandarizar
+.dropdown-menu>li>a:hover,
+.dropdown-menu>li>a:focus {
+    color:@azul;
+}
+
+
