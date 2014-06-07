@@ -50,6 +50,18 @@ if($verified){
 		)); ?>
 		<?php echo $form->hiddenField($model, "twitter_id"); ?>                                                                                               
 	</div>
+
+	<div class="form-group" style="display:none;" id="nombre_representante">                            
+		<?php echo $form->textField($representante, "nombre", array(
+			"disabled" => $disabled,
+		)); ?>                 
+	</div>
+	<div class="form-group" style="display:none;" id="email_representante">                            
+		<?php echo $form->emailField($representante, "email", array(
+			"disabled" => $disabled,
+		)); ?>                 
+	</div>
+
 	<div class="form-group text-center about-link">      
 		Al hacer click en "Registrarse" estás indicando
                 que has leído y aceptado las 

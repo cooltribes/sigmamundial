@@ -34,7 +34,7 @@ $this->pageTitle = Yii::app()->name;
                             $this->renderPartial('_registration',array(
                                 'model'=>$user,
                                 'verified'=>$verified,
-                                //'twitter_user'=>$twitter_user,
+                                'representante'=>$representante,
                             ));
                             ?> 
                         </div>
@@ -106,3 +106,31 @@ $this->pageTitle = Yii::app()->name;
         </div>
     </div>
 </div>
+
+<script>
+$('#User_fecha_nacimiento').on('blur', function(){
+    var res = $(this).val().split("-");
+
+    if (checkAge(new Date(res[0], res[1], res[2]), 18)) {
+        console.log('mayor');
+        $('#nombre_representante').hide();
+        $('#email_representante').hide();
+    } else {
+        console.log('menor');
+        $('#nombre_representante').show();
+        $('#email_representante').show();
+    }
+
+    
+});
+
+function checkAge(dateofbirth) {
+    var yd, md, dd, now = new Date();
+    yd = now.getUTCFullYear()-dateofbirth.getUTCFullYear();
+    md = now.getUTCMonth()-dateofbirth.getUTCMonth();
+    dd = now.getUTCDate()-dateofbirth.getUTCDate();
+    if(yd > 18) return true;
+    if(md > 0) return true;
+    return dd >= 0;
+}
+</script>
