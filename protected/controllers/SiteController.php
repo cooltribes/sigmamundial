@@ -34,6 +34,7 @@ class SiteController extends Controller
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
 		$user = new User;
+		$representante = new Representante;
 
 		if(isset($_POST['User'])){
 			$user->attributes=$_POST['User'];
@@ -41,6 +42,7 @@ class SiteController extends Controller
 			$user->twitter=$_POST['User']['twitter'];
 			$user->twitter_id=$_POST['User']['twitter_id'];
 			$user->fecha_nacimiento=$_POST['User']['fecha_nacimiento'];
+			$user->nombre=$_POST['User']['nombre'];
 			//if($model->validate()&&$profile->validate()){
 			$soucePassword = $_POST['User']['password'];
 			$user->activkey=UserModule::encrypting(microtime().$user->password);
@@ -53,6 +55,12 @@ class SiteController extends Controller
 				$profile->lastname = 'a';
 				$profile->firstname = 'b';
 				$profile->save();
+
+				if(isset($_POST['Representante'])){
+					$representante->attributes=$_POST['Representante'];
+					$representante->user_id = $user->id;
+					$representante->save();
+				}
 
 				$activation_url = $this->createAbsoluteUrl('/user/activation/activation',array("activkey" => $user->activkey, "email" => $user->email));
 				$body = 'Te has registrado para vivir la experiencia Sigma. Por favor valida tu cuenta haciendo click en el siguiente enlace: <br/><br/><a href="'.$activation_url.'">Click aquí</a>.';
@@ -93,7 +101,7 @@ class SiteController extends Controller
 					
 				}*/
 			}else{
-				var_dump($user->getErrors());
+				//var_dump($user->getErrors());
 			}
 			//}
 		}else if(isset($_REQUEST['oauth_token'])){
@@ -138,6 +146,7 @@ class SiteController extends Controller
 					'user'=>$user,
 					'verified'=>true,
 					'twitter_user'=>$twuser,
+					'representante'=>$representante,
 				));
 	 
 	        } else {
@@ -146,6 +155,7 @@ class SiteController extends Controller
 	            $this->render('index', array(
 					'user'=>$user,
 					'verified'=>false,
+					'representante'=>$representante,
 				));
 
 	        }
@@ -154,6 +164,7 @@ class SiteController extends Controller
 	    	$this->render('index', array(
 				'user'=>$user,
 				'verified'=>false,
+				'representante'=>$representante,
 			));
 	    }
 		
