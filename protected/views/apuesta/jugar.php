@@ -1,17 +1,15 @@
 <div class="row">    
-<div class="alert in alert-block fade alert-success text_align_center">
-        "Mensaje"
-    </div>
-<?php if (Yii::app()->user->hasFlash('success')) { ?>
-    <div class="alert in alert-block fade alert-success text_align_center">
-        <?php echo Yii::app()->user->getFlash('success'); ?>
-    </div>
-<?php } ?>
-<?php if (Yii::app()->user->hasFlash('error')) { ?>
-    <div class="alert in alert-block fade alert-error text_align_center">
-        <?php echo Yii::app()->user->getFlash('error'); ?>
-    </div>
-<?php } ?>
+    <?php if (Yii::app()->user->hasFlash('success')) { ?>
+        <div class="alert in alert-block fade alert-success text_align_center">
+            <?php echo Yii::app()->user->getFlash('success'); ?>
+        </div>
+    <?php } ?>
+    <?php if (Yii::app()->user->hasFlash('error')) { ?>
+        <div class="alert in alert-block fade alert-error text_align_center">
+            <?php echo Yii::app()->user->getFlash('error'); ?>
+        </div>
+    <?php } ?>
+
 
 <div class="panel panel-default col-md-8">
     <div class="panel-body">
