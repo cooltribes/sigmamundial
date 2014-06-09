@@ -32,6 +32,7 @@
 	            <th scope="col">Fecha de nacimiento</th>
 	            <th scope="col">Twitter</th>
 	            <th scope="col">Twitter id</th>
+	            <th scope="col">Puntos</th> 
 	            <th scope="col">Acción</th>
 	        </tr>
 	    {items}

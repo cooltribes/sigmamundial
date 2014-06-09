@@ -140,7 +140,7 @@ class User extends CActiveRecord
     {
         return CMap::mergeArray(Yii::app()->getModule('user')->defaultScope,array(
             'alias'=>'user',
-            'select' => 'user.id, user.username, user.email, user.create_at, user.lastvisit_at, user.superuser, user.status, user.nombre, user.twitter, user.fecha_nacimiento, user.puntos',
+            'select' => 'user.id, user.username, user.email, user.create_at, user.lastvisit_at, user.superuser, user.status, user.nombre, user.twitter, user.fecha_nacimiento, user.puntos, user.twitter_id',
         ));
     }
 	
