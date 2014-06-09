@@ -112,7 +112,7 @@ class SiteController extends Controller
 	        }
 	 
 	        /* Create TwitteroAuth object with app key/secret and token key/secret from default phase */
-	        $twitter = Yii::app()->twitter->getTwitterTokened(Yii::app()->session['oauth_token'], Yii::app()->session['oauth_token_secret']);   
+	        $twitter = Yii::app()->twitter->getTwitterTokened(Yii::app()->session['oauth_token'], Yii::app()->session['oauth_token_secret']);
 	 
 	        /* Request access tokens from twitter */
 	        $access_token = $twitter->getAccessToken($_REQUEST['oauth_verifier']);
@@ -121,8 +121,8 @@ class SiteController extends Controller
 	        Yii::app()->session['access_token'] = $access_token;
 	 
 	        /* Remove no longer needed request tokens */
-	        unset(Yii::app()->session['oauth_token']);
-	        unset(Yii::app()->session['oauth_token_secret']);
+	        //unset(Yii::app()->session['oauth_token']);
+	        //unset(Yii::app()->session['oauth_token_secret']);
 	 
 	        if (200 == $twitter->http_code) {
 	            /* The user has been verified and the access tokens can be saved for future use */
