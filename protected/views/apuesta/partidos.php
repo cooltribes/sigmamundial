@@ -14,12 +14,12 @@ function actual_date()
 
 <div class="row">
 
-    <div class="col-md-12 panel-gris">
+    <div class="col-md-8 col-md-offset-2 panel-gris">
         <!--HEADER-->
         <div class="row">
             <div class="col-md-12">
                 <div class="col-md-12 panel-header">
-                    <h3>Partidos para hoy <?php echo actual_date(); ?></h3>                      
+                    <h3>Partidos para hoy - <?php echo actual_date(); ?></h3>                      
                 </div>
             </div>
         </div>
@@ -53,14 +53,20 @@ function actual_date()
                             $contPartidos++;
                             if($contPartidos%2==0){
                                 $offset = 2;
-                            }else{
-                                $offset = 1;
                                 
+                            }else{
+                                $offset = 1;                                
                             }   
                         ?>
-                            <a href="<?php echo Yii::app()->getBaseUrl(true) . "/apuesta/jugar/" . $partido->id; ?>">
-                                <div class="col-md-4 col-md-offset-<?php echo $offset; ?>">
-                                    <div class="panel panel-default box-partido">
+                            <?php 
+                            //FILAS NUEVAS - si es impar
+                            if($contPartidos%2!=0){
+                                echo "<div class='row'>";
+                            } 
+                            ?>
+                            <a class="col-xs-12 col-sm-6 col-md-6 col-md-offset-<?php //echo $offset; ?>" href="<?php echo Yii::app()->getBaseUrl(true) . "/apuesta/jugar/" . $partido->id; ?>">
+                                <div >
+                                    <div class="panel panel-default box box-partido">
                                         <div class="panel-body">
                                             <?php
                                             $apuesta = Apuesta::model()->findByAttributes(array('id_partido' => $partido->id, 'id_user' => Yii::app()->user->id));
@@ -68,45 +74,45 @@ function actual_date()
 
                                             <div class="row text-center"> <?php echo $partido->sede; ?></div>
 
-                                        <div class="row">
-                                            <div class="col-md-5">
-                            <?php
-                            echo "<div class='text-center'>";
+                                            <div class="row equipos">
+                                                <div class="col-xs-5 col-md-5">
+                                                    <?php
+                                                    echo "<div class='text-center'>";
 
-                            $local = Equipo::model()->findByPk($partido->id_local);
-                            echo $local->nombre . "<br>";
+                                                    $local = Equipo::model()->findByPk($partido->id_local);
+                                                    echo $local->nombre . "<br>";
 
-                            echo CHtml::image(Yii::app()->getBaseUrl(true) . str_replace(".", "_thumb.", $local->url), $local->nombre);
+                                                    echo CHtml::image(Yii::app()->getBaseUrl(true) . str_replace(".", "_thumb.", $local->url), $local->nombre);
 
-                            if (isset($apuesta))
-                                echo " " . $apuesta->local;
+                                                    if (isset($apuesta))
+                                                        echo " " . $apuesta->local;
 
-                            echo "</div>";
-                            ?>
+                                                    echo "</div>";
+                                                    ?>
+                                                </div>
+
+                                                <div class="col-xs-2 col-md-2">
+                                                    <h2>VS</h2>
+                                                </div>
+
+                                                <div class="col-xs-5 col-md-5">
+                                                    <?php
+                                                    echo "<div class='text-center'>";
+
+                                                    $visitante = Equipo::model()->findByPk($partido->id_visitante);
+                                                    echo $visitante->nombre . "<br>";
+
+                                                    if (isset($apuesta))
+                                                        echo $apuesta->visitante . " ";
+
+                                                    echo CHtml::image(Yii::app()->getBaseUrl(true) . str_replace(".", "_thumb.", $visitante->url), $visitante->nombre);
+
+                                                    echo "</div>";
+                                                    ?>
+                                                </div>
                                             </div>
 
-                                            <div class="col-md-2">
-                                                <h2>VS</h2>
-                                            </div>
-
-                                            <div class="col-md-5">
-                            <?php
-                            echo "<div class='text-center'>";
-
-                            $visitante = Equipo::model()->findByPk($partido->id_visitante);
-                            echo $visitante->nombre . "<br>";
-
-                            if (isset($apuesta))
-                                echo $apuesta->visitante . " ";
-
-                            echo CHtml::image(Yii::app()->getBaseUrl(true) . str_replace(".", "_thumb.", $visitante->url), $visitante->nombre);
-
-                            echo "</div>";
-                            ?>
-                                            </div>
-                                        </div>
-
-                                        <div class="row text-center"> <?php echo date("h:i a", strtotime($partido->fecha)); ?> </div>
+                                            <div class="row text-center"> <?php echo date("h:i a", strtotime($partido->fecha)); ?> </div>
 
 
 
@@ -117,7 +123,21 @@ function actual_date()
                             </a>
 
                         <?php
+                       
+                            //FILAS NUEVAS - si es impar
+                            if($contPartidos%2==0){
+                                echo "</div>";
+                            } 
+                       
                         }
+                        if($contPartidos==0)
+                        {
+                            echo "<div class='row'><h4 class='col-md-6 col-md-offset-3 box no-partidos'>
+                                Lo sentimos. Hoy no se disputará ningún partido.
+                                </h4></div>";
+                            
+                        }
+
                         ?>
                     </div>
                 </div>
