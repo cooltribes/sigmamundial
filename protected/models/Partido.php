@@ -23,7 +23,7 @@
  /*
   * Estados
   * 0 - No disputado
-  * 1 - Disputado
+  * 1 - Disputado con resultado oficial listo
   */ 
 class Partido extends CActiveRecord
 {

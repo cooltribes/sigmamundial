@@ -43,7 +43,7 @@ class ApuestaController extends Controller
 	
 	public function actionPartidos()
 	{
-		$partido = array('estado'=>0);
+		$partido = array();
 		$criteria = new CDbCriteria(array('order'=>'id ASC'));
 		$criteria->addBetweenCondition('fecha', date("Y-m-d 00:00:00"), date("Y-m-d 23:59:59"));
 		$rows = Partido::model()->findAllByAttributes($partido, $criteria);
@@ -69,7 +69,10 @@ class ApuestaController extends Controller
 				
 				if($apuesta->save())
 				{				
-					Yii::app()->user->setFlash('success',"Apuesta guardada correctamente.");
+					$twitter = Yii::app()->twitter->getTwitterTokened(Yii::app()->session['oauth_token'], Yii::app()->session['oauth_token_secret']);
+					$result=$twitter->post('statuses/update', array('status' => "Este es un mensaje de prueba publicado automáticamente, por favor no pararle bolas."));
+					//var_dump($result);
+					Yii::app()->user->setFlash('success',"Apuesta guardada correctamente. Se ha publicado un tweet en tu cuenta para este partido.<br/>".var_dump($result));
 					$this->redirect(array('partidos'));
 				}
 			}
