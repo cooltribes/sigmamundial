@@ -1,17 +1,18 @@
-<!-- CONTENIDO ON -->
-     <div class="container-fluid" style="padding: 0 15px;">
+<div class="row">
+	<div class="col-md-12 panel-gris">
 
 	<div class="row">
-        <!-- COLUMNA PRINCIPAL DERECHA ON // OJO: esta de primera para mejorar el SEO sin embargo por CSS se ubica visualmente a la derecha -->
-        <div class="col-md-10 col-md-push-2 main-content" role="main">
-        	
-			<h1> Agregar resultado.</h1>
-
+        <div class="col-md-12">
+        	<div class="col-md-12 panel-header">
+					<h3>Agregar resultado</h3>	
+				</div>
+			</div>
+		</div>
 
 <div class="well">
-	<div class="row padding_left_medium">
-		<div class="col-md-6 1">
-
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3 text-center">
+			<div class="row">
 <?php 
 
 $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
@@ -33,64 +34,64 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
 	</div>
 	
 	<div class="form-group">
-		<label>Local: </label>  
+		<label>Encuentro: </label>  
 			<?php              
 				$local = Equipo::model()->findByPk($model->id_local);
-				echo $local->nombre." ";
-				
-				echo CHtml::image(Yii::app()->getBaseUrl(true).str_replace(".","_thumb.",$local->url), $local->nombre);
+				//echo CHtml::image(Yii::app()->getBaseUrl(true).str_replace(".","_thumb.",$local->url), $local->nombre)." ";
+				echo $local->nombre;
 				
 			?>
-	</div>    
-	
-	<div class="form-group">
-		<label>Visitante: </label>  
+	 - 
 			<?php              
 				$visitante = Equipo::model()->findByPk($model->id_visitante);
 				echo $visitante->nombre." ";
+				// echo CHtml::image(Yii::app()->getBaseUrl(true).str_replace(".","_thumb.",$visitante->url), $visitante->nombre);
 				
-				echo CHtml::image(Yii::app()->getBaseUrl(true).str_replace(".","_thumb.",$visitante->url), $visitante->nombre);
 			?>
 	</div> 
 	
 	<div class="form-group">
-		<label>Fecha: </label> <?php echo date("d/m/Y H:i:s",strtotime($model->fecha)); ?> 
+		<label>Fecha: </label> <?php echo date("d/m/Y h:i a",strtotime($model->fecha)); ?> 
 	</div>
 	
 	<div class="form-group">
 		<label>Ronda: </label> <?php echo $model->ronda; ?>
 	</div>
 	
-	<div class="form-group">
-		<?php
-		
-		$texto = "Goles de ".$local->nombre;
-		?>
-
-		<label><?php echo $texto." ".CHtml::image(Yii::app()->getBaseUrl(true).str_replace(".","_thumb.",$local->url), $local->nombre, array('width'=>40, 'height'=>25));?></label>
-		
-		<?php
-		
-			echo $form->numberField($model, 'gol_local', array(
-			    'placeholder' => $texto,
-			    'min'=>0,
-			));
-		?>
-	</div>
+	</div><!--row nuevo -->
 	
-	<div class="form-group">
-		<?php
-		$texto = "Goles de ".$visitante->nombre;
-		?>
+	<div class="row">
+		<div class="form-group col-md-6">
+			<?php
+			
+			$texto = $local->nombre;
+			?>
+	
+			<label><?php echo CHtml::image(Yii::app()->getBaseUrl(true).str_replace(".","_thumb.",$local->url), $local->nombre, array('width'=>40, 'height'=>25))." ".$texto;?></label>
+			
+			<?php
+			
+				echo $form->numberField($model, 'gol_local', array(
+				    'placeholder' => $texto,
+				    'min'=>0,
+				));
+			?>
+		</div>
 		
-		<label><?php echo $texto." ".CHtml::image(Yii::app()->getBaseUrl(true).str_replace(".","_thumb.",$visitante->url), $visitante->nombre, array('width'=>40, 'height'=>25));?></label>
-		
-		<?php
-			echo $form->numberField($model, 'gol_visitante', array(
-			    'placeholder' => $texto,
-			    'min'=>0,
-			));
-		?>
+		<div class="form-group col-md-6">
+			<?php
+			$texto = $visitante->nombre;
+			?>
+			
+			<label><?php echo $texto." ".CHtml::image(Yii::app()->getBaseUrl(true).str_replace(".","_thumb.",$visitante->url), $visitante->nombre, array('width'=>40, 'height'=>25));?></label>
+			
+			<?php
+				echo $form->numberField($model, 'gol_visitante', array(
+				    'placeholder' => $texto,
+				    'min'=>0,
+				));
+			?>
+		</div>
 	</div>
 	
 	<div class="form-actions">
@@ -112,6 +113,3 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
 
 </div>
 </div>
-</div>
-
-<!-- COLUMNA PRINCIPAL DERECHA OFF // -->

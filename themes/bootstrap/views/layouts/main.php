@@ -96,14 +96,27 @@ $this->widget('bootstrap.widgets.BsNavbar', array(
                     )
                 ),
                 
-            ),
+				array(
+                    'label' => 'Partidos',
+                    'url' => '/mundial/partido/admin',
+                    'pull' => BsHtml::NAVBAR_NAV_PULL_RIGHT,
+                
+            	),
+            	
+            	array(
+                    'label' => 'Usuarios',
+                    'url' => '/mundial/user/admin',
+                    'pull' => BsHtml::NAVBAR_NAV_PULL_RIGHT,
+                
+            	),
+				
             'htmlOptions' => array(
                 'pull' => BsHtml::NAVBAR_NAV_PULL_RIGHT
             )
         )
         
     )
-));
+)));
 
 }
 ?>
