@@ -1,75 +1,63 @@
-<?php
-$this->breadcrumbs=array(
-	UserModule::t('Users')=>array('/user'),
-	UserModule::t('Manage'),
-);
 
-$this->menu=array(
-    array('label'=>UserModule::t('Create User'), 'url'=>array('create')),
-    array('label'=>UserModule::t('Manage Users'), 'url'=>array('admin')),
-    array('label'=>UserModule::t('Manage Profile Field'), 'url'=>array('profileField/admin')),
-    array('label'=>UserModule::t('List User'), 'url'=>array('/user')),
-);
+<div class="row">
 
-Yii::app()->clientScript->registerScript('search', "
-$('.search-button').click(function(){
-    $('.search-form').toggle();
-    return false;
-});	
-$('.search-form form').submit(function(){
-    $.fn.yiiGridView.update('user-grid', {
-        data: $(this).serialize()
-    });
-    return false;
-});
-");
+	<div class="col-md-12 panel-gris">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="col-md-12 panel-header">
+					<h3>Administrar Usuarios</h3>	
+				</div>
+			</div>
+		</div>
+		
+		<div class="panel-content">
+		
+		<?php if(Yii::app()->user->hasFlash('success')){?>
+		    <div class="alert alert-success in fade">
+		        <?php echo Yii::app()->user->getFlash('success'); ?>
+		    </div>
+		<?php } ?>
+		<?php if(Yii::app()->user->hasFlash('error')){?>
+		    <div class="alert alert-danger in fade">
+		        <?php echo Yii::app()->user->getFlash('error'); ?>
+		    </div>
+		<?php } ?>
+			
+		<?php
+		$template = '{summary}
+	    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table table-bordered table-hover table-striped">
+	        <tr>
+	            <th scope="col">Nombre y Apellido</th>
+	            <th scope="col">Email</th>
+	            <th scope="col">Fecha de nacimiento</th>
+	            <th scope="col">Twitter</th>
+	            <th scope="col">Twitter id</th>
+	            <th scope="col">Acción</th>
+	        </tr>
+	    {items}
+	    </table>
+	    {pager} 
+		';
 
-?>
-<h1><?php echo UserModule::t("Manage Users"); ?></h1>
-
-<p><?php echo UserModule::t("You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b> or <b>=</b>) at the beginning of each of your search values to specify how the comparison should be done."); ?></p>
-
-<?php echo CHtml::link(UserModule::t('Advanced Search'),'#',array('class'=>'search-button')); ?>
-<div class="search-form" style="display:none">
-<?php $this->renderPartial('_search',array(
-    'model'=>$model,
-)); ?>
-</div><!-- search-form -->
-
-<?php $this->widget('zii.widgets.grid.CGridView', array(
-	'id'=>'user-grid',
-	'dataProvider'=>$model->search(),
-	'filter'=>$model,
-	'columns'=>array(
-		array(
-			'name' => 'id',
-			'type'=>'raw',
-			'value' => 'CHtml::link(CHtml::encode($data->id),array("admin/update","id"=>$data->id))',
-		),
-		array(
-			'name' => 'username',
-			'type'=>'raw',
-			'value' => 'CHtml::link(UHtml::markSearch($data,"username"),array("admin/view","id"=>$data->id))',
-		),
-		array(
-			'name'=>'email',
-			'type'=>'raw',
-			'value'=>'CHtml::link(UHtml::markSearch($data,"email"), "mailto:".$data->email)',
-		),
-		'create_at',
-		'lastvisit_at',
-		array(
-			'name'=>'superuser',
-			'value'=>'User::itemAlias("AdminStatus",$data->superuser)',
-			'filter'=>User::itemAlias("AdminStatus"),
-		),
-		array(
-			'name'=>'status',
-			'value'=>'User::itemAlias("UserStatus",$data->status)',
-			'filter' => User::itemAlias("UserStatus"),
-		),
-		array(
-			'class'=>'CButtonColumn',
-		),
-	),
-)); ?>
+			$this->widget('zii.widgets.CListView', array(
+		    'id'=>'list-auth-users',
+		    'dataProvider'=>$dataProvider,
+		    'itemView'=>'_datos',
+		    'template'=>$template,
+		    'enableSorting'=>'true',
+		    'afterAjaxUpdate'=>" function(id, data) {
+							   
+								} ",
+			'pager'=>array(
+				'header'=>'',
+				'htmlOptions'=>array(
+				'class'=>'pagination pagination-right',
+			)
+			),					
+		));  
+		
+		?>
+		</div>
+		
+	</div>
+</div>

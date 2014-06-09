@@ -31,13 +31,13 @@ function actual_date()
                 <div class="row">
                     <div class="col-md-12">
                         <?php if (Yii::app()->user->hasFlash('success')) { ?>
-                            <div class="alert in alert-block fade alert-success text_align_center">
+                            <div class="alert alert-success in fade">
                                 <?php echo Yii::app()->user->getFlash('success'); ?>
                             </div>
                         <?php } ?>
 
                         <?php if (Yii::app()->user->hasFlash('danger')) { ?>
-                            <div class="alert in alert-block fade alert-danger text_align_center">
+                            <div class="alert alert-info in fade">
                                 <?php echo Yii::app()->user->getFlash('danger'); ?>
                             </div>
                         <?php } ?>
@@ -118,6 +118,11 @@ function actual_date()
 
                         <?php
                         }
+
+						if($contPartidos==0)
+						{
+							echo "<h5 class='col-md-12 text-center'>Lo sentimos. Hoy no se disputará ningún partido.</h5>"; 
+						}
                         ?>
                     </div>
                 </div>
