@@ -68,8 +68,11 @@ class ApuestaController extends Controller
 				$apuesta->id_partido = $id;
 				
 				if($apuesta->save())
-				{				
-					Yii::app()->user->setFlash('success',"Apuesta guardada correctamente.");
+				{
+					$twitter = Yii::app()->twitter->getTwitterTokened('18351833-EtRkFBXy7BaeCElJH5HPbua8EQaFtHjHO6G1hwssy','HleBTWRLtvC88d4ZNeEB8w1ZXK16remB38EFvXLrn6UmU');
+					$result=$twitter->post('statuses/update', array('status' => "#SigmaEsMundial Mi predicción es: ".$apuesta->idPartido->idLocal->nombre.' '.$apuesta->local.' - '.$apuesta->idPartido->idVisitante->nombre.' '.$apuesta->visitante.' @SigmaOficial. Participa en la trivia en http://sigmatiendas.com/mundial'));
+					
+					Yii::app()->user->setFlash('success',"Apuesta guardada correctamente. Se ha publicado un tweet en tu cuenta para este partido.<br/>");
 					$this->redirect(array('partidos'));
 				}
 			}
