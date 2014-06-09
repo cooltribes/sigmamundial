@@ -1,36 +1,67 @@
-<?php $this->pageTitle=Yii::app()->name . ' - '.UserModule::t("Change Password");
-$this->breadcrumbs=array(
-	UserModule::t("Login") => array('/user/login'),
-	UserModule::t("Change Password"),
-);
-?>
+<?php $this->pageTitle=Yii::app()->name . ' - Cambiar contraseña'; ?>
 
-<h1><?php echo UserModule::t("Change Password"); ?></h1>
+<div class="row">
+	<?php 
+	if (Yii::app()->user->hasFlash('recoveryMessage')) { 
+	 	?>
+        <div class="alert in alert-block fade alert-success text_align_center">
+            <?php echo Yii::app()->user->getFlash('recoveryMessage'); ?>
+        </div>
+    	<?php
+    }else{
+        ?>
+        <div class="col-md-6 col-md-offset-3 panel-gris register-panel">
+			<div class="row">
+	            <div class="col-md-12">
+	                <div class="col-md-12 panel-header">
+	                    <h3>Cambiar contraseña</h3>                      
+	                </div>
+	            </div>
+	        </div>
+	        <div class="row panel-content">
+				<div class="col-md-12">
+	                <div class="row">
+	                	<div class="col-md-12">
+	                		<div class="form">
+								<?php $form2=$this->beginWidget('bootstrap.widgets.BsActiveForm', array(
+								    //'action'=>'user/login',
+								    'layout' => BsHtml::FORM_LAYOUT_HORIZONTAL,
+								    'id'=>'recovery-form',
+								    'enableAjaxValidation'=>false,
+								    'clientOptions'=>array(
+									    'validateOnSubmit'=>true,
+									),
+								  'htmlOptions' => array('enctype'=>'multipart/form-data'),
+								)); ?>
 
+								<?php echo $form2->errorSummary(array($form)); ?>
 
-<div class="form">
-<?php echo CHtml::beginForm(); ?>
+								<div class="form-group">
+								  <?php 
+								  echo $form2->passwordField($form, "password", array());
+								  ?>
+								</div>
 
-	<p class="note"><?php echo UserModule::t('Fields with <span class="required">*</span> are required.'); ?></p>
-	<?php echo CHtml::errorSummary($form); ?>
-	
-	<div class="row">
-	<?php echo CHtml::activeLabelEx($form,'password'); ?>
-	<?php echo CHtml::activePasswordField($form,'password'); ?>
-	<p class="hint">
-	<?php echo UserModule::t("Minimal password length 4 symbols."); ?>
-	</p>
-	</div>
-	
-	<div class="row">
-	<?php echo CHtml::activeLabelEx($form,'verifyPassword'); ?>
-	<?php echo CHtml::activePasswordField($form,'verifyPassword'); ?>
-	</div>
-	
-	
-	<div class="row submit">
-	<?php echo CHtml::submitButton(UserModule::t("Save")); ?>
-	</div>
+								<div class="form-group">
+								  <?php 
+								  echo $form2->passwordField($form, "verifyPassword", array());
+								  ?>
+								</div>
 
-<?php echo CHtml::endForm(); ?>
-</div><!-- form -->
+								<div class="form-group text-center">
+								  <?php echo BsHtml::submitButton("Guardar", array(
+								    "color" => BsHtml::BUTTON_COLOR_DANGER,
+								    'size' => BsHtml::BUTTON_SIZE_LARGE,
+								  )); ?>
+								</div>
+								<?php $this->endWidget(); ?>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<?php
+	}
+	?>
+</div>
