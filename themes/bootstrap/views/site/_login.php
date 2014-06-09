@@ -1,12 +1,15 @@
 <?php $form=$this->beginWidget('bootstrap.widgets.BsActiveForm', array(
     //'action'=>'user/login',
-    'layout' => BsHtml::FORM_LAYOUT_HORIZONTAL,
+    //'layout' => BsHtml::FORM_LAYOUT_HORIZONTAL,
     'id'=>'registration-form',
     'enableAjaxValidation'=>false,
     'clientOptions'=>array(
     'validateOnSubmit'=>true,
   ),
-  'htmlOptions' => array('enctype'=>'multipart/form-data'),
+  'htmlOptions' => array(
+      'enctype'=>'multipart/form-data',
+      'class'=>'form',
+      ),
 )); ?>
 
 <?php echo $form->errorSummary(array($model)); ?>

@@ -14,7 +14,7 @@ $this->pageTitle = Yii::app()->name;
         <?php
     }
     ?>
-    <div class="col-md-4 col-md-offset-2 panel-gris register-panel">
+    <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-2 panel-gris register-panel">
         <div class="row">
             <div class="col-md-12">
                 <div class="col-md-12 panel-header">
@@ -63,7 +63,7 @@ $this->pageTitle = Yii::app()->name;
         </div>
         
     </div>
-    <div class="col-md-3 col-md-offset-1 panel-azul login-panel">
+    <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-1 panel-azul login-panel">
         <div class="row">
             <div class="col-md-12">
                 <div class="col-md-12 panel-header">

@@ -72,47 +72,68 @@ function actual_date()
                                             $apuesta = Apuesta::model()->findByAttributes(array('id_partido' => $partido->id, 'id_user' => Yii::app()->user->id));
                                             ?>
 
-                                            <div class="row text-center"> <?php echo $partido->sede; ?></div>
+                                            <div class="row"> <?php echo $partido->sede; ?></div>
 
                                             <div class="row equipos">
                                                 <div class="col-xs-5 col-md-5">
-                                                    <?php
-                                                    echo "<div class='text-center'>";
-
-                                                    $local = Equipo::model()->findByPk($partido->id_local);
-                                                    echo $local->nombre . "<br>";
-
-                                                    echo CHtml::image(Yii::app()->getBaseUrl(true) . str_replace(".", "_thumb.", $local->url), $local->nombre);
-
-                                                    if (isset($apuesta))
-                                                        echo " " . $apuesta->local;
-
-                                                    echo "</div>";
-                                                    ?>
+                                                    <div class='row'><div class="col-xs-12 nombre">
+                                                        <?php
+                                                        $local = Equipo::model()->findByPk($partido->id_local);
+                                                        echo $local->nombre
+                                                        ?>
+                                                    </div></div>
+                                                    
+                                                    <div class='row'><div class="col-xs-12">
+                                                        <?php
+                                                        echo CHtml::image(Yii::app()->getBaseUrl(true)
+                                                                .str_replace(".", "_thumb.", $local->url), $local->nombre);
+                                                        ?>
+                                                    </div></div>
+                                                    
+                                                    <div class='row'><div class="col-xs-12 goles">
+                                                        <?php
+                                                        if (isset($apuesta)){
+                                                            echo $apuesta->local;                                                            
+                                                        }else{
+                                                            echo "-";                                                                                                                        
+                                                        }
+                                                        ?>
+                                                    </div></div>
                                                 </div>
 
-                                                <div class="col-xs-2 col-md-2">
+                                                <div class="col-xs-2 col-md-2 vs">
                                                     <h2>VS</h2>
                                                 </div>
 
                                                 <div class="col-xs-5 col-md-5">
-                                                    <?php
-                                                    echo "<div class='text-center'>";
+                                                    <div class='row'><div class="col-xs-12 nombre">
+                                                        <?php
+                                                        $visitante = Equipo::model()->findByPk($partido->id_visitante);
+                                                        echo $visitante->nombre . "<br>";
+                                                        ?>
+                                                    </div></div>
+                                                    
+                                                    <div class='row'><div class="col-xs-12">
+                                                        <?php
+                                                        echo CHtml::image(Yii::app()->getBaseUrl(true)
+                                                                .str_replace(".", "_thumb.", $visitante->url), $visitante->nombre);
+                                                        ?>
+                                                    </div></div>
+                                                    
+                                                    <div class='row'><div class="col-xs-12 goles">
+                                                        <?php
+                                                        if (isset($apuesta)){
+                                                            echo $apuesta->visitante;                                                            
+                                                        }else{
+                                                            echo "-";                                                                                                                        
+                                                        }
+                                                        ?>
+                                                    </div></div>
 
-                                                    $visitante = Equipo::model()->findByPk($partido->id_visitante);
-                                                    echo $visitante->nombre . "<br>";
-
-                                                    if (isset($apuesta))
-                                                        echo $apuesta->visitante . " ";
-
-                                                    echo CHtml::image(Yii::app()->getBaseUrl(true) . str_replace(".", "_thumb.", $visitante->url), $visitante->nombre);
-
-                                                    echo "</div>";
-                                                    ?>
                                                 </div>
                                             </div>
 
-                                            <div class="row text-center"> <?php echo date("h:i a", strtotime($partido->fecha)); ?> </div>
+                                            <div class="row"> <?php echo date("h:i a", strtotime($partido->fecha)); ?> </div>
 
 
 

@@ -263,21 +263,20 @@ a:hover{
 }
 
 .login-panel{
-    
+    margin-top: 45px;
     .panel-content{
         h3{
             color: @blanco;
             text-align: center;
             font-weight: bold;
-            margin: 25px 15px 50px 15px;
-            line-height: 33px;
+            margin: 0px 15px 20px;
         }
-
         .link-recovery{
             text-align: center;
             margin: 16px 0 30px;
             a{
                 color: @blanco;
+                text-decoration: underline;
                 &:hover{
                     color: @gris;
                     text-decoration: underline;
@@ -290,19 +289,29 @@ a:hover{
 //Partidos de hoy
 
 .panel-partidos{
-    .box-partido{        
-
+    .box-partido{  
         &:hover{
-            .box-shadow(0 0 30px 3px @gris-sombra-hover);
-            
+            .box-shadow(0 0 30px 3px @gris-sombra-hover);            
         }
-
         .equipos{
-            min-height: 82px;
+            .nombre{
+                min-height: 56px;
+                font-size: 20px;
+            }
+            .goles{
+                font-size: 28px;
+                line-height: 30px;
+                min-height: 28px;
+            }
+            .vs{
+                h2{
+                    font-weight: bold;
+                    font-size: 30px;
+                    margin-top: 43px;
+                }
+            }            
         }
-
     }
-
 }
 
 //Media Queries
@@ -311,13 +320,11 @@ a:hover{
 @media (min-width: 768px){
 
     /*Encabezado principal*/
-    .main-header{        
-
+    .main-header{  
         .logo{
             margin-top: 41px;
             //text-align: ini;
         }
-
         .main-title{
             h2{        
                font-size: 40px;
@@ -326,15 +333,38 @@ a:hover{
         .user-options{
             margin-top: 42px;
         }
-
     }
 
     .panel-header{
-
         h3{           
             font-size: 24px;     
         }
     }
-    
+
+    .login-panel{  
+        margin-top: 0;
+        .panel-content{
+            h3{
+                color: @blanco;
+                text-align: center;
+                font-weight: bold;
+                margin: 25px 15px 50px;
+                line-height: 33px;
+            }
+            .link-recovery{
+                text-align: center;
+                margin: 16px 0 30px;
+                a{
+                    color: @blanco;
+                    text-decoration: underline;
+                    &:hover{
+                        color: @gris;
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+    }
+
 
 }
