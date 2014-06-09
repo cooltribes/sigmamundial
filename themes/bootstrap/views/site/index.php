@@ -5,6 +5,15 @@ $this->pageTitle = Yii::app()->name;
 ?>
 
 <div class="row">
+    <?php
+    if (Yii::app()->user->hasFlash('recoveryMessage')) { 
+        ?>
+        <div class="alert in alert-block fade alert-success text_align_center margin_bottom_large">
+            <?php echo Yii::app()->user->getFlash('recoveryMessage'); ?>
+        </div>
+        <?php
+    }
+    ?>
     <div class="col-md-4 col-md-offset-2 panel-gris register-panel">
         <div class="row">
             <div class="col-md-12">
