@@ -253,7 +253,7 @@ class SiteController extends Controller
 		// display the login form
 		$this->render('login',array('model'=>$model));
 	}
-
+  
 	/**
 	 * Logs out the current user and redirect to homepage.
 	 */
@@ -262,4 +262,21 @@ class SiteController extends Controller
 		Yii::app()->user->logout();
 		$this->redirect(Yii::app()->homeUrl);
 	}
+	/*
+	public function actionMailTest(){
+		$message = new YiiMailMessage;
+							$message->view = 'mail_template';
+							 
+							//userModel is passed to the view
+							$body = 'Has solicitado recuperar tu contraseña en Sigma Mundial. Por favor haz click en el siguiente enlace para continuar: <br/><br/><a href="#">Click aquí</a>.';
+							$message->setSubject('Recuperación de contraseña');
+							$message->setBody(array('body'=>$body), 'text/html');
+							 
+							 
+							$message->addTo("cruiz@upsidecorp.ch");
+							$message->addTo("carlosr000@hotmail.com");
+							$message->from = Yii::app()->params['adminEmail'];
+							if(Yii::app()->mail->send($message))
+								echo "OK";
+	}*/
 }
