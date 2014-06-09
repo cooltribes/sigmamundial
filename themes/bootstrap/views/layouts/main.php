@@ -3,8 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="language" content="en" /> 
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="language" content="en" />         
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	<?php
         $cs = Yii::app()->clientScript;
         $themePath = Yii::app()->theme->baseUrl;
@@ -111,17 +111,19 @@ $this->widget('bootstrap.widgets.BsNavbar', array(
     
 <div class="container" id="page">       
     
-    <div class="row margin_top_medium main-header">
-        <div class="col-md-3 logo">
+    <div class="row main-header">
+        <div class="col-xs-12 col-sm-3 col-md-3 logo">
             <?php echo CHtml::image(Yii::app()->getBaseUrl(true)."/images/logo.png", "Logo",
                     array("height" => 73)); ?>            
         </div>
-        <div class="col-md-6 text-center main-title">
+        
+        <div class="col-xs-12 col-sm-6 col-md-6 text-center main-title">
             <h1>Vive la Experiencia</h1>
             <h2 class="no_margin_top">#SigmaEsMundial</h2>
         </div>
+        
         <?php if(!Yii::app()->user->isGuest){ ?>
-        <div class="col-md-3 user-options">
+        <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-0 col-md-3 user-options">
             <div class="row">
                 <div class="col-md-11">
                     <div class="row text-right user-name">

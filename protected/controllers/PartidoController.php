@@ -138,8 +138,6 @@ class PartidoController extends Controller
 				$ganador=0; // 0 gano loca, 1 gano visita, 2 empate
 				
 				// revisar los que pegaron ganador			
-				// cambiar estado a revisado
-				// sumar punto por pegar ganador
 				if($partido->gol_local < $partido->gol_visitante)
 					$ganador=1;
 				else if($partido->gol_local == $partido->gol_visitante)

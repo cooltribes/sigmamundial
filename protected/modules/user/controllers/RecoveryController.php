@@ -27,8 +27,8 @@ class RecoveryController extends Controller
 									$find->status = 1;
 								}
 								$find->save();
-								Yii::app()->user->setFlash('recoveryMessage',UserModule::t("New password is saved."));
-								$this->redirect(Yii::app()->controller->module->recoveryUrl);
+								Yii::app()->user->setFlash('recoveryMessage','Se ha guardado tu nueva contraseña. Por favor <a href="'.Yii::app()->baseUrl.'">inicia sesión</a>.');
+								$this->redirect(Yii::app()->baseUrl);
 							}
 						} 
 						$this->render('changepassword',array('form'=>$form2));
@@ -43,7 +43,20 @@ class RecoveryController extends Controller
 			    			$user = User::model()->notsafe()->findbyPk($form->user_id);
 							$activation_url = 'http://' . $_SERVER['HTTP_HOST'].$this->createUrl(implode(Yii::app()->controller->module->recoveryUrl),array("activkey" => $user->activkey, "email" => $user->email));
 							
-							$subject = UserModule::t("You have requested the password recovery site {site_name}",
+							$message = new YiiMailMessage;
+							$message->view = 'mail_template';
+							 
+							//userModel is passed to the view
+							$body = 'Has solicitado recuperar tu contraseña en Sigma Mundial. Por favor haz click en el siguiente enlace para continuar: <br/><br/><a href="'.$activation_url.'">Click aquí</a>.';
+							$message->setSubject('Recuperación de contraseña');
+							$message->setBody(array('body'=>$body), 'text/html');
+							 
+							 
+							$message->addTo($user->email);
+							$message->from = Yii::app()->params['adminEmail'];
+							Yii::app()->mail->send($message);
+
+							/*$subject = UserModule::t("You have requested the password recovery site {site_name}",
 			    					array(
 			    						'{site_name}'=>Yii::app()->name,
 			    					));
@@ -53,9 +66,9 @@ class RecoveryController extends Controller
 			    						'{activation_url}'=>$activation_url,
 			    					));
 							
-			    			UserModule::sendMail($user->email,$subject,$message);
+			    			UserModule::sendMail($user->email,$subject,$message);*/
 			    			
-							Yii::app()->user->setFlash('recoveryMessage',UserModule::t("Please check your email. An instructions was sent to your email address."));
+							Yii::app()->user->setFlash('recoveryMessage','Las instrucciones para recuperar la contraseña se han enviado a tu correo electrónico');
 			    			$this->refresh();
 			    		}
 			    	}

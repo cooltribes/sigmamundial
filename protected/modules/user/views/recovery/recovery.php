@@ -1,33 +1,62 @@
-<?php $this->pageTitle=Yii::app()->name . ' - '.UserModule::t("Restore");
-$this->breadcrumbs=array(
-	UserModule::t("Login") => array('/user/login'),
-	UserModule::t("Restore"),
-);
+<?php $this->pageTitle=Yii::app()->name . ' - Recuperar contraseña';
 ?>
 
-<h1><?php echo UserModule::t("Restore"); ?></h1>
+<div class="row">
+	<?php 
+	if (Yii::app()->user->hasFlash('recoveryMessage')) { 
+	 	?>
+        <div class="alert in alert-block fade alert-success text_align_center">
+            <?php echo Yii::app()->user->getFlash('recoveryMessage'); ?>
+        </div>
+    	<?php
+    }else{
+        ?>
+        <div class="col-md-6 col-md-offset-3 panel-gris register-panel">
+			<div class="row">
+	            <div class="col-md-12">
+	                <div class="col-md-12 panel-header">
+	                    <h3>Recuperar contraseña</h3>                      
+	                </div>
+	            </div>
+	        </div>
+	        <div class="row panel-content">
+				<div class="col-md-12">
+	                <div class="row">
+	                	<div class="col-md-12">
+	                		<div class="form">
+								<?php $form2=$this->beginWidget('bootstrap.widgets.BsActiveForm', array(
+								    //'action'=>'user/login',
+								    'layout' => BsHtml::FORM_LAYOUT_HORIZONTAL,
+								    'id'=>'recovery-form',
+								    'enableAjaxValidation'=>false,
+								    'clientOptions'=>array(
+									    'validateOnSubmit'=>true,
+									),
+								  'htmlOptions' => array('enctype'=>'multipart/form-data'),
+								)); ?>
 
-<?php if(Yii::app()->user->hasFlash('recoveryMessage')): ?>
-<div class="success">
-<?php echo Yii::app()->user->getFlash('recoveryMessage'); ?>
+								<?php echo $form2->errorSummary(array($form)); ?>
+
+								<div class="form-group">
+								  <?php 
+								  echo $form2->textField($form, "login_or_email", array());
+								  ?>
+								</div>       
+
+								<div class="form-group text-center">
+								  <?php echo BsHtml::submitButton("Recuperar", array(
+								    "color" => BsHtml::BUTTON_COLOR_DANGER,
+								    'size' => BsHtml::BUTTON_SIZE_LARGE,
+								  )); ?>
+								</div>
+								<?php $this->endWidget(); ?>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<?php
+	}
+	?>
 </div>
-<?php else: ?>
-
-<div class="form">
-<?php echo CHtml::beginForm(); ?>
-
-	<?php echo CHtml::errorSummary($form); ?>
-	
-	<div class="row">
-		<?php echo CHtml::activeLabel($form,'login_or_email'); ?>
-		<?php echo CHtml::activeTextField($form,'login_or_email') ?>
-		<p class="hint"><?php echo UserModule::t("Please enter your login or email addres."); ?></p>
-	</div>
-	
-	<div class="row submit">
-		<?php echo CHtml::submitButton(UserModule::t("Restore")); ?>
-	</div>
-
-<?php echo CHtml::endForm(); ?>
-</div><!-- form -->
-<?php endif; ?>

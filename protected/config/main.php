@@ -46,16 +46,16 @@ return array(
             'autoLogin' => true,
  
             # registration path
-            'registrationUrl' => array('/user/registration'),
+            'registrationUrl' => array('/'),
  
             # recovery password path
             'recoveryUrl' => array('/user/recovery'),
  
             # login form path
-            'loginUrl' => array('/user/login'),
+            'loginUrl' => array('/'),
  
             # page after login
-            'returnUrl' => array('/user/profile'),
+            'returnUrl' => array('/apuesta/partidos'),
  
             # page after logout
             'returnLogoutUrl' => array('/'),
