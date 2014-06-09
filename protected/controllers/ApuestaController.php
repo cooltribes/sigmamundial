@@ -20,14 +20,11 @@ class ApuestaController extends Controller
 	 */
 	public function accessRules()
 	{
-		return array(
-			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array(),
-				'users'=>array('*'),
-			),
+		return array(			
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array('create','jugar','partidos'), 
 				'users'=>array('@'),
+                            
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin','delete'),
@@ -46,10 +43,7 @@ class ApuestaController extends Controller
 	
 	public function actionPartidos()
 	{
-		/*$twitter = Yii::app()->twitter->getTwitterTokened(Yii::app()->session['oauth_token'], Yii::app()->session['oauth_token_secret']);
-		$request_token = $twitter->getRequestToken();
-		var_dump($request_token);*/
-		$partido = array('estado'=>0);
+		$partido = array();
 		$criteria = new CDbCriteria(array('order'=>'id ASC'));
 		$criteria->addBetweenCondition('fecha', date("Y-m-d 00:00:00"), date("Y-m-d 23:59:59"));
 		$rows = Partido::model()->findAllByAttributes($partido, $criteria);

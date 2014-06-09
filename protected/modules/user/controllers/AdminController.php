@@ -37,24 +37,13 @@ class AdminController extends Controller
 	 * Manages all models.
 	 */
 	public function actionAdmin()
-	{
-		$model=new User('search');
-        $model->unsetAttributes();  // clear any default values
-        if(isset($_GET['User']))
-            $model->attributes=$_GET['User'];
-
-        $this->render('index',array(
-            'model'=>$model,
-        ));
-		/*$dataProvider=new CActiveDataProvider('User', array(
-			'pagination'=>array(
-				'pageSize'=>Yii::app()->controller->module->user_page_size,
-			),
-		));
-
-		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
-		));//*/
+	{		
+		$usuario = new User;
+		$usuario->unsetAttributes();
+		
+		$dataProvider = $usuario->search();
+		
+		$this->render('index', array('model'=>$usuario, 'dataProvider'=>$dataProvider,));		
 	}
 
 
@@ -137,21 +126,14 @@ class AdminController extends Controller
 	 * Deletes a particular model.
 	 * If deletion is successful, the browser will be redirected to the 'index' page.
 	 */
-	public function actionDelete()
+	public function actionDelete($id)
 	{
-		if(Yii::app()->request->isPostRequest)
-		{
-			// we only allow deletion via POST request
-			$model = $this->loadModel();
-			$profile = Profile::model()->findByPk($model->id);
-			$profile->delete();
-			$model->delete();
-			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-			if(!isset($_POST['ajax']))
-				$this->redirect(array('/user/admin'));
-		}
-		else
-			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
+		$model = User::model()->findByPk($id);
+		$model->delete();
+		
+		Yii::app()->user->setFlash('success',"Usuario eliminado correctamente.");
+		$this->redirect(array('admin'));
+		
 	}
 	
 	/**
