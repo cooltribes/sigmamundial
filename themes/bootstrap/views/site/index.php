@@ -14,7 +14,7 @@ $this->pageTitle = Yii::app()->name;
         <?php
     }
     ?>
-    <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-2 panel-gris register-panel">
+    <div class="col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-1 col-md-4 col-md-offset-2 panel-gris register-panel">
         <div class="row">
             <div class="col-md-12">
                 <div class="col-md-12 panel-header">
@@ -39,18 +39,16 @@ $this->pageTitle = Yii::app()->name;
                                 ));
                             }
                             ?>
-                        </div>
-                        <div class="form">
-                            <?php
-                            if($verified){
-                                $this->renderPartial('_registration',array(
-                                    'model'=>$user,
-                                    'verified'=>$verified,
-                                    'representante'=>$representante,
-                                ));
-                            }
-                            ?> 
-                        </div>
+                        </div>                        
+                        <?php
+                        if($verified){
+                            $this->renderPartial('_registration',array(
+                                'model'=>$user,
+                                'verified'=>$verified,
+                                'representante'=>$representante,
+                            ));
+                        }
+                        ?>                         
                         <div class="form-group text-center about-link">      
                             Al registrarte estás indicando
                                 que has leído y aceptado las 
@@ -63,7 +61,7 @@ $this->pageTitle = Yii::app()->name;
         </div>
         
     </div>
-    <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-1 panel-azul login-panel">
+    <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-1 col-md-3 col-md-offset-1 panel-azul login-panel">
         <div class="row">
             <div class="col-md-12">
                 <div class="col-md-12 panel-header">

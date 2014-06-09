@@ -166,6 +166,9 @@ $this->widget('bootstrap.widgets.BsNavbar', array(
     <?php echo $content; ?>
 
     <div class="clear"></div>
+    <div id="footer">
+        Desarrollado por <a href="http://cooltribes.com" title="Connecting true fans" target="_blank">Cooltribes.com</a>
+    </div>
 
 </div><!-- page -->
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->

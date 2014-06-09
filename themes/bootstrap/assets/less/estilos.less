@@ -153,6 +153,7 @@ body{
 #footer{
     text-align: center;
     margin-top: 20px;
+    padding: 25px 0;    
 }
 
 a{
@@ -257,7 +258,11 @@ a:hover{
 .register-panel{
     color: @azul;
     .about-link a{
+        text-decoration: underline;
         font-weight: bold;
+        &:hover{
+            color: lighten(@azul, 10%);
+        }
     }
 
 }

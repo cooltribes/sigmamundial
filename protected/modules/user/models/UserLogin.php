@@ -20,7 +20,7 @@ class UserLogin extends CFormModel
 	{
 		return array(
 			// username and password are required
-			array('username, password', 'required'),
+			array('username, password', 'required', 'message' => 'Debes ingresar tu {attribute}'),
 			// rememberMe needs to be a boolean
 			array('rememberMe', 'boolean'),
 			// password needs to be authenticated
@@ -35,8 +35,8 @@ class UserLogin extends CFormModel
 	{
 		return array(
 			'rememberMe'=>UserModule::t("Remember me next time"),
-			'username'=>UserModule::t("username or email"),
-			'password'=>UserModule::t("password"),
+			'username'=>UserModule::t("Correo electrónico"),
+			'password'=>UserModule::t("Contraseña"),
 		);
 	}
 
