@@ -1,7 +1,7 @@
 
 <div class="well">
-	<div class="row padding_left_medium">
-		<div class="col-md-6 1">
+	<div class="row padding_left_large padding_right_large">
+		<div class="col-md-12">
 
 <?php 
 
