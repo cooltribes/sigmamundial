@@ -33,7 +33,7 @@ function actual_date()
                         <?php
                         if (Yii::app()->user->hasFlash('success')) { 
                             ?>
-                            <div class="alert in alert-block fade alert-success text_align_center margin_bottom_large">
+                            <div class="alert in alert-block fade alert-success text_align_center">
                                 <?php echo Yii::app()->user->getFlash('success'); ?>
                             </div>
                             <?php
@@ -42,7 +42,7 @@ function actual_date()
                         <?php
                         if (Yii::app()->user->hasFlash('error')) { 
                             ?>
-                            <div class="alert in alert-block fade alert-danger text_align_center margin_bottom_large">
+                            <div class="alert in alert-block fade alert-danger text_align_center">
                                 <?php echo Yii::app()->user->getFlash('error'); ?>
                             </div>
                             <?php
@@ -52,7 +52,7 @@ function actual_date()
                         <?php
                         if (Yii::app()->user->hasFlash('danger')) { 
                             ?>
-                            <div class="alert in alert-block fade alert-danger text_align_center margin_bottom_large">
+                            <div class="alert in alert-block fade alert-danger text_align_center">
                                 <?php echo Yii::app()->user->getFlash('danger'); ?>
                             </div>
                             <?php

@@ -155,7 +155,7 @@ $this->widget('bootstrap.widgets.BsNavbar', array(
                             </a>
                             <ul class="dropdown-menu dropdown-menu-right" role="menu">
                             <li>
-                                <?php echo BsHtml::link("Cerrar Sesion", array("/user/logout")) ?>
+                                <?php echo BsHtml::link("Cerrar Sesión", array("/user/logout")) ?>
                             </li>                            
                           </ul>
                             

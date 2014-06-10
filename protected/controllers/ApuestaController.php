@@ -57,7 +57,7 @@ class ApuestaController extends Controller
 		$user = User::model()->findByPk(Yii::app()->user->id);
 		
 		if(isset($apuesta)){
-			Yii::app()->user->setFlash('danger',"Ya se realizó una apuesta a este partido.");
+			Yii::app()->user->setFlash('danger',"Ya ingresaste un resultado para este partido.");
 			$this->redirect(array('partidos'));
 		}
 		else { // nueva apuesta
@@ -74,7 +74,7 @@ class ApuestaController extends Controller
 					$result=$twitter->post('statuses/update', array('status' => "#SigmaEsMundial Mi predicción es: ".$apuesta->idPartido->idLocal->nombre.' '.$apuesta->local.' - '.$apuesta->idPartido->idVisitante->nombre.' '.$apuesta->visitante.' @SigmaOficial. Participa en la trivia en http://sigmatiendas.com/mundial'));
 					//$result=$twitter->post('statuses/update', array('status' => "Test"));
 					
-					Yii::app()->user->setFlash('success',"Apuesta guardada correctamente. Se ha publicado un tweet en tu cuenta para este partido.<br/>");
+					Yii::app()->user->setFlash('success',"Resultado guardado correctamente. Se ha publicado un tweet en tu cuenta para este partido.<br/>");
 					$this->redirect(array('partidos'));
 				}
 			}
