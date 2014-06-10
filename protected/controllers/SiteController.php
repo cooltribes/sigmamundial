@@ -44,6 +44,9 @@ class SiteController extends Controller
 			$user->twitter_id=$_POST['User']['twitter_id'];
 			$user->fecha_nacimiento=$_POST['User']['fecha_nacimiento'];
 			$user->nombre=$_POST['User']['nombre'];
+			$user->oauth_token=$_POST['User']['oauth_token'];
+			$user->oauth_token_secret=$_POST['User']['oauth_token_secret'];
+			
 			//if($model->validate()&&$profile->validate()){
 			$soucePassword = $_POST['User']['password'];
 			$user->activkey=UserModule::encrypting(microtime().$user->password);
@@ -119,6 +122,8 @@ class SiteController extends Controller
 	 
 	        /* Save the access tokens. Normally these would be saved in a database for future use. */
 	        Yii::app()->session['access_token'] = $access_token;
+	        $user->oauth_token = $access_token['oauth_token'];
+	        $user->oauth_token_secret = $access_token['oauth_token_secret'];
 	 
 	        /* Remove no longer needed request tokens */
 	        //unset(Yii::app()->session['oauth_token']);

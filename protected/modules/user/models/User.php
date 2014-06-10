@@ -27,6 +27,8 @@ class User extends CActiveRecord
 	 * @var twitter_id
 	 * @var puntos
 	 * @var nombre
+	 * @var oauth_token
+	 * @var oauth_token_secret
 	 */
 
 	/**
@@ -66,7 +68,7 @@ class User extends CActiveRecord
             array('lastvisit_at', 'default', 'value' => '0000-00-00 00:00:00', 'setOnEmpty' => true, 'on' => 'insert'),
 			array('username, email, superuser, fecha_nacimiento, status', 'required'),
 			array('superuser, status', 'numerical', 'integerOnly'=>true),
-			array('id, username, password, email, activkey, create_at, lastvisit_at, superuser, status, puntos, fecha_nacimiento, twitter, twitter_id, nombre', 'safe', 'on'=>'search'),
+			array('id, username, password, email, activkey, create_at, lastvisit_at, superuser, status, puntos, fecha_nacimiento, twitter, twitter_id, nombre,oauth_token, oauth_token_secret', 'safe', 'on'=>'search'),
 		):((Yii::app()->user->id==$this->id)?array(
 			array('email', 'required'),
 			//array('username', 'length', 'max'=>20, 'min' => 3,'message' => UserModule::t("Incorrect username (length between 3 and 20 characters).")),
@@ -131,7 +133,7 @@ class User extends CActiveRecord
                 'condition'=>'superuser=1',
             ),
             'notsafe'=>array(
-            	'select' => 'id, username, password, email, activkey, create_at, lastvisit_at, superuser, status',
+            	'select' => 'id, username, password, email, activkey, create_at, lastvisit_at, superuser, status, oauth_token, oauth_token_secret',
             ),
         );
     }
@@ -140,7 +142,7 @@ class User extends CActiveRecord
     {
         return CMap::mergeArray(Yii::app()->getModule('user')->defaultScope,array(
             'alias'=>'user',
-            'select' => 'user.id, user.username, user.email, user.create_at, user.lastvisit_at, user.superuser, user.status, user.nombre, user.twitter, user.fecha_nacimiento, user.puntos',
+            'select' => 'user.id, user.username, user.email, user.create_at, user.lastvisit_at, user.superuser, user.status, user.nombre, user.twitter, user.fecha_nacimiento, user.puntos, user.oauth_token, user.oauth_token_secret',
         ));
     }
 	
@@ -187,6 +189,8 @@ class User extends CActiveRecord
 		$criteria->compare('twitter_id',$this->twitter_id);
 		$criteria->compare('puntos',$this->puntos);
 		$criteria->compare('nombre',$this->nombre);
+		$criteria->compare('oauth_token',$this->oauth_token);
+		$criteria->compare('oauth_token_secret',$this->oauth_token_secret);
 		
         return new CActiveDataProvider(get_class($this), array(
             'criteria'=>$criteria,
