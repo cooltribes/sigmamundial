@@ -132,7 +132,7 @@ $this->widget('bootstrap.widgets.BsNavbar', array(
         </div>
         
         <div class="col-xs-12 col-sm-6 col-md-6 text-center main-title">
-            <h1>Vive la Experiencia</h1>
+            <h1>Vive la &Sigma;xperiencia</h1>
             <h2 class="no_margin_top">#SigmaEsMundial</h2>
         </div>
         
@@ -148,8 +148,10 @@ $this->widget('bootstrap.widgets.BsNavbar', array(
                                        $nombre = $user->nombre;
                                     }else{
                                        $nombre = $user->email;                                    
-                                    }                                
-                                    echo (strlen($nombre) > 13) ? substr($nombre,0,10).'...' : $nombre;                                
+                                    } 
+                                    $nombre = $user->twitter;
+                                    echo "@".$nombre;
+                                    //echo (strlen($nombre) > 13) ? substr($nombre,0,10).'...' : $nombre;                                
                                 ?>                                
                                 <span class="caret"></span>
                             </a>
@@ -179,11 +181,15 @@ $this->widget('bootstrap.widgets.BsNavbar', array(
     <?php echo $content; ?>
 
     <div class="clear"></div>
-    <div id="footer">
-        Desarrollado por <a href="http://cooltribes.com" title="Connecting true fans" target="_blank">Cooltribes.com</a>
-    </div>
+    
 
 </div><!-- page -->
+ <!--footer--> 
+<!--<div id="footer">
+    <p>&copy; <?php echo date('Y'); ?> Sigmasys C.A. | Todos los derechos reservados -
+    Desarrollado por <a href="http://cooltribes.com" title="Connecting true fans" target="_blank">Cooltribes.com</a></p>   
+        
+</div>-->
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
     <script src="<?php echo Yii::app()->theme->baseUrl ?>/assets/js/html5shiv.js"></script>

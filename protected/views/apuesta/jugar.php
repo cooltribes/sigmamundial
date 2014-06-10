@@ -1,14 +1,65 @@
 <div class="row">    
-    <?php if (Yii::app()->user->hasFlash('success')) { ?>
-        <div class="alert in alert-block fade alert-success text_align_center">
-            <?php echo Yii::app()->user->getFlash('success'); ?>
+    <div class="col-md-8 col-md-offset-2 panel-gris">
+        <!--HEADER-->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-12 panel-header">
+                    <h3>Partido</h3>                      
+                </div>
+            </div>
         </div>
-    <?php } ?>
-    <?php if (Yii::app()->user->hasFlash('error')) { ?>
-        <div class="alert in alert-block fade alert-error text_align_center">
-            <?php echo Yii::app()->user->getFlash('error'); ?>
+        
+        <!--CONTENT-->
+        <div class="row panel-content">
+            <div class="col-md-12">
+                <!--ALERTS-->
+                <div class="row">
+                    <div class="col-md-12">
+                        <?php if (Yii::app()->user->hasFlash('success')) { ?>
+                            <div class="alert in alert-block fade alert-success text_align_center">
+                                <?php echo Yii::app()->user->getFlash('success'); ?>
+                            </div>
+                        <?php } ?>
+                        <?php if (Yii::app()->user->hasFlash('error')) { ?>
+                            <div class="alert in alert-block fade alert-error text_align_center">
+                                <?php echo Yii::app()->user->getFlash('error'); ?>
+                            </div>
+                        <?php } ?>
+                    </div>
+                </div>
+                
+                <!--TITULO-->
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3>Tu resultado del juego</h3>
+                    </div>
+                </div>
+                
+                <!--PARTIDO-->
+                <div class="row">
+                    <div class="col-md-12">
+                        
+                        
+                    </div>
+                </div>
+                
+                <!--BOTON REGRESAR-->
+                <div class="row">
+                    <div class="col-md-12">
+                        <?php echo BsHtml::linkButton('Regresar', array(
+                            'color' => BsHtml::BUTTON_COLOR_PRIMARY,
+                            'url' => array("apuesta/partidos"),
+                        ));?>
+                    </div>
+                </div>
+                
+                
+            </div>
         </div>
-    <?php } ?>
+    </div>
+    
+</div>
+    
 
 
 <div class="panel panel-default col-md-8">
@@ -105,4 +156,3 @@ $this->widget('ext.duciscounter.DucisCounter', array(
 </div>
 </div>
 
-</div>
