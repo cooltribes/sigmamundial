@@ -5,6 +5,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="language" content="en" />         
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <link rel="shortcut icon" href="http://sigmatiendas.com/media/favicon/default/favicon75.png" type="image/x-icon">
 	<?php
         $cs = Yii::app()->clientScript;
         $themePath = Yii::app()->theme->baseUrl;
@@ -96,14 +97,27 @@ $this->widget('bootstrap.widgets.BsNavbar', array(
                     )
                 ),
                 
-            ),
+				array(
+                    'label' => 'Partidos',
+                    'url' => '/mundial/partido/admin',
+                    'pull' => BsHtml::NAVBAR_NAV_PULL_RIGHT,
+                
+            	),
+            	
+            	array(
+                    'label' => 'Usuarios',
+                    'url' => '/mundial/user/admin',
+                    'pull' => BsHtml::NAVBAR_NAV_PULL_RIGHT,
+                
+            	),
+				
             'htmlOptions' => array(
                 'pull' => BsHtml::NAVBAR_NAV_PULL_RIGHT
             )
         )
         
     )
-));
+)));
 
 }
 ?>
@@ -149,7 +163,9 @@ $this->widget('bootstrap.widgets.BsNavbar', array(
                     </div>
                     <div class="row text-right user-info">
                         <div class="col-md-12">
-                            Puntos: 7 Posición: 4                            
+                            Ptos. Totales: <strong><?php echo $user->puntos; ?></strong>
+                            Ptos. en Fase: <strong><?php echo $user->puntos; ?></strong>                            
+                            Posición: <strong><?php echo $user->puntos; ?></strong>                            
                         </div>
                     </div>                    
                 </div>
@@ -163,6 +179,9 @@ $this->widget('bootstrap.widgets.BsNavbar', array(
     <?php echo $content; ?>
 
     <div class="clear"></div>
+    <div id="footer">
+        Desarrollado por <a href="http://cooltribes.com" title="Connecting true fans" target="_blank">Cooltribes.com</a>
+    </div>
 
 </div><!-- page -->
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->

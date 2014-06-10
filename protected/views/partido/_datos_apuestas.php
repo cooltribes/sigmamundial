@@ -1,13 +1,11 @@
 <?php
+$user = User::model()->findByPk($data->id_user);
 
 echo"<tr>";
 
-	echo "<td>".$data->nombre."</td>";
-	echo "<td>".$data->email."</td>";
-	echo "<td>".date('Y-m-d',strtotime($data->fecha_nacimiento))."</td>";
-	echo "<td>".$data->twitter."</td>";
-	echo "<td>".$data->twitter_id."</td>";
-	echo "<td>".$data->puntos."</td>";
+	echo "<td>".$user->nombre."</td>";
+	echo "<td>".$data->local."</td>";
+	echo "<td>".$data->visitante."</td>";	
 	
 	echo '<td>
 
@@ -17,7 +15,7 @@ echo"<tr>";
 	</a> 
 	 
 		<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-			<li><a tabindex="-1" href="'.Yii::app()->createUrl('/user/admin/delete',array('id'=>$data->id)).'" ><i class="GLYPHICON_TRASH"></i> Eliminar </a></li>
+			<li><a tabindex="-1" href="'.Yii::app()->createUrl('/apuesta/delete',array('id'=>$data->id)).'" ><i class="glyphicon glyphicon-trash"></i> Eliminar </a></li>
 		</ul>
         </div></td>
         

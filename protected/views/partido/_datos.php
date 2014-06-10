@@ -28,9 +28,10 @@ echo"<tr>";
 	</a> 
 	 
 		<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-			<li><a tabindex="-1" href="'.Yii::app()->createUrl('/partido/create',array('id'=>$data->id)).'" ><i class="GLYPHICON_COG"></i> Editar </a></li>
-			<li><a tabindex="-1" href="'.Yii::app()->createUrl('/partido/resultado',array('id'=>$data->id)).'" ><i class="GLYPHICON_CHECK"></i> Agregar resultado final </a></li>
-			<li><a tabindex="-1" href="'.Yii::app()->createUrl('/partido/delete',array('id'=>$data->id)).'" ><i class="GLYPHICON_TRASH"></i> Eliminar </a></li>
+			<li><a tabindex="-1" href="'.Yii::app()->createUrl('/partido/create',array('id'=>$data->id)).'" ><i class="glyphicon glyphicon-cog"></i> Editar </a></li>
+			<li><a tabindex="-1" href="'.Yii::app()->createUrl('/partido/apuestas',array('id'=>$data->id)).'" ><i class="glyphicon glyphicon-list-alt"></i> Ver apuestas </a></li>
+			<li><a tabindex="-1" href="'.Yii::app()->createUrl('/partido/resultado',array('id'=>$data->id)).'" ><i class="glyphicon glyphicon-check"></i> Agregar resultado final </a></li>
+			<li><a tabindex="-1" href="'.Yii::app()->createUrl('/partido/delete',array('id'=>$data->id)).'" ><i class="glyphicon glyphicon-trash"></i> Eliminar </a></li>
 		</ul>
         </div></td>
         

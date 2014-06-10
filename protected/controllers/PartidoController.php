@@ -95,6 +95,10 @@ class PartidoController extends Controller
 			
 			if($partido->save())
 			{
+				$local = Equipo::model()->findByPk($partido->id_local);
+				$visitante = Equipo::model()->findByPk($partido->id_visitante);
+				$ganadores = Array();
+				
 				// revisar quienes pegaron el resultado
 				$apuestasPartido = Apuesta::model()->findAllByAttributes(array('id_partido'=>$partido->id,'local'=>$partido->gol_local,'visitante'=>$partido->gol_visitante));
 				
@@ -103,9 +107,9 @@ class PartidoController extends Controller
 					$ganador->puntos = 3; // Puntos por resultado
 					
 					if($ganador->save()){
-						$local = Equipo::model()->findByPk($partido->id_local);
-						$visitante = Equipo::model()->findByPk($partido->id_visitante);
 						$user = User::model()->findByPk($ganador->id_user);
+						
+						array_push($ganadores,array('email'=>$user->email,'nombre'=>$user->nombre,'twitter'=>$user->twitter,));
 						
 						$puntos = $user->puntos + 3;
 						$user->puntos = $puntos;
@@ -132,9 +136,32 @@ class PartidoController extends Controller
 						$message->from = array('info@sigmatiendas.com' => 'Sigma Mundial');
 						Yii::app()->mail->send($message);
 					}
-				// enviar correo al admin con todos los ganadores.
 				
 				}
+				// enviar correo al admin con todos los ganadores.
+					$winners = "";
+					
+					foreach($ganadores as $each){
+						$winners = $winners."<tr><td>".$each['nombre']."</td><td>".$each['email']."</td><td><a href='twitter.com/".$each['twitter']."'>@".$each['twitter']."</td></a></tr>";	
+					}
+				
+					$message = new YiiMailMessage;				
+					$message->view = "mail_template";
+					$subject = 'Estos son los ganadores del '.$local->nombre.' - '.$visitante->nombre;
+						
+					$body = "A continuación se encontrarán los usuarios ganadores con sus predicciones para el encuentro <strong>".$local->nombre." - ".$visitante->nombre."</strong><br/>
+							<br/>
+							Resultado final: ".$partido->gol_local." - ".$partido->gol_visitante."<br/>
+							<br/>
+							Ganadores: <br/>".$winners."
+							";
+					$params = array('subject'=>$subject, 'body'=>$body);
+					$message->subject    = $subject;
+					$message->setBody($params, 'text/html');                
+					$message->addTo('dduque@upsidecorp.ch');
+					$message->from = array('info@sigmatiendas.com' => 'Sigma Mundial');
+					Yii::app()->mail->send($message);
+
 				$ganador=0; // 0 gano loca, 1 gano visita, 2 empate
 				
 				// revisar los que pegaron ganador			
@@ -146,7 +173,7 @@ class PartidoController extends Controller
 				switch ($ganador) {
 					case 0:
 						
-						$puntuadores = Apuesta::model()->findAllByAttributes(array('id_partido'=>$partido->id),'local > visitante');
+						$puntuadores = Apuesta::model()->findAllByAttributes(array('id_partido'=>$partido->id,'estado'=>0),'local > visitante');
 						
 						foreach ($puntuadores as $acierto) {
 							$acierto->estado = 1; // revisado
@@ -164,7 +191,7 @@ class PartidoController extends Controller
 						break;
 					case 1:
 						
-						$puntuadores = Apuesta::model()->findAllByAttributes(array('id_partido'=>$partido->id),'local < visitante');
+						$puntuadores = Apuesta::model()->findAllByAttributes(array('id_partido'=>$partido->id,'estado'=>0),'local < visitante');
 						
 						foreach ($puntuadores as $acierto) {
 							$acierto->estado = 1; // revisado
@@ -182,7 +209,7 @@ class PartidoController extends Controller
 						break; 
 					case 2:
 						
-						$puntuadores = Apuesta::model()->findAllByAttributes(array('id_partido'=>$partido->id),'local = visitante');
+						$puntuadores = Apuesta::model()->findAllByAttributes(array('id_partido'=>$partido->id,'estado'=>0),'local = visitante');
 						
 						foreach ($puntuadores as $acierto) {
 							$acierto->estado = 1; // revisado
@@ -190,7 +217,7 @@ class PartidoController extends Controller
 							
 							$acierto->save();
 							
-							$user = User::model()->findByPk($acierto->id_user);
+							$user = User::model()->findByPk($acierto->id_user); 
 							
 							$puntos = $user->puntos + 1;
 							$user->puntos = $puntos;
@@ -213,6 +240,19 @@ class PartidoController extends Controller
 		}
 		
 		$this->render('resultado',array('model'=>$partido));		
+	}
+
+	public function actionApuestas($id)
+	{
+		$partido = Partido::model()->findByPk($id);
+		
+		$apuestas = new Apuesta;
+		$apuestas->unsetAttributes();
+		$apuestas->id_partido=$id;		
+		
+		$dataProvider = $apuestas->search();
+		
+		$this->render('apuestas', array('model'=>$partido, 'dataProvider'=>$dataProvider,));	
 	}
 	
 }
