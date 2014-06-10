@@ -57,7 +57,7 @@ class User extends CActiveRecord
 		// will receive user inputs.CConsoleApplication
 		return ((get_class(Yii::app())=='CConsoleApplication' || (get_class(Yii::app())!='CConsoleApplication' && Yii::app()->getModule('user')->isAdmin()))?array(
 			//array('username', 'length', 'max'=>20, 'min' => 3,'message' => UserModule::t("Incorrect username (length between 3 and 20 characters).")),
-			array('password', 'length', 'max'=>128, 'min' => 4,'message' => UserModule::t("Incorrect password (minimal length 4 symbols).")),
+			array('password', 'length', 'max'=>28, 'min' => 4,'message' => UserModule::t("Incorrect password (minimal length 4 symbols).")),
 			array('email', 'email'),
 			//array('username', 'unique', 'message' => UserModule::t("This user's name already exists.")),
 			array('email', 'unique', 'message' => UserModule::t("This user's email address already exists.")),
@@ -66,7 +66,7 @@ class User extends CActiveRecord
 			array('superuser', 'in', 'range'=>array(0,1)),
             array('create_at', 'default', 'value' => date('Y-m-d H:i:s'), 'setOnEmpty' => true, 'on' => 'insert'),
             array('lastvisit_at', 'default', 'value' => '0000-00-00 00:00:00', 'setOnEmpty' => true, 'on' => 'insert'),
-			array('username, email, superuser, fecha_nacimiento, status', 'required'),
+			array('username, email, superuser, fecha_nacimiento, status, password', 'required'),
 			array('superuser, status', 'numerical', 'integerOnly'=>true),
 			array('id, username, password, email, activkey, create_at, lastvisit_at, superuser, status, puntos, fecha_nacimiento, twitter, twitter_id, nombre,oauth_token, oauth_token_secret', 'safe', 'on'=>'search'),
 		):((Yii::app()->user->id==$this->id)?array(
