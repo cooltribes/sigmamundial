@@ -71,13 +71,13 @@ class SiteController extends Controller
 
 				$message = new YiiMailMessage;
 				$message->view = 'mail_template';
-				$subject = 'Te has registrado en Sigma Es Mundial';
+				 
 				//userModel is passed to the view
 				$message->setBody(array('body'=>$body), 'text/html');
-				$message->subject    = $subject;
+				 
 				 
 				$message->addTo($user->email);
-				$message->from = array(Yii::app()->params['adminEmail'] => Yii::app()->params['adminName']);
+				$message->from = Yii::app()->params['adminEmail'];
 				Yii::app()->mail->send($message);
 				
 				/*if (Yii::app()->controller->module->sendActivationMail) {
@@ -91,8 +91,7 @@ class SiteController extends Controller
 						Yii::app()->user->login($identity,0);
 						//$this->redirect(Yii::app()->controller->module->returnUrl);
 						Yii::app()->user->setFlash('success', "Registrado. Por favor revisa tu email para activar tu cuenta.");
-						//$this->redirect(array('apuesta/partidos'));
-						$this->redirect(array('index'));
+						$this->redirect(array('apuesta/partidos'));
 				/*} else {
 					if (!Yii::app()->controller->module->activeAfterRegister&&!Yii::app()->controller->module->sendActivationMail) {
 						Yii::app()->user->setFlash('registration',UserModule::t("Thank you for your registration. Contact Admin to activate your account."));
@@ -106,8 +105,7 @@ class SiteController extends Controller
 					
 				}*/
 			}else{
-				Yii::app()->user->setFlash('error', "No se pudo completar el registro con twitter, por favor intente de nuevo");
-				$this->redirect(array('index'));
+				//var_dump($user->getErrors());
 			}
 			//}
 		}else if(isset($_REQUEST['oauth_token'])){
@@ -291,7 +289,7 @@ class SiteController extends Controller
 							 
 							 
 							$message->addTo("cruiz@upsidecorp.ch");
-							$message->addTo("carlosr000@hotmail.com");
+						
 							$message->from = Yii::app()->params['adminEmail'];
 							if(Yii::app()->mail->send($message))
 								echo "OK";

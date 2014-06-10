@@ -151,9 +151,21 @@ body{
     font-family: 'Open Sans', sans-serif;
 }
 #footer{
+    color: @blanco;
     text-align: center;
-    margin-top: 20px;
-    padding: 25px 0;    
+    //margin-top: 55px;
+    padding: 10px 0 1px;
+    font-size: 12px;
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
+
+
+    .fondo-azul();
+    a{
+        color: @blanco;
+        font-weight: bold;
+    }
 }
 
 a{
@@ -208,9 +220,6 @@ a:hover{
 
 /*Paneles*/
 
-.panel-gris{
-    .fondo-gris();
-}
 .panel-azul{
     .fondo-azul();
 }
@@ -230,6 +239,7 @@ a:hover{
 }
 
 .panel-gris{
+    .fondo-gris();
     .panel-content{
         //color: @azul;
         //.text-shadow();
@@ -257,11 +267,16 @@ a:hover{
 }
 .register-panel{
     color: @azul;
-    .about-link a{
-        text-decoration: underline;
-        font-weight: bold;
-        &:hover{
-            color: lighten(@azul, 10%);
+    .about-link{
+        font-size: 12px;
+        margin-bottom: 10px;
+        margin-top: 34px;
+        a{
+            text-decoration: underline;
+            font-weight: bold;
+            &:hover{
+                color: lighten(@azul, 10%);
+            }
         }
     }
 
