@@ -7,7 +7,7 @@
 	<div style="background-color:#ba1928; vertical-align:middle; height:60px" align="right">
 	
 	
-	<table width="120"><tr>
+	<table width="120" height="60"><tr>
 		<td width="40"><a href="https://twitter.com/SigmaOficial"><img src="http://sigmatiendas.com/mundial/images/twitter.png" height="36px" width="36px" style="margin-top:12px" /></a></td>
 		<td width="40"><a href="http://www.facebook.com/Sigmaoficial"><img src="http://sigmatiendas.com/mundial/images/facebook.png" height="36px" width="36px" style="margin-top:12px" /></a></td>
 		<td width="40"><a href="http://instagram.com/sigmaoficial" ><img src="http://sigmatiendas.com/mundial/images/instagram.png" width="36px" height="36px" style="margin-top:12px" /></a>		
