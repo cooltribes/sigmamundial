@@ -68,10 +68,9 @@ class User extends CActiveRecord
             array('lastvisit_at', 'default', 'value' => '0000-00-00 00:00:00', 'setOnEmpty' => true, 'on' => 'insert'),
 			array('username, email, superuser, fecha_nacimiento, status', 'required'),
 			array('superuser, status', 'numerical', 'integerOnly'=>true),
-			array('oauth_token, oauth_token_secret', 'required'),
 			array('id, username, password, email, activkey, create_at, lastvisit_at, superuser, status, puntos, fecha_nacimiento, twitter, twitter_id, nombre,oauth_token, oauth_token_secret', 'safe', 'on'=>'search'),
 		):((Yii::app()->user->id==$this->id)?array(
-			array('email, oauth_token, oauth_token_secret', 'required'),
+			array('email', 'required'),
 			//array('username', 'length', 'max'=>20, 'min' => 3,'message' => UserModule::t("Incorrect username (length between 3 and 20 characters).")),
 			array('email', 'email'),
 			//array('username', 'unique', 'message' => UserModule::t("This user's name already exists.")),
@@ -134,7 +133,7 @@ class User extends CActiveRecord
                 'condition'=>'superuser=1',
             ),
             'notsafe'=>array(
-            	'select' => 'id, username, password, email, activkey, create_at, lastvisit_at, superuser, status, oauth_token, oauth_token_secret, user.twitter_id',
+            	'select' => 'id, username, password, email, activkey, create_at, lastvisit_at, superuser, status, oauth_token, oauth_token_secret',
             ),
         );
     }
@@ -143,7 +142,11 @@ class User extends CActiveRecord
     {
         return CMap::mergeArray(Yii::app()->getModule('user')->defaultScope,array(
             'alias'=>'user',
-            'select' => 'user.id, user.username, user.email, user.create_at, user.lastvisit_at, user.superuser, user.status, user.nombre, user.twitter, user.fecha_nacimiento, user.puntos, user.oauth_token, user.oauth_token_secret, user.twitter_id',
+<<<<<<< HEAD
+            'select' => 'user.id, user.username, user.email, user.create_at, user.lastvisit_at, user.superuser, user.status, user.nombre, user.twitter, user.fecha_nacimiento, user.puntos, user.oauth_token, user.oauth_token_secret',
+=======
+            'select' => 'user.id, user.username, user.email, user.create_at, user.lastvisit_at, user.superuser, user.status, user.nombre, user.twitter, user.fecha_nacimiento, user.puntos, user.twitter_id',
+>>>>>>> 65d880b60c2e23f3a093b5fddb7977de443da76a
         ));
     }
 	

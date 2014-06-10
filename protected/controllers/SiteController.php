@@ -91,7 +91,8 @@ class SiteController extends Controller
 						Yii::app()->user->login($identity,0);
 						//$this->redirect(Yii::app()->controller->module->returnUrl);
 						Yii::app()->user->setFlash('success', "Registrado. Por favor revisa tu email para activar tu cuenta.");
-						$this->redirect(array('apuesta/partidos'));
+						//$this->redirect(array('apuesta/partidos'));
+						$this->redirect(array('index'));
 				/*} else {
 					if (!Yii::app()->controller->module->activeAfterRegister&&!Yii::app()->controller->module->sendActivationMail) {
 						Yii::app()->user->setFlash('registration',UserModule::t("Thank you for your registration. Contact Admin to activate your account."));
@@ -105,7 +106,8 @@ class SiteController extends Controller
 					
 				}*/
 			}else{
-				//var_dump($user->getErrors());
+				Yii::app()->user->setFlash('error', "No se pudo completar el registro con twitter, por favor intente de nuevo");
+				$this->redirect(array('index'));
 			}
 			//}
 		}else if(isset($_REQUEST['oauth_token'])){
