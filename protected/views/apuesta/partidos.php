@@ -30,17 +30,34 @@ function actual_date()
                 <!--ALERTS-->
                 <div class="row">
                     <div class="col-md-12">
-                        <?php if (Yii::app()->user->hasFlash('success')) { ?>
-                            <div class="alert alert-success in fade">
+                        <?php
+                        if (Yii::app()->user->hasFlash('success')) { 
+                            ?>
+                            <div class="alert in alert-block fade alert-success text_align_center margin_bottom_large">
                                 <?php echo Yii::app()->user->getFlash('success'); ?>
                             </div>
-                        <?php } ?>
+                            <?php
+                        }
+                        ?>
+                        <?php
+                        if (Yii::app()->user->hasFlash('error')) { 
+                            ?>
+                            <div class="alert in alert-block fade alert-danger text_align_center margin_bottom_large">
+                                <?php echo Yii::app()->user->getFlash('error'); ?>
+                            </div>
+                            <?php
+                        }
+                        ?>
 
-                        <?php if (Yii::app()->user->hasFlash('danger')) { ?>
-                            <div class="alert alert-info in fade">
+                        <?php
+                        if (Yii::app()->user->hasFlash('danger')) { 
+                            ?>
+                            <div class="alert in alert-block fade alert-danger text_align_center margin_bottom_large">
                                 <?php echo Yii::app()->user->getFlash('danger'); ?>
                             </div>
-                        <?php } ?>
+                            <?php
+                        }
+                        ?>
                     </div>
                 </div>
                 

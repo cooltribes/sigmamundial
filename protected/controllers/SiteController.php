@@ -289,7 +289,7 @@ class SiteController extends Controller
 							 
 							 
 							$message->addTo("cruiz@upsidecorp.ch");
-							$message->addTo("carlosr000@hotmail.com");
+						
 							$message->from = Yii::app()->params['adminEmail'];
 							if(Yii::app()->mail->send($message))
 								echo "OK";
