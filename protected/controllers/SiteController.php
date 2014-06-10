@@ -71,13 +71,13 @@ class SiteController extends Controller
 
 				$message = new YiiMailMessage;
 				$message->view = 'mail_template';
-				 
+				$subject = 'Te has registrado en Sigma Es Mundial';
 				//userModel is passed to the view
 				$message->setBody(array('body'=>$body), 'text/html');
-				 
+				$message->subject    = $subject;
 				 
 				$message->addTo($user->email);
-				$message->from = Yii::app()->params['adminEmail'];
+				$message->from = array(Yii::app()->params['adminEmail'] => Yii::app()->params['adminName']);
 				Yii::app()->mail->send($message);
 				
 				/*if (Yii::app()->controller->module->sendActivationMail) {
