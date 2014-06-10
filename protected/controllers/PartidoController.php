@@ -242,17 +242,42 @@ class PartidoController extends Controller
 		$this->render('resultado',array('model'=>$partido));		
 	}
 
-	public function actionApuestas($id)
+	public function actionApuestas($id=null)
 	{
-		$partido = Partido::model()->findByPk($id);
+		if(isset($id)){
+			
+			$partido = Partido::model()->findByPk($id);
+			
+			$apuestas = new Apuesta;
+			$apuestas->unsetAttributes();
+			$apuestas->id_partido=$id;		
+			
+			$dataProvider = $apuestas->search();
+			
+			$this->render('apuestas', array('model'=>$partido, 'dataProvider'=>$dataProvider,));	
+	
+		}
+		else if(isset($_POST['partido'])){
+			
+			$apuestas = new Apuesta;
+			$apuestas->unsetAttributes();
+			$apuestas->id_partido=$_POST['partido'];
+			
+			$partido = Partido::model()->findByPk($_POST['partido']);		
+			
+			if ( isset($_POST['gol_local'])&& isset($_POST['gol_visitante']) ){ // categorias
+				$apuestas->local = $_POST['gol_local'];
+				$apuestas->visitante = $_POST['gol_visitante'];
+				var_dump($apuestas);		
+			}			
+				
+			$dataProvider = $apuestas->search();
+			
+			$this->render('apuestas', array('model'=>$partido, 'dataProvider'=>$dataProvider,));	
+				
+		}
 		
-		$apuestas = new Apuesta;
-		$apuestas->unsetAttributes();
-		$apuestas->id_partido=$id;		
-		
-		$dataProvider = $apuestas->search();
-		
-		$this->render('apuestas', array('model'=>$partido, 'dataProvider'=>$dataProvider,));	
 	}
+	
 	
 }
