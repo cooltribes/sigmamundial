@@ -262,6 +262,16 @@ class SiteController extends Controller
 		Yii::app()->user->logout();
 		$this->redirect(Yii::app()->homeUrl);
 	}
+	
+	public function actionAcercaDe()
+	{
+		$this->render('acerca');
+	}
+	
+	public function actionTerminos_y_condiciones()
+	{
+		$this->render('terminos');
+	}
 	/*
 	public function actionMailTest(){
 		$message = new YiiMailMessage;

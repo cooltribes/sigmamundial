@@ -31,8 +31,9 @@ $visitante = Equipo::model()->findByPk($model->id_visitante);
 		        <div class="row">
 			    	<div class="col-md-12">
 			    		<form class="form form-group">
-			    			<input type="text" name="query" id="local" class="col-md-2" placeholder="Local" />
-			    			<input type="text" name="query" id="visita" class="col-md-2" placeholder="Visitante" />
+			    			<input type="number" name="query" id="local" class="col-md-2" placeholder="Local" />
+			    			<input type="number" name="query" id="visita" class="col-md-2" placeholder="Visitante" />
+			    			<input type="hidden" name="id" id="id-partido" value="<?php echo $model->id; ?>"/>
 			    			<a class="btn btn-info" id="btn_search_event">Buscar</a>
 						</form>
 					</div>
@@ -43,16 +44,22 @@ $visitante = Equipo::model()->findByPk($model->id_visitante);
 				"var ajaxUpdateTimeout;
 				var ajaxRequest;
 				$('#btn_search_event').click(function(){
-					ajaxRequest = $('#query').serialize();
+					//ajaxRequest = $('#query').serialize();
+					
+					local = $('#local').attr('value');
+					visitante = $('#visita').attr('value');
+					id_partido = $('#id-partido').attr('value');
+					
 					clearTimeout(ajaxUpdateTimeout);
 					
 					ajaxUpdateTimeout = setTimeout(function () {
 						$.fn.yiiListView.update(
-						'list-auth-items',
+						'list-auth-apuestas',
 						{
 						type: 'POST',	
-						url: '" . CController::createUrl('producto/admin') . "',
-						data: ajaxRequest}
+						url: '" . CController::createUrl('partido/apuestas') . "',
+						data: {'gol_local':local, 'gol_visitante':visitante, 'partido':id_partido}
+						}
 						
 						)
 						},
