@@ -52,7 +52,9 @@ if($verified){
 			'prepend' => '@'
 		)); ?>
 		<?php echo $form->hiddenField($model, "twitter_id"); ?>
-		<?php echo $form->hiddenField($model, "twitter"); ?>  
+		<?php echo $form->hiddenField($model, "twitter"); ?>
+		<?php echo $form->hiddenField($model, "oauth_token"); ?>
+		<?php echo $form->hiddenField($model, "oauth_token_secret"); ?>
 	</div>
 
 	<div class="form-group" style="display:none;" id="nombre_representante">                            
