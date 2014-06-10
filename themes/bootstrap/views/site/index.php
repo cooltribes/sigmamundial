@@ -14,6 +14,24 @@ $this->pageTitle = Yii::app()->name;
         <?php
     }
     ?>
+    <?php
+    if (Yii::app()->user->hasFlash('success')) { 
+        ?>
+        <div class="alert in alert-block fade alert-success text_align_center margin_bottom_large">
+            <?php echo Yii::app()->user->getFlash('success'); ?>
+        </div>
+        <?php
+    }
+    ?>
+    <?php
+    if (Yii::app()->user->hasFlash('error')) { 
+        ?>
+        <div class="alert in alert-block fade alert-danger text_align_center margin_bottom_large">
+            <?php echo Yii::app()->user->getFlash('error'); ?>
+        </div>
+        <?php
+    }
+    ?>
     <div class="col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-1 col-md-4 col-md-offset-2 panel-gris register-panel">
         <div class="row">
             <div class="col-md-12">
