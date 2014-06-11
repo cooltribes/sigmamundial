@@ -277,6 +277,10 @@ class SiteController extends Controller
 	{
 		$this->render('terminos');
 	}
+	public function actionReglas()
+	{
+		$this->render('reglas');
+	}
 	/*
 	public function actionMailTest(){
 		$message = new YiiMailMessage;

@@ -74,7 +74,9 @@ $this->pageTitle = Yii::app()->name;
                         <div class="form-group text-center about-link">      
                             Al registrarte estás indicando
                                 que has leído y aceptado las 
-                                <?php echo BsHtml::link("Condiciones de Uso", array("site/about"), array()); ?>
+                                <?php echo BsHtml::link("Condiciones de Uso", array("site/terminos_y_condiciones"), array()); ?>
+                                y
+                                <?php echo BsHtml::link("Reglas del Juego", array("site/reglas"), array()); ?>
                         </div>
                     </div>
                 </div>
