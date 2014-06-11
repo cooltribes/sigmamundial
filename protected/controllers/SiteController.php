@@ -73,12 +73,12 @@ class SiteController extends Controller
 				$message->view = 'mail_template';
 				 
 				//userModel is passed to the view
+				$message->setSubject('Activa tu cuenta en Sigma Mundial');
 				$message->setBody(array('body'=>$body), 'text/html');
-				 
-				 
+				
 				$message->addTo($user->email);
-				$message->from = Yii::app()->params['adminEmail'];
-				Yii::app()->mail->send($message);
+				$message->from = array(Yii::app()->params['adminEmail'] => Yii::app()->params['adminName']);
+				Yii::app()->mail->send($message); 
 				
 				/*if (Yii::app()->controller->module->sendActivationMail) {
 					$activation_url = $this->createAbsoluteUrl('/user/activation/activation',array("activkey" => $model->activkey, "email" => $model->email));
@@ -91,7 +91,7 @@ class SiteController extends Controller
 						Yii::app()->user->login($identity,0);
 						//$this->redirect(Yii::app()->controller->module->returnUrl);
 						Yii::app()->user->setFlash('success', "Registrado. Por favor revisa tu email para activar tu cuenta.");
-						$this->redirect(array('apuesta/partidos'));
+						$this->redirect(array('index'));
 				/*} else {
 					if (!Yii::app()->controller->module->activeAfterRegister&&!Yii::app()->controller->module->sendActivationMail) {
 						Yii::app()->user->setFlash('registration',UserModule::t("Thank you for your registration. Contact Admin to activate your account."));

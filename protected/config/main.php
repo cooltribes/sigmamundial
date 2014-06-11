@@ -7,7 +7,7 @@
 // CWebApplication properties can be configured here.
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name'=>'Sigma Mundial',
+	'name'=>'Sigma Es Mundial',
 	'theme'=>'bootstrap',
         'aliases' => array(
             'bootstrap' => 'ext.bootstrap',
