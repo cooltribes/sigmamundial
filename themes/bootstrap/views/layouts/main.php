@@ -10,7 +10,7 @@
         $cs = Yii::app()->clientScript;
         $themePath = Yii::app()->theme->baseUrl;
         /** StyleSHeets*/
-        $cs->registerCssFile($themePath.'/assets/css/bootstrap.min.css')
+        $cs->registerCssFile($themePath.'/assets/css/bootstrap.css')
 //            ->registerCssFile($themePath.'/assets/css/bootstrap-theme.css')
             ->registerCssFile($themePath.'/assets/css/estilos.css');
         

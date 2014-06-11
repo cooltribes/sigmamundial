@@ -79,10 +79,22 @@ function actual_date()
                             //FILAS NUEVAS - si es impar
                             if($contPartidos%2!=0){
                                 echo "<div class='row'>";
-                            } 
+                            }
+                            $overlay = "";
+                            $clase = "";
+                            $url = Yii::app()->getBaseUrl(true) . "/apuesta/jugar/" . $partido->id;
+                            if($partido->bloqueado()){
+                                $overlay = "overlay";
+                                $clase = "bloqueado";
+                                $url = ""; 
+                            }
+                            
+                            
                             ?>
-                            <a class="col-xs-12 col-sm-6 col-md-6 col-md-offset-<?php //echo $offset; ?>" href="<?php echo Yii::app()->getBaseUrl(true) . "/apuesta/jugar/" . $partido->id; ?>">
-                                <div >
+                            
+                            <a class="col-xs-12 col-sm-6 col-md-6 <?php echo $clase ?>" <?php echo 'href="'.$url.'"'; ?>>
+                            
+                                <div class="<?php echo $overlay ?>" >
                                     <div class="panel panel-default box box-partido">
                                         <div class="panel-body">
                                             <?php
@@ -158,8 +170,9 @@ function actual_date()
                                         
                                     </div>
                                 </div>
+                            
                             </a>
-
+                        
                         <?php
                        
                             //FILAS NUEVAS - si es impar
@@ -171,7 +184,8 @@ function actual_date()
 
                         if($contPartidos==0)
                         {
-                            echo "<div class='row'><h4 class='col-md-6 col-md-offset-3 box no-partidos'>
+                            echo "<div class='row'>
+                                <h4 class='col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 box no-partidos'>
                                 Lo sentimos. Hoy no se disputará ningún partido.
                                 </h4></div>";
                             
@@ -185,3 +199,12 @@ function actual_date()
         
     </div>
 </div>
+<script type="text/javascript">
+$(document).ready(function(){
+    
+    $(".bloqueado").click(function(e){
+        e.preventDefault();
+    });
+    
+});
+</script>

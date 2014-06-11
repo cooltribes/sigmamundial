@@ -107,6 +107,14 @@
 .padding_small{padding:1em}
 .padding_xsmall{padding:0.5em}
 
+/********* Cambios para bootstrap *******/
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+
+color: @blanco;
+.fondo-azul();
+}
+
+
 /****   Estilos propios del proyecto    ****/
 
 /*-- Funciones --*/
@@ -141,7 +149,9 @@
     -webkit-transition:all ease 0.3s; /* Safari and Chrome */
     -o-transition:all ease 0.3s; /* Opera */
     }
-
+html, body{
+    height: 100%;
+}
 body{
     background-image: url('../images/1.jpg');
     background-repeat: repeat-y;
@@ -172,7 +182,7 @@ a{
     color:@azul;
     .transition_all
 }
-a:hover{
+a:hover, a:focus{
   color:@azul;
   text-decoration: none;
 }
@@ -240,9 +250,7 @@ a:hover{
 
 .panel-gris{
     .fondo-gris();
-    .panel-content{
-        //color: @azul;
-        //.text-shadow();
+    .panel-content{        
 
     }
 
@@ -258,7 +266,7 @@ a:hover{
     }
 
     .no-partidos{
-        padding: 50px 0;
+        padding: 50px 10px;
         margin-bottom: 50px;
         margin-top: 50px;
         //text-weight: bold;
@@ -278,6 +286,15 @@ a:hover{
                 color: lighten(@azul, 10%);
             }
         }
+    }
+
+    input[type="date"]:before {
+        content: attr(placeholder) ": \00a0";    
+        color: #aaa;
+    }
+
+    input[type="date"]:focus:before, input[type="date"]:valid:before {
+        content: "";
     }
 
 }
@@ -308,7 +325,7 @@ a:hover{
 
 //Partidos de hoy
 
-.panel-partidos{
+.panel-partidos, .panel-apuesta{
     .box-partido{  
         &:hover{
             .box-shadow(0 0 30px 3px @gris-sombra-hover);            
@@ -332,10 +349,66 @@ a:hover{
             }            
         }
     }
+    
+    a.bloqueado{
+        cursor: default;
+        .overlay{
+            position: relative;
+        }
+        .overlay:after {
+            content:'\A'; 
+            position:absolute;
+            width:100%; 
+            height:100%;
+            top:0; 
+            left:0;
+            background:rgba(0,0,0,0.6);
+            /*opacity:0;
+            transition: all 1s;
+            -webkit-transition: all 1s;*/
+            opacity:1;
+        }
+    }
+
+
 }
 
-//Media Queries
+.panel-apuesta{
+    color: @azul;
+    .titulo{
+        text-align: center;
+    }
+    .partido{
+        .box-partido{
+            &:hover{
+                .box-shadow();            
+            }
+            .goles{
+                margin-top: 10px;
+            }
+            .boton-apostar{
+                margin-top: 20px;
+            }
+        }
+        .box-tiempo{
+           .fondo-azul(); 
+           border-color: @azul;
+           border-radius: 0;
+           color: @blanco;
+        }
+        
+    }
+    .boton-regresar{
+        margin-top: 30px;
+        margin-bottom: 30px;
+        text-align: center;
+    }
+}
 
+
+
+
+//Media Queries
 //pequeños
 @media (min-width: 768px){
 

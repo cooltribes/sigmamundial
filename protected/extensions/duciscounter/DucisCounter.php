@@ -95,7 +95,7 @@ class DucisCounter extends CWidget{
 		}
 		
             echo '
-		<div class="" style="background-color:#005b8a;">	
+		<div class="" >	
 		<div class="contenedor">
 		'.$this->body.'
 		<div><!--//-->
