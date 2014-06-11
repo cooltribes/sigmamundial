@@ -127,4 +127,10 @@ class Partido extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+        
+        public function bloqueado(){
+            $apuesta = Apuesta::model()->findByAttributes(array('id_user'=>Yii::app()->user->id,'id_partido'=>$this->id));
+            return isset($apuesta);
+        }
+            
 }

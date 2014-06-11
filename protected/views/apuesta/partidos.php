@@ -83,7 +83,7 @@ function actual_date()
                             ?>
                             <a class="col-xs-12 col-sm-6 col-md-6 col-md-offset-<?php //echo $offset; ?>" href="<?php echo Yii::app()->getBaseUrl(true) . "/apuesta/jugar/" . $partido->id; ?>">
                                 <div >
-                                    <div class="panel panel-default box box-partido">
+                                    <div class="panel panel-default box box-partido <?php echo $partido->bloqueado()?" bloqueado":"" ?>">
                                         <div class="panel-body">
                                             <?php
                                             $apuesta = Apuesta::model()->findByAttributes(array('id_partido' => $partido->id, 'id_user' => Yii::app()->user->id));
@@ -171,7 +171,8 @@ function actual_date()
 
                         if($contPartidos==0)
                         {
-                            echo "<div class='row'><h4 class='col-md-6 col-md-offset-3 box no-partidos'>
+                            echo "<div class='row'>
+                                <h4 class='col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 box no-partidos'>
                                 Lo sentimos. Hoy no se disputará ningún partido.
                                 </h4></div>";
                             

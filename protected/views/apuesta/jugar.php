@@ -1,5 +1,5 @@
 <div class="row">    
-    <div class="col-md-8 col-md-offset-2 panel-gris">
+    <div class="col-md-8 col-md-offset-2 panel-gris panel-apuesta">
         <!--HEADER-->
         <div class="row">
             <div class="col-md-12">
@@ -8,7 +8,7 @@
                 </div>
             </div>
         </div>
-        
+
         <!--CONTENT-->
         <div class="row panel-content">
             <div class="col-md-12">
@@ -27,132 +27,145 @@
                         <?php } ?>
                     </div>
                 </div>
-                
+
                 <!--TITULO-->
-                <div class="row">
-                    <div class="col-md-12">
+                <div class="row titulo">
+                    <div class="col-sm-6 col-sm-offset-1">
                         <h3>Tu resultado del juego</h3>
                     </div>
                 </div>
-                
+
                 <!--PARTIDO-->
-                <div class="row">
-                    <div class="col-md-12">
-                        
-                        
+                <div class="row partido">
+                    <div class="col-sm-6 col-sm-offset-1">
+                        <div class="panel panel-default box box-partido">
+                            <div class="panel-body">
+                                <?php
+                                $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
+                                    'layout' => BsHtml::FORM_LAYOUT_HORIZONTAL,
+                                    'enableAjaxValidation' => false,
+                                    'id' => 'apuesta-form',
+                                    'htmlOptions' => array(
+                                        'class' => 'bs-example',
+                                        'enctype' => 'multipart/form-data',
+                                    )
+                                ));
+                                ?>
+                                <div class="row"><?php echo $partido->sede; ?></div>
+                                <div class="row equipos">
+                                    <div class="col-xs-5">
+                                        <!--nombre-->
+                                        <div class='row'><div class="col-xs-12 nombre">
+                                                <?php
+                                                $local = Equipo::model()->findByPk($partido->id_local);
+                                                echo $local->nombre
+                                                ?>
+                                            </div></div>
+                                        <!--bandera-->
+                                        <div class='row'><div class="col-xs-12">
+                                                <?php
+                                                echo CHtml::image(Yii::app()->getBaseUrl(true)
+                                                        . str_replace(".", "_thumb.", $local->url), $local->nombre);
+                                                ?>
+                                            </div></div>                                       
+
+                                    </div> 
+                                    <div class="col-xs-2 col-md-2 vs">
+                                        <h2>VS</h2>
+                                    </div>
+
+                                    <div class="col-xs-5 col-md-5">
+                                        <div class='row'><div class="col-xs-12 nombre">
+                                                <?php
+                                                $visitante = Equipo::model()->findByPk($partido->id_visitante);
+                                                echo $visitante->nombre;
+                                                ?>
+                                            </div></div>
+
+                                        <div class='row'><div class="col-xs-12">
+                                                <?php
+                                                echo CHtml::image(Yii::app()->getBaseUrl(true)
+                                                        . str_replace(".", "_thumb.", $visitante->url), $visitante->nombre);
+                                                ?>
+                                            </div></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <?php echo date("h:i a", strtotime($partido->fecha)); ?>
+                                </div>
+                                <div class="row equipos">
+                                    <div class="col-xs-5">
+                                        <?php
+                                        echo $form->numberField($apuesta, 'local', array(
+//                                            'placeholder' => 'Goles de ' . $local->nombre,
+                                            'placeholder' => 'Goles',
+                                            'min' => 0,
+                                            'class' => 'form-control '
+                                        ));
+                                        ?>
+                                    </div>
+                                    <div class="col-xs-5 col-xs-offset-2">
+                                        <?php
+                                        echo $form->numberField($apuesta, 'visitante', array(
+//                                            'placeholder' => 'Goles de ' . $visitante->nombre,
+                                            'placeholder' => 'Goles',
+                                            'min' => 0,
+                                            'class' => 'form-control '
+                                        ));
+                                        ?>
+                                    </div>
+                                </div>
+                                <div class="row boton-apostar">
+                                    <div class="col-xs-12">
+                                        <?php
+                                        echo BsHtml::submitButton('Enviar resultado', array(
+                                            'color' => BsHtml::BUTTON_COLOR_PRIMARY
+                                        ));
+                                        ?>
+                                    </div>
+                                </div>
+                                <?php
+                                $this->endWidget();
+                                ?> 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="panel panel-default box-tiempo">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <?php
+                                        $this->widget('ext.duciscounter.DucisCounter', array(
+                                            'start_timestamp' => strtotime(date("Y-m-d 00:00:00")),
+                                            'end_timestamp' => strtotime('-10 minutes', strtotime($partido->fecha)),
+                                            'now' => strtotime('-30 minutes', strtotime(date('Y-m-d H:i:s')))
+                                                )
+                                        );
+                                        ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                
                 <!--BOTON REGRESAR-->
-                <div class="row">
+                <div class="row boton-regresar">
                     <div class="col-md-12">
-                        <?php echo BsHtml::linkButton('Regresar', array(
+                        <?php
+                        echo BsHtml::linkButton('Regresar', array(
                             'color' => BsHtml::BUTTON_COLOR_PRIMARY,
                             'url' => array("apuesta/partidos"),
-                        ));?>
+                        ));
+                        ?>
                     </div>
                 </div>
-                
-                
+
+
+
             </div>
         </div>
     </div>
-    
-</div>
-    
 
-
-<div class="panel panel-default col-md-8">
-    <div class="panel-body">
-
-        <?php
-        $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
-            'layout' => BsHtml::FORM_LAYOUT_HORIZONTAL,
-            'enableAjaxValidation' => false,
-            'id' => 'apuesta-form',
-            'htmlOptions' => array(
-                'class' => 'bs-example',
-                'enctype' => 'multipart/form-data',
-            )
-        ));
-        ?>
-
-        <div class="row text-center"><?php echo $partido->sede; ?></div>
-
-        <div class="row">
-            <div class="well col-md-4 col-md-offset-1">
-<?php
-echo "<div class='text-center'>";
-
-$local = Equipo::model()->findByPk($partido->id_local);
-echo $local->nombre . "<br>";
-
-echo CHtml::image(Yii::app()->getBaseUrl(true) . $local->url, $local->nombre);
-
-echo $form->numberField($apuesta, 'local', array(
-    'placeholder' => 'Goles de ' . $local->nombre,
-    'min' => 0,
-    'class' => 'form-control '
-));
-
-echo "</div>";
-?>
-            </div>
-
-            <div class="col-md-2 text-center">
-                <h2>VS</h2>
-            </div>
-
-            <div class="well col-md-4">
-<?php
-echo "<div class='text-center'>";
-
-$visitante = Equipo::model()->findByPk($partido->id_visitante);
-echo $visitante->nombre . "<br>";
-
-echo CHtml::image(Yii::app()->getBaseUrl(true) . $visitante->url, $visitante->nombre);
-
-echo $form->numberField($apuesta, 'visitante', array(
-    'placeholder' => 'Goles de ' . $visitante->nombre,
-    'min' => 0,
-    'class' => 'form-control '
-));
-
-echo "</div>";
-?>
-            </div>
-        </div>
-
-        <div class="row text-center"> <?php echo "Hora: " . date("h:i a", strtotime($partido->fecha)); ?> </div>
-
-        <div class="form-actions text-center">
-<?php
-echo BsHtml::submitButton('Enviar resultado', array(
-    'color' => BsHtml::BUTTON_COLOR_PRIMARY
-));
-?>
-        </div>
-
-            <?php
-            $this->endWidget();
-            ?>
-    </div>
-</div>
-        <?php
-        //	echo date('Y-m-d H:i:s', strtotime('-30 minutes', strtotime(date('Y-m-d H:i:s'))));
-        ?>
-<div class="well col-md-4">
-<?php
-$this->widget('ext.duciscounter.DucisCounter', array(
-    'start_timestamp' => strtotime(date("Y-m-d 00:00:00")),
-    'end_timestamp' => strtotime('-10 minutes', strtotime($partido->fecha)),
-    'now' => strtotime('-30 minutes', strtotime(date('Y-m-d H:i:s')))
-        )
-);
-?>
-
-</div>
-
-</div>
 </div>
 
