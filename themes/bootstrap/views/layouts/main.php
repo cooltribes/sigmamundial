@@ -127,8 +127,10 @@ $this->widget('bootstrap.widgets.BsNavbar', array(
     
     <div class="row main-header">
         <div class="col-xs-12 col-sm-3 col-md-3 logo">
-            <?php echo CHtml::image(Yii::app()->getBaseUrl(true)."/images/logo.png", "Logo",
-                    array("height" => 73)); ?>            
+            <a href="http://sigmatiendas.com">
+                <?php echo CHtml::image(Yii::app()->getBaseUrl(true)."/images/logo.png", "Logo",
+                        array("height" => 73)); ?>                            
+            </a>
         </div>
         
         <div class="col-xs-12 col-sm-6 col-md-6 text-center main-title">
