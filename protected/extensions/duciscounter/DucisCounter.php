@@ -90,12 +90,12 @@ class DucisCounter extends CWidget{
 		
 		if($this->end_timestamp < strtotime('-30 minutes', strtotime(date('Y-m-d H:i:s'))) )
 		{
-			Yii::app()->user->setFlash('danger',"Se agotó el tiempo para realizar la apuesta para el partido.");
+			Yii::app()->user->setFlash('danger',"Se agotó el tiempo para ingresar tu resultado para este partido.");
   			header( 'Location: http://www.sigmatiendas.com/mundial/apuesta/partidos' ) ;
 		}
 		
             echo '
-		<div class="" style="background-color:#005b8a;">	
+		<div class="" >	
 		<div class="contenedor">
 		'.$this->body.'
 		<div><!--//-->

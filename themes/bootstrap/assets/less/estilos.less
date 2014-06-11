@@ -107,6 +107,14 @@
 .padding_small{padding:1em}
 .padding_xsmall{padding:0.5em}
 
+/********* Cambios para bootstrap *******/
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+
+color: @blanco;
+.fondo-azul();
+}
+
+
 /****   Estilos propios del proyecto    ****/
 
 /*-- Funciones --*/
@@ -141,7 +149,9 @@
     -webkit-transition:all ease 0.3s; /* Safari and Chrome */
     -o-transition:all ease 0.3s; /* Opera */
     }
-
+html, body{
+    height: 100%;
+}
 body{
     background-image: url('../images/1.jpg');
     background-repeat: repeat-y;
@@ -151,16 +161,28 @@ body{
     font-family: 'Open Sans', sans-serif;
 }
 #footer{
+    color: @blanco;
     text-align: center;
-    margin-top: 20px;
-    padding: 25px 0;    
+    //margin-top: 55px;
+    padding: 10px 0 1px;
+    font-size: 12px;
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
+
+
+    .fondo-azul();
+    a{
+        color: @blanco;
+        font-weight: bold;
+    }
 }
 
 a{
     color:@azul;
     .transition_all
 }
-a:hover{
+a:hover, a:focus{
   color:@azul;
   text-decoration: none;
 }
@@ -208,9 +230,6 @@ a:hover{
 
 /*Paneles*/
 
-.panel-gris{
-    .fondo-gris();
-}
 .panel-azul{
     .fondo-azul();
 }
@@ -230,9 +249,8 @@ a:hover{
 }
 
 .panel-gris{
-    .panel-content{
-        //color: @azul;
-        //.text-shadow();
+    .fondo-gris();
+    .panel-content{        
 
     }
 
@@ -248,7 +266,7 @@ a:hover{
     }
 
     .no-partidos{
-        padding: 50px 0;
+        padding: 50px 10px;
         margin-bottom: 50px;
         margin-top: 50px;
         //text-weight: bold;
@@ -257,11 +275,16 @@ a:hover{
 }
 .register-panel{
     color: @azul;
-    .about-link a{
-        text-decoration: underline;
-        font-weight: bold;
-        &:hover{
-            color: lighten(@azul, 10%);
+    .about-link{
+        font-size: 12px;
+        margin-bottom: 10px;
+        margin-top: 34px;
+        a{
+            text-decoration: underline;
+            font-weight: bold;
+            &:hover{
+                color: lighten(@azul, 10%);
+            }
         }
     }
 
@@ -293,7 +316,7 @@ a:hover{
 
 //Partidos de hoy
 
-.panel-partidos{
+.panel-partidos, .panel-apuesta{
     .box-partido{  
         &:hover{
             .box-shadow(0 0 30px 3px @gris-sombra-hover);            
@@ -319,8 +342,42 @@ a:hover{
     }
 }
 
-//Media Queries
+.panel-apuesta{
+    color: @azul;
+    .titulo{
+        text-align: center;
+    }
+    .partido{
+        .box-partido{
+            &:hover{
+                .box-shadow();            
+            }
+            .goles{
+                margin-top: 10px;
+            }
+            .boton-apostar{
+                margin-top: 20px;
+            }
+        }
+        .box-tiempo{
+           .fondo-azul(); 
+           border-color: @azul;
+           border-radius: 0;
+           color: @blanco;
+        }
+        
+    }
+    .boton-regresar{
+        margin-top: 30px;
+        margin-bottom: 30px;
+        text-align: center;
+    }
+}
 
+
+
+
+//Media Queries
 //pequeños
 @media (min-width: 768px){
 

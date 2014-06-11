@@ -34,16 +34,19 @@ if($verified){
 	<div class="form-group">                            
 		<?php echo $form->dateField($model, "fecha_nacimiento", array(
 			"disabled" => $disabled,
+			"required" => true,
 		)); ?>                 
 	</div>
 	<div class="form-group">                            
 		<?php echo $form->emailField($model, "email", array(
 			"disabled" => $disabled,
+			"required" => true,
 		)); ?>                 
 	</div>                         
 	<div class="form-group">                            
 		<?php echo $form->passwordField($model, "password", array(
 			"disabled" => $disabled,
+			"required" => true,
 		)); ?>                                                                                               
 	</div>
 	<div class="form-group">                            

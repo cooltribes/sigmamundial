@@ -158,5 +158,6 @@ return array(
 	'params'=>array(
 		// this is used in contact page
 		'adminEmail'=>'info@sigmatiendas.com',
+		'adminName' => 'Sigma Es Mundial',
 	),
 );

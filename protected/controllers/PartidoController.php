@@ -118,7 +118,7 @@ class PartidoController extends Controller
 						// enviar mails a los ganadores
 						$message = new YiiMailMessage;				
 						$message->view = "mail_template";
-						$subject = '¡Has ganado con Sigma Mundial!';
+						$subject = '¡Has ganado en Sigma Es Mundial!';
 						
 						$body = "Una de tus predicciones en la aplicación de Sigma Mundial ha resultado ganadora<br/>
 								<br/>
@@ -133,7 +133,7 @@ class PartidoController extends Controller
 						$message->subject    = $subject;
 						$message->setBody($params, 'text/html');                
 						$message->addTo($user->email);
-						$message->from = array('info@sigmatiendas.com' => 'Sigma Mundial');
+						$message->from = array('info@sigmatiendas.com' => 'Sigma Es Mundial');
 						Yii::app()->mail->send($message);
 					}
 				
@@ -159,7 +159,7 @@ class PartidoController extends Controller
 					$message->subject    = $subject;
 					$message->setBody($params, 'text/html');                
 					$message->addTo('dduque@upsidecorp.ch');
-					$message->from = array('info@sigmatiendas.com' => 'Sigma Mundial');
+					$message->from = array('info@sigmatiendas.com' => 'Sigma Es Mundial');
 					Yii::app()->mail->send($message);
 
 				$ganador=0; // 0 gano loca, 1 gano visita, 2 empate
