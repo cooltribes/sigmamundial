@@ -130,7 +130,8 @@ class Partido extends CActiveRecord
         
         public function bloqueado(){
             $apuesta = Apuesta::model()->findByAttributes(array('id_user'=>Yii::app()->user->id,'id_partido'=>$this->id));
-            return isset($apuesta);
+            $horaInicio  = strtotime('-10 minutes', strtotime($this->fecha));
+            return isset($apuesta) || $horaInicio < strtotime('-30 minutes', strtotime(date('Y-m-d H:i:s'))) ;
         }
             
 }

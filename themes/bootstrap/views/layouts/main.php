@@ -127,8 +127,10 @@ $this->widget('bootstrap.widgets.BsNavbar', array(
     
     <div class="row main-header">
         <div class="col-xs-12 col-sm-3 col-md-3 logo">
-            <?php echo CHtml::image(Yii::app()->getBaseUrl(true)."/images/logo.png", "Logo",
-                    array("height" => 73)); ?>            
+            <a href="http://sigmatiendas.com">
+                <?php echo CHtml::image(Yii::app()->getBaseUrl(true)."/images/logo.png", "Logo",
+                        array("height" => 73)); ?>                            
+            </a>
         </div>
         
         <div class="col-xs-12 col-sm-6 col-md-6 text-center main-title">
@@ -163,11 +165,18 @@ $this->widget('bootstrap.widgets.BsNavbar', array(
                             
                         </div>
                     </div>
+                    <?php
+ 						$apuesta = new Apuesta; 
+						$fase="Primera";                 
+                    ?>
                     <div class="row text-right user-info">
                         <div class="col-md-12">
-                            Ptos. Totales: <strong><?php echo $user->puntos; ?></strong>
-                            Ptos. en Fase: <strong><?php echo $user->puntos; ?></strong>                            
-                            Posición: <strong><?php echo $user->puntos; ?></strong>                            
+                            Pts. Totales: <strong><?php echo $user->puntos; ?></strong>
+                            <?php if($apuesta->puntosFase($fase)!=null ){ ?>
+                            	Pts. en Fase: <strong><?php echo $apuesta->puntosFase($fase); ?></strong>
+                            <?php }else{ ?>	                                            
+                            	Pts. en Fase: <strong>0</strong>
+                            <?php } ?>
                         </div>
                     </div>                    
                 </div>

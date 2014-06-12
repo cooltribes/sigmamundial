@@ -120,14 +120,29 @@ class PartidoController extends Controller
 						$message->view = "mail_template";
 						$subject = '¡Has ganado en Sigma Es Mundial!';
 						
-						$body = "Una de tus predicciones en la aplicación de Sigma Mundial ha resultado ganadora<br/>
-								<br/>
-								Encuentro: ".$local->nombre." - ".$visitante->nombre."<br/>
-								Resultado: ".$partido->gol_local." - ".$partido->gol_visitante."<br/>
+						$body = "<table>
+								<tr><td height='40' colspan='2'> ¡Hola <strong>".$user->nombre."</strong>! </td></tr>
+								<tr><td colspan='2'>Sigma te premia por haber acertado el resultado del partido obsequiandote una Gift Card de Bs. 300.</td></tr>
+								
+								<tr><td colspan='2'> Encuentro: ".$local->nombre." ".$partido->gol_local." - ".$partido->gol_visitante." ".$visitante->nombre."</td></tr>
+								
+								<tr><td colspan='2'>Comienza a disfrutar de tu Gift Card usándola en cualquier sucursal del pais o en nuestra web http://sigmatiendas.com </td></tr>
+								<tr><td colspan='2'>(Para ver la Gift Card permite mostrar las imagenes de este correo) </td></tr>
 								<br/>
 								
-								El premio por el acierto del resultado es una tarjeta de regalo de 300,00 Bs. aplicable en cualquiera de nuestras tiendas Sigma Systems<br/>
-								<strong>Código: </strong> XF567UHYW2323545 <br/><br/>
+								<tr><td colspan='2' align='center'>".CHtml::image(Yii::app()->getBaseUrl(true)."/images/giftcard.png")."</td></tr>
+								<tr>
+									<td colspan='4'><strong>Código: </strong><br/>XF567UHYW2323545</td>
+									<td colspan='4'></td>
+									<td colspan='4'></td>
+									<td colspan='4'>Para: ".$user->nombre."<br/>Mensaje: Ganaste en la quiniela</td>
+								</tr>
+								<tr><td align='center' height='30' colspan='2'>Válida desde 12-06-2014 hasta 12-08-2014</td></tr>
+								
+								<tr><td colspan='2' align='center' height='40'>CONDICIONES: 1.- Válido en todas las sucursales Sigma a nivel nacional y en portal web. <br/>
+								2.- Canjeable solo en compras con un monto mayor a Bs. 2.000,00. 3.- Sólo se podrá utilizar un gift card por factura.
+								</td></tr>
+								</table> 
 								";
 						$params = array('subject'=>$subject, 'body'=>$body);
 						$message->subject    = $subject;
@@ -153,7 +168,7 @@ class PartidoController extends Controller
 							<br/>
 							Resultado final: ".$partido->gol_local." - ".$partido->gol_visitante."<br/>
 							<br/>
-							Ganadores: <br/>".$winners."
+							Ganadores: <br/><table>".$winners."</table>
 							";
 					$params = array('subject'=>$subject, 'body'=>$body);
 					$message->subject    = $subject;

@@ -120,4 +120,19 @@ class Apuesta extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+	
+	public function puntosFase($fase){
+		
+		$puntos = 0;
+		$user = User::model()->findByPk(Yii::app()->user->id);
+		
+		$apuestas = Apuesta::model()->findAllByAttributes(array('id_user'=>$user->id));
+		
+		foreach($apuestas as $apuesta){ 
+			if($apuesta->idPartido->ronda == $fase) // si la apuesta corresponde a un partido de la fase actual
+				$puntos = $puntos + $apuesta->puntos;	
+		}
+		return $puntos;
+	}//funcion
+	
 }

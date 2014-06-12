@@ -68,7 +68,7 @@ class User extends CActiveRecord
             array('lastvisit_at', 'default', 'value' => '0000-00-00 00:00:00', 'setOnEmpty' => true, 'on' => 'insert'),
 			array('username, email, superuser, fecha_nacimiento, status', 'required'),
 			array('superuser, status', 'numerical', 'integerOnly'=>true),
-			array('id, username, password, email, activkey, create_at, lastvisit_at, superuser, status, puntos, fecha_nacimiento, twitter, twitter_id, nombre,oauth_token, oauth_token_secret', 'safe', 'on'=>'search'),
+			array('id, username, password, email, activkey, create_at, lastvisit_at, superuser, status, puntos, fecha_nacimiento, twitter, twitter_id, nombre,oauth_token, oauth_token_secret, puntos', 'safe', 'on'=>'search'),
 		):((Yii::app()->user->id==$this->id)?array(
 			array('email', 'required'),
 			//array('username', 'length', 'max'=>20, 'min' => 3,'message' => UserModule::t("Incorrect username (length between 3 and 20 characters).")),
@@ -98,9 +98,9 @@ class User extends CActiveRecord
 		return array(
 			'id' => UserModule::t("Id"),
 			'username'=>UserModule::t("username"),
-			'password'=>UserModule::t("password"),
+			'password'=>UserModule::t("Contraseña"),
 			'verifyPassword'=>UserModule::t("Retype Password"),
-			'email'=>UserModule::t("E-mail"),
+			'email'=>UserModule::t("Correo Electrónico"),
 			'verifyCode'=>UserModule::t("Verification Code"),
 			'activkey' => UserModule::t("activation key"),
 			'createtime' => UserModule::t("Registration date"),

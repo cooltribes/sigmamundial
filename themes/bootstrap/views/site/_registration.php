@@ -31,10 +31,11 @@ if($verified){
 		?>
 	</div>       
 	
-	<div class="form-group">                            
+	<div class="form-group">                         
 		<?php echo $form->dateField($model, "fecha_nacimiento", array(
 			"disabled" => $disabled,
 			"required" => true,
+			'placeholder' => "Fecha de Nacimiento",
 		)); ?>                 
 	</div>
 	<div class="form-group">                            

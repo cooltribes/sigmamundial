@@ -288,6 +288,15 @@ a:hover, a:focus{
         }
     }
 
+    input[type="date"]:before {
+        content: attr(placeholder) ": \00a0";    
+        color: #aaa;
+    }
+
+    input[type="date"]:focus:before, input[type="date"]:valid:before {
+        content: "";
+    }
+
 }
 
 .login-panel{
@@ -340,6 +349,28 @@ a:hover, a:focus{
             }            
         }
     }
+    
+    a.bloqueado{
+        cursor: default;
+        .overlay{
+            position: relative;
+        }
+        .overlay:after {
+            content:'\A'; 
+            position:absolute;
+            width:100%; 
+            height:100%;
+            top:0; 
+            left:0;
+            background:rgba(0,0,0,0.6);
+            /*opacity:0;
+            transition: all 1s;
+            -webkit-transition: all 1s;*/
+            opacity:1;
+        }
+    }
+
+
 }
 
 .panel-apuesta{
@@ -374,7 +405,32 @@ a:hover, a:focus{
     }
 }
 
+.panel-terminos{
+    textarea{
+        resize: none;        
+    }
+    textarea[readonly]{
+        cursor: default;
+        background-color: white;
+        opacity: 1;        
+    }
+    .boton-regresar{
+        text-align: center;
+        margin-top: 20px;
+        margin-bottom: 20px;
 
+    }
+}
+.panel-reglas{
+    color:@azul;
+    
+    .boton-regresar{
+        text-align: center;
+        margin-top: 20px;
+        margin-bottom: 20px;
+
+    }
+}
 
 
 //Media Queries

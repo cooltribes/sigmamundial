@@ -75,11 +75,10 @@ class SiteController extends Controller
 				//userModel is passed to the view
 				$message->setSubject('Activa tu cuenta en Sigma Mundial');
 				$message->setBody(array('body'=>$body), 'text/html');
-				 
-				 
+				
 				$message->addTo($user->email);
-				$message->from = Yii::app()->params['adminEmail'];
-				Yii::app()->mail->send($message);
+				$message->from = array(Yii::app()->params['adminEmail'] => Yii::app()->params['adminName']);
+				Yii::app()->mail->send($message); 
 				
 				/*if (Yii::app()->controller->module->sendActivationMail) {
 					$activation_url = $this->createAbsoluteUrl('/user/activation/activation',array("activkey" => $model->activkey, "email" => $model->email));
@@ -277,6 +276,10 @@ class SiteController extends Controller
 	public function actionTerminos_y_condiciones()
 	{
 		$this->render('terminos');
+	}
+	public function actionReglas()
+	{
+		$this->render('reglas');
 	}
 	/*
 	public function actionMailTest(){
