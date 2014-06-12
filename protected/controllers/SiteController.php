@@ -90,7 +90,7 @@ class SiteController extends Controller
 						$identity->authenticate();
 						Yii::app()->user->login($identity,0);
 						//$this->redirect(Yii::app()->controller->module->returnUrl);
-						Yii::app()->user->setFlash('success', "Registrado. Por favor revisa tu email para activar tu cuenta.");
+						Yii::app()->user->setFlash('success', "Por favor <b>revisa tu email</b> para activar tu cuenta. Has sido registrado con éxito.");
 						$this->redirect(array('index'));
 				/*} else {
 					if (!Yii::app()->controller->module->activeAfterRegister&&!Yii::app()->controller->module->sendActivationMail) {
@@ -278,7 +278,7 @@ class SiteController extends Controller
 		$this->render('terminos');
 	}
 	public function actionReglas()
-	{
+	{   
 		$this->render('reglas');
 	}
 	/*

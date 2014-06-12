@@ -114,6 +114,11 @@ color: @blanco;
 .fondo-azul();
 }
 
+@font-face {
+    font-family: "Myriad";
+    src: url("../fonts/MyriadPro-BoldCondIt.otf") format("otf");
+}
+
 
 /****   Estilos propios del proyecto    ****/
 
@@ -423,7 +428,10 @@ a:hover, a:focus{
 }
 .panel-reglas{
     color:@azul;
-    
+    .row-titulo{
+        font-size: 27px;
+        font-weight: bold;
+    }
     .boton-regresar{
         text-align: center;
         margin-top: 20px;
@@ -431,6 +439,15 @@ a:hover, a:focus{
 
     }
 }
+
+.alert.mensaje-home{
+    text-align: center;
+    font-size: 20px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+
+}
+
 
 
 //Media Queries
