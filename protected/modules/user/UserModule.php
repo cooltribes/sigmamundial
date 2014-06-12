@@ -65,7 +65,7 @@ class UserModule extends CWebModule
 	 * @var int
 	 * @desc Remember Me Time (seconds), defalt = 2592000 (30 days)
 	 */
-	public $rememberMeTime = 2592000; // 30 days
+	public $rememberMeTime = 43200; // 30 days
 	
 	public $fieldsMessage = '';
 	
