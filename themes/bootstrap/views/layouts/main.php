@@ -171,11 +171,11 @@ $this->widget('bootstrap.widgets.BsNavbar', array(
                     ?>
                     <div class="row text-right user-info">
                         <div class="col-md-12">
-                            Ptos. Totales: <strong><?php echo $user->puntos; ?></strong>
+                            Pts. Totales: <strong><?php echo $user->puntos; ?></strong>
                             <?php if($apuesta->puntosFase($fase)!=null ){ ?>
-                            	Ptos. en Fase: <strong><?php echo $apuesta->puntosFase($fase); ?></strong>
+                            	Pts. en Fase: <strong><?php echo $apuesta->puntosFase($fase); ?></strong>
                             <?php }else{ ?>	                                            
-                            	Ptos. en Fase: <strong>0</strong>
+                            	Pts. en Fase: <strong>0</strong>
                             <?php } ?>
                         </div>
                     </div>                    
