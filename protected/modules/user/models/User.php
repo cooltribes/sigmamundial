@@ -61,11 +61,12 @@ class User extends CActiveRecord
 			
 			array('email', 'email'),
 			//array('username', 'unique', 'message' => UserModule::t("This user's name already exists.")),
-			array('email', 'unique', 'message' => 'Este email ya se está utilizando'),
+			array('email', 'unique', 'message' => 'Este email ya se está utilizando, por favor inicia sesión'),
+			array('twitter', 'unique', 'message' => 'Esta cuenta de twitter ya se está utilizando, por favor inicia sesión'),
 			//array('username', 'match', 'pattern' => '/^[A-Za-z0-9_]+$/u','message' => UserModule::t("Incorrect symbols (A-z0-9).")),
 			array('status', 'in', 'range'=>array(self::STATUS_NOACTIVE,self::STATUS_ACTIVE,self::STATUS_BANNED)),
 			array('superuser', 'in', 'range'=>array(0,1)),
-			//array('fecha_nacimiento', 'type', 'type' => 'date', 'message' => '{attribute} no es una fecha válida', 'dateFormat' => 'yyyy-MM-dd'),
+			array('fecha_nacimiento', 'type', 'type' => 'date', 'message' => '{attribute} no válida', 'dateFormat' => 'yyyy-MM-dd'),
             array('create_at', 'default', 'value' => date('Y-m-d H:i:s'), 'setOnEmpty' => true, 'on' => 'insert'),
             array('lastvisit_at', 'default', 'value' => '0000-00-00 00:00:00', 'setOnEmpty' => true, 'on' => 'insert'),
 			array('username, email, superuser, fecha_nacimiento, status', 'required'),
@@ -74,10 +75,13 @@ class User extends CActiveRecord
 		):((Yii::app()->user->id==$this->id)?array(
 			array('email', 'required'),
 			//array('username', 'length', 'max'=>20, 'min' => 3,'message' => UserModule::t("Incorrect username (length between 3 and 20 characters).")),
+			array('email', 'unique', 'message' => 'Este email ya se está utilizando, por favor inicia sesión'),
+			array('twitter', 'unique', 'message' => 'Esta cuenta de twitter ya se está utilizando, por favor inicia sesión'),
 			array('email', 'email'),
+			array('fecha_nacimiento', 'type', 'type' => 'date', 'message' => '{attribute} no es una fecha válida', 'dateFormat' => 'yyyy-MM-dd'),
 			//array('username', 'unique', 'message' => UserModule::t("This user's name already exists.")),
 			//array('username', 'match', 'pattern' => '/^[A-Za-z0-9_]+$/u','message' => UserModule::t("Incorrect symbols (A-z0-9).")),
-			array('email', 'unique', 'message' => 'Este email ya se está utilizando'),
+			//array('email', 'unique', 'message' => 'Este email ya se está utilizando'),
 		):array()));
 	}
 

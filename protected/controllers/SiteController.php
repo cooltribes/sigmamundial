@@ -108,6 +108,10 @@ class SiteController extends Controller
 				$errores = $user->getErrors();
 				if(isset($errores['email'])){
 					Yii::app()->user->setFlash('error', $errores['email'][0]);
+				}else if(isset($errores['fecha_nacimiento'])){
+					Yii::app()->user->setFlash('error', $errores['fecha_nacimiento'][0]);
+				}else if(isset($errores['twitter'])){
+					Yii::app()->user->setFlash('error', $errores['twitter'][0]);
 				}else{
 					Yii::app()->user->setFlash('error', "No se completó el registro, por favor intente de nuevo");
 				}

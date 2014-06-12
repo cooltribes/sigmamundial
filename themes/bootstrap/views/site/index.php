@@ -8,7 +8,7 @@ $this->pageTitle = Yii::app()->name;
     <?php
     if (Yii::app()->user->hasFlash('recoveryMessage')) { 
         ?>
-        <div class="alert in alert-block fade alert-success text_align_center margin_bottom col-sm-8 col-sm-offset-2">
+        <div class="alert in alert-block fade alert-success text_align_center margin_bottom_large col-sm-8 col-sm-offset-2">
             <?php echo Yii::app()->user->getFlash('recoveryMessage'); ?>
         </div>
         <?php
@@ -17,7 +17,7 @@ $this->pageTitle = Yii::app()->name;
     <?php
     if (Yii::app()->user->hasFlash('success')) { 
         ?>
-        <div class="alert mensaje-home in alert-block fade alert-success text_align_center margin_bottom col-sm-8 col-sm-offset-2">
+        <div class="alert mensaje-home in alert-block fade alert-success text_align_center margin_bottom_large col-sm-8 col-sm-offset-2">
             <?php echo Yii::app()->user->getFlash('success'); ?>
         </div>
         <?php
@@ -26,7 +26,7 @@ $this->pageTitle = Yii::app()->name;
     <?php
     if (Yii::app()->user->hasFlash('error')) { 
         ?>
-        <div class="alert in alert-block fade alert-danger text_align_center margin_bottom col-sm-8 col-sm-offset-2">
+        <div class="alert in alert-block fade alert-danger text_align_center margin_bottom_large col-sm-8 col-sm-offset-2">
             <?php echo Yii::app()->user->getFlash('error'); ?>
         </div>
         <?php
