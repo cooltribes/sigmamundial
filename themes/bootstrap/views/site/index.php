@@ -37,7 +37,7 @@ $this->pageTitle = Yii::app()->name;
             <div class="col-md-12">
                 <div class="col-md-12 panel-header">
                     <?php if(!$verified){ ?>
-                    	<h3>Crea tu cuenta</h3>
+                    	<h3>Crea tu cuenta con Twitter</h3>
                     <?php } if($verified){ ?>
                     	<h3>Completa tus datos</h3>
                     <?php } ?>	                      
