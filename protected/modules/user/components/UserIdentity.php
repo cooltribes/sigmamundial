@@ -45,6 +45,28 @@ class UserIdentity extends CUserIdentity
 		}
 		return !$this->errorCode;
 	}
+
+	public function authenticateOnValidation()
+	{
+		
+		$user=User::model()->notsafe()->findByAttributes(array('email'=>$this->username));
+		
+		if($user===null){
+			$this->errorCode=self::ERROR_EMAIL_INVALID;
+		}
+		else if($this->password!==$user->password)
+			$this->errorCode=self::ERROR_PASSWORD_INVALID;
+		else if($user->status==0)
+			$this->errorCode=self::ERROR_STATUS_NOTACTIV;
+		else if($user->status==-1)
+			$this->errorCode=self::ERROR_STATUS_BAN;
+		else {
+			$this->_id=$user->id;
+			$this->username=$user->username;
+			$this->errorCode=self::ERROR_NONE;
+		}
+		return !$this->errorCode;
+	}
     
     /**
     * @return integer the ID of the user record
@@ -52,5 +74,10 @@ class UserIdentity extends CUserIdentity
 	public function getId()
 	{
 		return $this->_id;
+	}
+
+	public function setId($id)
+	{
+		$this->_id = $id;
 	}
 }
