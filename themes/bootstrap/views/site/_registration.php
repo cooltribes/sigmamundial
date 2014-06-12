@@ -36,6 +36,7 @@ if($verified){
 			"disabled" => $disabled,
 			"required" => true,
 			'placeholder' => "Fecha de Nacimiento",
+			'format' => 'yyyy-mm-dd',
 		)); ?>                 
 	</div>
 	<div class="form-group">                            

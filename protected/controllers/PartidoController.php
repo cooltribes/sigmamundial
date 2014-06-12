@@ -107,6 +107,12 @@ class PartidoController extends Controller
 						$user->puntos = $puntos;
 						$user->save(); // se actualizan los puntos generales del torneo.
 						
+						/* codigo para traer una gift card */
+						$CuponAEnviar = Cupon::model()->findByAttributes(array('enviado'=>0));
+						$CuponAEnviar->enviado = 1;
+						$CuponAEnviar->fecha_envio = date('Y-m-d');
+						$CuponAEnviar->save();
+												
 						// enviar mails a los ganadores
 						$message = new YiiMailMessage;				
 						$message->view = "mail_template";
@@ -124,15 +130,23 @@ class PartidoController extends Controller
 								
 								<tr><td colspan='2' align='center'>".CHtml::image(Yii::app()->getBaseUrl(true)."/images/giftcard.png")."</td></tr>
 								<tr>
-									<td colspan='4'><strong>Código: </strong><br/>XF567UHYW2323545</td>
+									<td colspan='4'><strong>Código: </strong><br/>".$CuponAEnviar->codigo."</td> 
 									<td colspan='4'></td>
 									<td colspan='4'></td>
 									<td colspan='4'>Para: ".$user->nombre."<br/>Mensaje: Ganaste en la quiniela</td>
 								</tr>
 								<tr><td align='center' height='30' colspan='2'>Válida desde 12-06-2014 hasta 12-08-2014</td></tr>
 								
-								<tr><td colspan='2' align='center' height='40'>CONDICIONES: 1.- Válido en todas las sucursales Sigma a nivel nacional y en portal web. <br/>
+								<tr><td colspan='2' align='center' height='40'>NORMAS DE USO: 1.- Válido en todas las sucursales Sigma a nivel nacional y en portal web. <br/>
 								2.- Canjeable solo en compras con un monto mayor a Bs. 2.000,00. 3.- Sólo se podrá utilizar un gift card por factura.
+								</td></tr>
+								<tr><td colspan='2' align='center' height='40'>
+									San Cristóbal: Centro Comercial Las Lomas, Local L-30  / Centro Sambil, Nivel Autopista, Local T-88<br/>
+									5ta Avenida,  C.C. Shopping Center, L-23  / Mérida: C.C. Plaza Mayor, Lp-4 / El Vigia: C. C. Traki, F-01<br/>
+									Nueva Tienda Interactiva: Centro Comercial Plaza, Nivel Concordia, Local 73. San Cristóbal<br/>
+								</td></tr>
+								<tr><td colspan='2' align='center' height='40'>
+									SigmaSys C.A. www.sigmatiendas.com <br/>info@sigmatiendas.com
 								</td></tr>
 								</table> 
 								";
@@ -165,7 +179,7 @@ class PartidoController extends Controller
 					$params = array('subject'=>$subject, 'body'=>$body);
 					$message->subject    = $subject;
 					$message->setBody($params, 'text/html');                
-					$message->addTo('dduque@upsidecorp.ch');
+					$message->addTo('rdaza@upsidecorp.ch');
 					$message->from = array('info@sigmatiendas.com' => 'Sigma Es Mundial');
 					Yii::app()->mail->send($message);
 
