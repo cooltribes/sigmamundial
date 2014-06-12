@@ -108,10 +108,10 @@
 .padding_xsmall{padding:0.5em}
 
 /********* Cambios para bootstrap *******/
-.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
-
-color: @blanco;
-.fondo-azul();
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus {
+    color: @blanco;
+    .fondo-azul();
 }
 
 @font-face {
@@ -294,7 +294,7 @@ a:hover, a:focus{
     }
 
     input[type="date"]:before {
-        content: attr(placeholder) ": \00a0";    
+        content: "Fecha de Nacimiento: \00a0";    
         color: #aaa;
     }
 
@@ -448,6 +448,18 @@ a:hover, a:focus{
 
 }
 
+
+.panel-error{
+    color: @blanco;
+    text-align: center;
+    .codigo{
+        font-size: 70px;
+
+    }
+    .mensaje{
+        padding: 30px 0;
+    }
+}
 
 
 //Media Queries
