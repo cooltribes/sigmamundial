@@ -19,17 +19,9 @@ class PartidoController extends Controller
 	 */
 	public function accessRules()
 	{
-		return array(
-			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('ver'),
-				'users'=>array('*'),
-			),
-			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array(), 
-				'users'=>array('@'),
-			),
+		return array(			
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','create','delete', 'resultado'),
+				'actions'=>array('admin','create','delete', 'resultado', 'apuestas'),
 				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
