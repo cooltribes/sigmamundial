@@ -278,19 +278,42 @@ class PartidoController extends Controller
 			$this->render('apuestas', array('model'=>$partido, 'dataProvider'=>$dataProvider,));	
 	
 		}
-		else if(isset($_POST['partido'])){
-			
+		else{
+			$partido="";
 			$apuestas = new Apuesta;
 			$apuestas->unsetAttributes();
-			$apuestas->id_partido=$_POST['partido'];
 			
-			$partido = Partido::model()->findByPk($_POST['partido']);		
+			if(isset($_POST['partido'])){
+				$apuestas->id_partido=$_POST['partido'];
+				Yii::app()->getSession()->add('partido', $_POST['partido']);
+				$partido = Partido::model()->findByPk($_POST['partido']);
+			}
+			else{
+				$apuestas->id_partido=Yii::app()->getSession()->get('partido');
+				$partido = Partido::model()->findByPk(Yii::app()->getSession()->get('partido'));
+			}
+					
 			
 			if ( isset($_POST['gol_local'])&& isset($_POST['gol_visitante']) ){ // categorias
 				$apuestas->local = $_POST['gol_local'];
 				$apuestas->visitante = $_POST['gol_visitante'];
-				var_dump($apuestas);		
-			}			
+				// var_dump($apuestas);		
+				
+				Yii::app()->getSession()->add('local', $_POST['gol_local']);
+				Yii::app()->getSession()->add('visitante', $_POST['gol_visitante']);
+			}		
+			
+			if( isset($_GET['Apuesta_page']) )
+			{
+				if ( Yii::app()->getSession()->get('local') )
+					$apuestas->local = Yii::app()->getSession()->get('local');
+					
+				if ( Yii::app()->getSession()->get('visitante') )
+					$apuestas->visitante= Yii::app()->getSession()->get('visitante');
+				
+				//$dataProvider = $apuestas->search();
+				//$this->render('apuestas', array('model'=>$partido, 'dataProvider'=>$dataProvider,));	
+			}	
 				
 			$dataProvider = $apuestas->search();
 			
