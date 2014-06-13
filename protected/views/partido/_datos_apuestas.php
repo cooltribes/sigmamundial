@@ -4,6 +4,7 @@ $user = User::model()->findByPk($data->id_user);
 echo"<tr>";
 
 	echo "<td>".$user->nombre."</td>";
+	echo "<td>".$user->email."</td>";
 	echo "<td>".$data->local."</td>";
 	echo "<td>".$data->visitante."</td>";	
 	
