@@ -72,6 +72,7 @@ class ApuestaController extends Controller
 				{
 					$twitter = Yii::app()->twitter->getTwitterTokened($user->oauth_token, $user->oauth_token_secret);
 					$result=$twitter->post('statuses/update', array('status' => "#SigmaEsMundial Mi predicción es: ".$apuesta->idPartido->idLocal->nombre.' '.$apuesta->local.' - '.$apuesta->idPartido->idVisitante->nombre.' '.$apuesta->visitante.' @SigmaOficial. Participa en la trivia en http://sigmatiendas.com/mundial'));
+					//var_dump($result);
 					//$result=$twitter->post('statuses/update', array('status' => "Test"));
 					
 					Yii::app()->user->setFlash('success',"Resultado guardado correctamente. Se ha publicado un tweet en tu cuenta para este partido.<br/>");
