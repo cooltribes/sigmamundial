@@ -204,7 +204,14 @@ class PartidoController extends Controller
 							
 							$user = User::model()->findByPk($acierto->id_user);
 							
-							$puntos = $user->puntos + 1;
+							$fecha = date('Y-m-d',strtotime($user->fecha_nacimiento));
+							$user->fecha_nacimiento = $fecha;
+							
+							if($user->puntos==0)
+								$puntos = 1;
+							else
+								$puntos = $user->puntos + 1;
+							
 							$user->puntos = $puntos;
 							$user->save(); // se actualizan los puntos generales del torneo.
 						}
@@ -222,7 +229,14 @@ class PartidoController extends Controller
 							
 							$user = User::model()->findByPk($acierto->id_user);
 							
-							$puntos = $user->puntos + 1;
+							$fecha = date('Y-m-d',strtotime($user->fecha_nacimiento));
+							$user->fecha_nacimiento = $fecha;
+							
+							if($user->puntos==0)
+								$puntos = 1;
+							else
+								$puntos = $user->puntos + 1;
+							
 							$user->puntos = $puntos;
 							$user->save(); // se actualizan los puntos generales del torneo.
 						}
@@ -240,7 +254,14 @@ class PartidoController extends Controller
 							
 							$user = User::model()->findByPk($acierto->id_user); 
 							
-							$puntos = $user->puntos + 1;
+							$fecha = date('Y-m-d',strtotime($user->fecha_nacimiento));
+							$user->fecha_nacimiento = $fecha;
+							
+							if($user->puntos==0)
+								$puntos = 1;
+							else
+								$puntos = $user->puntos + 1;
+							
 							$user->puntos = $puntos;
 							$user->save(); // se actualizan los puntos generales del torneo.
 						}
