@@ -56,8 +56,11 @@ $this->pageTitle = Yii::app()->name;
                                     'url' => array(
                                                 '/user/registration/twitter'
                                             ),
-                                    'class' => 'btn-block',
-                                    'icon' => ''
+                                    'class' => 'btn-block boton-twitter',
+                                    'icon' => '',
+//                                    'htmlOptions' => array(
+//                                        'class' => ''
+//                                    );
                                 ));
                             }
                             ?>
