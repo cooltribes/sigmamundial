@@ -35,7 +35,7 @@ if($verified){
 		<?php echo $form->dateField($model, "fecha_nacimiento", array(
 			"disabled" => $disabled,
 			"required" => true,
-			'placeholder' => "Fecha de Nacimiento",
+			'placeholder' => "Fecha de Nacimiento (Ej: 1990-02-16)",
 			'format' => 'yyyy-mm-dd',
 		)); ?>                 
 	</div>
