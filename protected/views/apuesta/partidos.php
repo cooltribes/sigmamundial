@@ -83,7 +83,7 @@ function actual_date()
                             $overlay = "";
                             $clase = "";
                             $url = Yii::app()->getBaseUrl(true) . "/apuesta/jugar/" . $partido->id;
-                            if($partido->bloqueado()){
+                            if($partido->bloqueadoApuesta() || $partido->bloqueadoTiempo()){
                                 $overlay = "overlay";
                                 $clase = "bloqueado";
                                 $url = ""; 
@@ -91,7 +91,21 @@ function actual_date()
                             
                             
                             ?>
-                            
+                            <div class="row"> 
+                            	<?php
+                            	if($partido->bloqueadoApuesta()){
+                            	
+								 $apuesta = Apuesta::model()->findByAttributes(array('id_partido' => $partido->id, 'id_user' => Yii::app()->user->id));
+									
+                            		$tweet= '<a href="https://twitter.com/share" class="twitter-share-button"
+									data-url="http://sigmatiendas.com/mundial"
+									data-text="Mi predicción es: '.$apuesta->idPartido->idLocal->nombre.' '.$apuesta->local.' - '.$apuesta->idPartido->idVisitante->nombre.' '.$apuesta->visitante.'. Participa: "
+									data-via="SigmaOficial" data-lang="es" data-related="SigmaOficial" data-count="none" data-hashtags="SigmaEsMundial">Twittear</a>';		
+								
+								echo $tweet;	
+								}
+                            	?>
+                            </div>
                             <a class="col-xs-12 col-sm-6 col-md-6 <?php echo $clase ?>" <?php echo 'href="'.$url.'"'; ?>>
                             
                                 <div class="<?php echo $overlay ?>" >
