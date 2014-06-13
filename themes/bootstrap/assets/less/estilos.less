@@ -108,10 +108,10 @@
 .padding_xsmall{padding:0.5em}
 
 /********* Cambios para bootstrap *******/
-.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
-
-color: @blanco;
-.fondo-azul();
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus {
+    color: @blanco;
+    .fondo-azul();
 }
 
 @font-face {
@@ -158,7 +158,7 @@ html, body{
     height: 100%;
 }
 body{
-    background-image: url('../images/1.jpg');
+    background-image: url('../images/2.jpg');
     background-repeat: repeat-y;
     background-size: cover;
     background-attachment: fixed;
@@ -280,6 +280,13 @@ a:hover, a:focus{
 }
 .register-panel{
     color: @azul;
+
+    .boton-twitter{
+        background-image: url(../images/twitter.png);
+        background-size: 21px 18px;
+        background-repeat: no-repeat;
+        background-position: 19px 7px;
+    }
     .about-link{
         font-size: 12px;
         margin-bottom: 10px;
@@ -294,7 +301,7 @@ a:hover, a:focus{
     }
 
     input[type="date"]:before {
-        content: attr(placeholder) ": \00a0";    
+        content: "Fecha de Nacimiento: \00a0";    
         color: #aaa;
     }
 
@@ -431,7 +438,7 @@ a:hover, a:focus{
     .row-titulo{
         font-size: 27px;
         font-weight: bold;
-    }
+    }    
     .boton-regresar{
         text-align: center;
         margin-top: 20px;
@@ -448,6 +455,18 @@ a:hover, a:focus{
 
 }
 
+
+.panel-error{
+    color: @blanco;
+    text-align: center;
+    .codigo{
+        font-size: 70px;
+
+    }
+    .mensaje{
+        padding: 30px 0;
+    }
+}
 
 
 //Media Queries
