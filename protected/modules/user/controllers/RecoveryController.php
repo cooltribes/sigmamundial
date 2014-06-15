@@ -53,7 +53,7 @@ class RecoveryController extends Controller
 							 
 							 
 							$message->addTo($user->email);
-							$message->from = Yii::app()->params['adminEmail'];
+							$message->from = array(Yii::app()->params['adminEmail'] => Yii::app()->params['adminName']);
 							Yii::app()->mail->send($message);
 
 							/*$subject = UserModule::t("You have requested the password recovery site {site_name}",

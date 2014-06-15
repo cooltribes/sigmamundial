@@ -78,6 +78,7 @@ $visitante = Equipo::model()->findByPk($model->id_visitante);
 		    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table table-bordered table-hover table-striped">
 		        <tr>
 		            <th scope="col">Usuario</th>
+		            <th scope="col">Email</th>
 		            <th scope="col">Local</th>
 		            <th scope="col">Visitante</th>
 		            <th scope="col">Acción</th>
