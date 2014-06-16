@@ -122,7 +122,7 @@ $this->widget('bootstrap.widgets.BsNavbar', array(
 }
 ?>
     
-    
+<div class="wrap">
 <div class="container" id="page">       
     
     <div class="row main-header">
@@ -192,7 +192,12 @@ $this->widget('bootstrap.widgets.BsNavbar', array(
     <div class="clear"></div>
     
 
-</div><!-- page -->
+</div> 
+    <!-- page -->
+    
+<div id="push"></div>
+</div>     
+
  <!--footer--> 
 <!--<div id="footer">
     <p>&copy; <?php echo date('Y'); ?> Sigmasys C.A. | Todos los derechos reservados -
