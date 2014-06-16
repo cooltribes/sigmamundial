@@ -315,7 +315,7 @@ class PartidoController extends Controller
 			}
 					
 			
-			if ( isset($_POST['gol_local'])&& isset($_POST['gol_visitante']) ){ // categorias
+			if (isset($_POST['gol_local'])){ // categorias
 				$apuestas->local = $_POST['gol_local'];
 				$apuestas->visitante = $_POST['gol_visitante'];
 				// var_dump($apuestas);		
@@ -326,10 +326,10 @@ class PartidoController extends Controller
 			
 			if( isset($_GET['Apuesta_page']) )
 			{
-				if ( Yii::app()->getSession()->get('local') )
+				if ( Yii::app()->getSession()->get('local')!== null )
 					$apuestas->local = Yii::app()->getSession()->get('local');
 					
-				if ( Yii::app()->getSession()->get('visitante') )
+				if ( Yii::app()->getSession()->get('visitante') !== null )
 					$apuestas->visitante= Yii::app()->getSession()->get('visitante');
 				
 				//$dataProvider = $apuestas->search();

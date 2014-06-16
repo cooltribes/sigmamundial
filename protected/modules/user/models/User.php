@@ -198,11 +198,45 @@ class User extends CActiveRecord
 		$criteria->compare('oauth_token',$this->oauth_token);
 		$criteria->compare('oauth_token_secret',$this->oauth_token_secret);
 		
+		$criteria->order = "puntos DESC";
+		
         return new CActiveDataProvider(get_class($this), array(
             'criteria'=>$criteria,
         	'pagination'=>array(
 				'pageSize'=>Yii::app()->getModule('user')->user_page_size,
 			),
+        ));
+    }
+
+ 	public function searchPosiciones()
+    {
+        // Warning: Please modify the following code to remove attributes that
+        // should not be searched.
+
+        $criteria=new CDbCriteria;
+        
+        $criteria->compare('id',$this->id);
+        $criteria->compare('username',$this->username,true);
+        $criteria->compare('password',$this->password);
+        $criteria->compare('email',$this->email,true);
+        $criteria->compare('activkey',$this->activkey);
+        $criteria->compare('create_at',$this->create_at);
+        $criteria->compare('lastvisit_at',$this->lastvisit_at);
+        $criteria->compare('superuser',$this->superuser);
+        $criteria->compare('status',$this->status);
+		$criteria->compare('fecha_nacimiento',$this->fecha_nacimiento);
+		$criteria->compare('twitter',$this->twitter);
+		$criteria->compare('twitter_id',$this->twitter_id);
+		$criteria->compare('puntos',$this->puntos);
+		$criteria->compare('nombre',$this->nombre);
+		$criteria->compare('oauth_token',$this->oauth_token);
+		$criteria->compare('oauth_token_secret',$this->oauth_token_secret);
+		$criteria->limit = 25;
+		$criteria->order = "puntos DESC";
+		
+        return new CActiveDataProvider(get_class($this), array(
+            'criteria'=>$criteria,
+        	'pagination'=>false,
         ));
     }
 

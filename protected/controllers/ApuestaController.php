@@ -46,6 +46,7 @@ class ApuestaController extends Controller
 		$partido = array();
 		$criteria = new CDbCriteria(array('order'=>'id ASC'));
 		$criteria->addBetweenCondition('fecha', date("Y-m-d 00:00:00"), date("Y-m-d 23:59:59"));
+		$criteria->order = "fecha ASC";
 		$rows = Partido::model()->findAllByAttributes($partido, $criteria);
 		
 		$this->render('partidos',array('partidos'=>$rows,));

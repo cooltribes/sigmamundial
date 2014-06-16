@@ -385,5 +385,17 @@ class SiteController extends Controller
 		}
 
 	}
+	
+	public function actionPosiciones()
+	{
+		$usuario = new User;
+		$usuario->unsetAttributes();
+		
+		$dataProvider = $usuario->searchPosiciones();
+		
+		$this->render('posiciones', array('model'=>$usuario, 'dataProvider'=>$dataProvider,));	
+		
+	}
+	
 				
 }
