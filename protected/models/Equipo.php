@@ -6,7 +6,8 @@
  * The followings are the available columns in table '{{equipo}}':
  * @property integer $id
  * @property string $nombre
- * @property string $url 
+ * @property string $url
+ * @property string hash 
  *
  * The followings are the available model relations:
  * @property Partido[] $partidos
@@ -35,7 +36,7 @@ class Equipo extends CActiveRecord
 			array('url', 'length', 'max'=>200),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, nombre, url', 'safe', 'on'=>'search'),
+			array('id, nombre, url, hash', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -61,6 +62,7 @@ class Equipo extends CActiveRecord
 			'id' => 'ID',
 			'nombre' => '´País',
 			'url' => 'Url Imagen',
+			'hash' => 'Hash',
 		);
 	}
 
@@ -85,6 +87,7 @@ class Equipo extends CActiveRecord
 		$criteria->compare('id',$this->id);
 		$criteria->compare('nombre',$this->nombre,true);
 		$criteria->compare('url',$this->url,true);
+		$criteria->compare('hash',$this->hash,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
