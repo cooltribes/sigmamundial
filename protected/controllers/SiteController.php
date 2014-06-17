@@ -131,53 +131,59 @@ class SiteController extends Controller
 	 
 	        /* Request access tokens from twitter */
 	        $access_token = $twitter->getAccessToken($_REQUEST['oauth_verifier']);
-	 
-	        /* Save the access tokens. Normally these would be saved in a database for future use. */
-	        Yii::app()->session['access_token'] = $access_token;
-	        $user->oauth_token = $access_token['oauth_token'];
-	        $user->oauth_token_secret = $access_token['oauth_token_secret'];
-	 
-	        /* Remove no longer needed request tokens */
-	        //unset(Yii::app()->session['oauth_token']);
-	        //unset(Yii::app()->session['oauth_token_secret']);
-	 
-	        if (200 == $twitter->http_code) {
-	            /* The user has been verified and the access tokens can be saved for future use */
-	            Yii::app()->session['status'] = 'verified';
-	 
-	            //get an access twitter object
-	            $twitter = Yii::app()->twitter->getTwitterTokened($access_token['oauth_token'],$access_token['oauth_token_secret']);
-	 
-	            //get user details
-	            $twuser= $twitter->get("account/verify_credentials");
-	            $user->nombre = $twuser->name;
-	            $user->twitter = $twuser->screen_name;
-	            $user->twitter_id = $twuser->id;
-	            //get friends ids
-	            $friends= $twitter->get("friends/ids");
-	                        //get followers ids
-	                $followers= $twitter->get("followers/ids");
-	            //tweet
-	                        //$result=$twitter->post('statuses/update', array('status' => "Tweet message"));
+	        if($access_token){
+		        
+		 
+		        /* Save the access tokens. Normally these would be saved in a database for future use. */
+		        Yii::app()->session['access_token'] = $access_token;
+		        $user->oauth_token = $access_token['oauth_token'];
+		        $user->oauth_token_secret = $access_token['oauth_token_secret'];
+		 
+		        /* Remove no longer needed request tokens */
+		        //unset(Yii::app()->session['oauth_token']);
+		        //unset(Yii::app()->session['oauth_token_secret']);
+		 
+		        if (200 == $twitter->http_code) {
+		            /* The user has been verified and the access tokens can be saved for future use */
+		            Yii::app()->session['status'] = 'verified';
+		 
+		            //get an access twitter object
+		            $twitter = Yii::app()->twitter->getTwitterTokened($access_token['oauth_token'],$access_token['oauth_token_secret']);
+		 
+		            //get user details
+		            $twuser= $twitter->get("account/verify_credentials");
+		            $user->nombre = $twuser->name;
+		            $user->twitter = $twuser->screen_name;
+		            $user->twitter_id = $twuser->id;
+		            //get friends ids
+		            $friends= $twitter->get("friends/ids");
+		                        //get followers ids
+		                $followers= $twitter->get("followers/ids");
+		            //tweet
+		                        //$result=$twitter->post('statuses/update', array('status' => "Tweet message"));
 
-	            $this->render('index', array(
-					'user'=>$user,
-					'verified'=>true,
-					'twitter_user'=>$twuser,
-					'representante'=>$representante,
-					'login'=>$login,
-				));
-	 
-	        } else {
-	            /* Save HTTP status for error dialog on connnect page.*/
-	            //header('Location: /clearsessions.php');
-	            $this->render('index', array(
-					'user'=>$user,
-					'verified'=>false,
-					'representante'=>$representante,
-					'login'=>$login,
-				));
+		            $this->render('index', array(
+						'user'=>$user,
+						'verified'=>true,
+						'twitter_user'=>$twuser,
+						'representante'=>$representante,
+						'login'=>$login,
+					));
+		 
+		        } else {
+		            /* Save HTTP status for error dialog on connnect page.*/
+		            //header('Location: /clearsessions.php');
+		            $this->render('index', array(
+						'user'=>$user,
+						'verified'=>false,
+						'representante'=>$representante,
+						'login'=>$login,
+					));
 
+		        }
+	        }else{
+	        	Yii::app()->user->setFlash('error', "Error de autenticación con Twitter, por favor intente de nuevo");
+	        	$this->redirect(array('index'));
 	        }
 
 	    }else if(isset($_POST['UserLogin'])){
