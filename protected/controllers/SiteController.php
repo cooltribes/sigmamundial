@@ -388,7 +388,7 @@ class SiteController extends Controller
 	
 	public function actionPosiciones()
 	{
-		$usuario = new User;
+		$usuario = new User; 
 		$usuario->unsetAttributes();
 		
 		$dataProvider = $usuario->searchPosiciones();

@@ -4,7 +4,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="col-md-12 panel-header">
-					<h3>Tabla de posiciones</h3>	
+					<h3>Tabla de posiciones - Top 25</h3>	
 				</div>
 			</div>
 		</div>
