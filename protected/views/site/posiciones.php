@@ -12,9 +12,13 @@
 		<div class="panel-content">
 			
 		<?php
+		
+		Yii::app()->getSession()->add('posicion', 1);
+		
 		$template = '{summary}
 	    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table table-bordered table-hover table-striped">
 	        <tr>
+		        <th scope="col">Posición</th>
 	            <th scope="col">Nombre y Apellido</th>
 	            <th scope="col">Twitter</th>
 	            <th scope="col">Puntos</th> 
