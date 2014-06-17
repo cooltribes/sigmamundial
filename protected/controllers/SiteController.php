@@ -357,5 +357,51 @@ class SiteController extends Controller
 						$message->from = array('info@sigmatiendas.com' => 'Sigma Es Mundial');
 						Yii::app()->mail->send($message);
 	}
+	
+	public function actionActualizarPuntos(){
+		
+		
+		$usuarios = User::model()->findAll();
+		
+		foreach($usuarios as $usuario){
+			$apuestas = Apuesta::model()->findAllByAttributes(array('id_user'=>$usuario->id)); // todas las apuestas del usuario		
+			$puntos = 0;
+			
+			// sumo en una variable los puntos individuales por apuesta
+			foreach($apuestas as $apuesta){
+				$puntos+=$apuesta->puntos;
+			}
+			
+			// al tener los puntos se compara contra los del usuario	
+			if($usuario->puntos != $puntos){
+				$usuario->puntos = $puntos;
+				
+				$fecha = date('Y-m-d',strtotime($usuario->fecha_nacimiento));
+				
+				$usuario->fecha_nacimiento = $fecha;
+				
+				if($usuario->save())
+					echo "acomodaron puntos de ".$usuario->nombre." <br/>";
+				else
+					var_dump($usuario->getErrors());
+				
+			}
+			else
+				echo "iguales <br/>";
+		}
+
+	}
+	
+	public function actionPosiciones()
+	{
+		$usuario = new User;
+		$usuario->unsetAttributes();
+		
+		$dataProvider = $usuario->searchPosiciones();
+		
+		$this->render('posiciones', array('model'=>$usuario, 'dataProvider'=>$dataProvider,));	
+		
+	}
+	
 				
 }

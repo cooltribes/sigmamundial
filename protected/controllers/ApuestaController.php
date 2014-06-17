@@ -46,6 +46,7 @@ class ApuestaController extends Controller
 		$partido = array();
 		$criteria = new CDbCriteria(array('order'=>'id ASC'));
 		$criteria->addBetweenCondition('fecha', date("Y-m-d 00:00:00"), date("Y-m-d 23:59:59"));
+		$criteria->order = "fecha ASC";
 		$rows = Partido::model()->findAllByAttributes($partido, $criteria);
 		
 		$this->render('partidos',array('partidos'=>$rows,));
@@ -71,11 +72,16 @@ class ApuestaController extends Controller
 				if($apuesta->save())
 				{
 					$twitter = Yii::app()->twitter->getTwitterTokened($user->oauth_token, $user->oauth_token_secret);
-					$result=$twitter->post('statuses/update', array('status' => "#SigmaEsMundial Mi predicción es: ".$apuesta->idPartido->idLocal->nombre.' '.$apuesta->local.' - '.$apuesta->idPartido->idVisitante->nombre.' '.$apuesta->visitante.' @SigmaOficial. Participa en la quiniela en http://sigmatiendas.com/mundial'));
-					//var_dump($result);
+					//$result=$twitter->post('statuses/update', array('status' => "#SigmaEsMundial Mi predicción es: ".$apuesta->idPartido->idLocal->nombre.' '.$apuesta->local.' - '.$apuesta->idPartido->idVisitante->nombre.' '.$apuesta->visitante.' @SigmaOficial. Participa en la trivia en http://sigmatiendas.com/mundial'));
+
+					//$result=$twitter->post('statuses/update', array('status' => "#SigmaEsMundial Mi predicción es: ".$apuesta->idPartido->idLocal->nombre.' '.$apuesta->local.' - '.$apuesta->idPartido->idVisitante->nombre.' '.$apuesta->visitante.' @SigmaOficial. Participa en la trivia en http://sigmatiendas.com/mundial'));
 					//$result=$twitter->post('statuses/update', array('status' => "Test"));
 					
-					Yii::app()->user->setFlash('success',"Resultado guardado correctamente. Se ha publicado un tweet en tu cuenta para este partido.<br/>");
+					$tweet= '<a href="https://twitter.com/share" class="twitter-share-button"
+							data-url="http://sigmatiendas.com/mundial"
+							data-text="Mi predicción es: '.$apuesta->idPartido->idLocal->nombre.' '.$apuesta->local.' - '.$apuesta->idPartido->idVisitante->nombre.' '.$apuesta->visitante.'. Participa: "
+							data-via="SigmaOficial" data-lang="es" data-related="SigmaOficial" data-count="none" data-hashtags="SigmaEsMundial">Twittear</a>';					
+					Yii::app()->user->setFlash('success',"Resultado guardado correctamente. Compártelo para participar por nuestros premios. ".$tweet."<br/>");
 					$this->redirect(array('partidos'));
 				}
 			}

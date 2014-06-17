@@ -1,4 +1,4 @@
-/* Nelson  06/06/2014*/
+﻿/* Nelson  06/06/2014*/
 /* SigmaMundial */
 
 
@@ -158,7 +158,7 @@ html, body{
     height: 100%;
 }
 body{
-    background-image: url('../images/2.jpg');
+    background-image: url('../images/3.jpg');
     background-repeat: repeat-y;
     background-size: cover;
     background-attachment: fixed;
@@ -336,8 +336,21 @@ a:hover, a:focus{
 }
 
 //Partidos de hoy
+.panel-partidos, .panel-apuesta{    
 
-.panel-partidos, .panel-apuesta{
+    .row-fila{
+        margin-top: 22px;
+        margin-bottom: 55px;
+
+        .row-tweet{
+            margin-top: -15px;
+            text-align: center;
+        }
+    }
+
+    a.link-partido{
+        margin-top: 35px;
+    }
     .box-partido{  
         &:hover{
             .box-shadow(0 0 30px 3px @gris-sombra-hover);            
@@ -382,7 +395,10 @@ a:hover, a:focus{
         }
     }
 
-
+}
+.row-mensaje-recuerda{
+    text-align: center;
+    color: @azul;
 }
 
 .panel-apuesta{
@@ -517,6 +533,12 @@ a:hover, a:focus{
                     }
                 }
             }
+        }
+    }
+
+    .panel-partidos{
+        a.link-partido{
+            margin-top: 0px;
         }
     }
 

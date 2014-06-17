@@ -37,8 +37,13 @@
 
                 <!--PARTIDO-->
                 <div class="row partido">
+                    <!--APUESTA-->
                     <div class="col-sm-6 col-sm-offset-1">
+                        
+                        <!--PANEL-->
                         <div class="panel panel-default box box-partido">
+                            
+                            <!--PANEL BODY-->
                             <div class="panel-body">
                                 <?php
                                 $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
@@ -52,22 +57,27 @@
                                 ));
                                 ?>
                                 <div class="row"><?php echo $partido->sede; ?></div>
+                                
                                 <div class="row equipos">
                                     <div class="col-xs-5">
                                         <!--nombre-->
-                                        <div class='row'><div class="col-xs-12 nombre">
+                                        <div class='row'>
+                                            <div class="col-xs-12 nombre">
                                                 <?php
                                                 $local = Equipo::model()->findByPk($partido->id_local);
                                                 echo $local->nombre
                                                 ?>
-                                            </div></div>
+                                            </div>
+                                        </div>
                                         <!--bandera-->
-                                        <div class='row'><div class="col-xs-12">
+                                        <div class='row'>
+                                            <div class="col-xs-12">
                                                 <?php
                                                 echo CHtml::image(Yii::app()->getBaseUrl(true)
                                                         . str_replace(".", "_thumb.", $local->url), $local->nombre);
                                                 ?>
-                                            </div></div>                                       
+                                            </div>
+                                        </div>                                       
 
                                     </div> 
                                     <div class="col-xs-2 col-md-2 vs">
@@ -75,14 +85,17 @@
                                     </div>
 
                                     <div class="col-xs-5 col-md-5">
-                                        <div class='row'><div class="col-xs-12 nombre">
+                                        <div class='row'>
+                                            <div class="col-xs-12 nombre">
                                                 <?php
                                                 $visitante = Equipo::model()->findByPk($partido->id_visitante);
                                                 echo $visitante->nombre;
                                                 ?>
-                                            </div></div>
+                                            </div>
+                                        </div>
 
-                                        <div class='row'><div class="col-xs-12">
+                                        <div class='row'>
+                                            <div class="col-xs-12">
                                                 <?php
                                                 echo CHtml::image(Yii::app()->getBaseUrl(true)
                                                         . str_replace(".", "_thumb.", $visitante->url), $visitante->nombre);
@@ -100,7 +113,7 @@
 //                                            'placeholder' => 'Goles de ' . $local->nombre,
                                             'placeholder' => 'Goles',
                                             'min' => 0,
-                                            'class' => 'form-control '
+                                            'class' => 'form-control text-center'
                                         ));
                                         ?>
                                     </div>
@@ -110,7 +123,7 @@
 //                                            'placeholder' => 'Goles de ' . $visitante->nombre,
                                             'placeholder' => 'Goles',
                                             'min' => 0,
-                                            'class' => 'form-control '
+                                            'class' => 'form-control text-center'
                                         ));
                                         ?>
                                     </div>
@@ -130,9 +143,15 @@
                             </div>
                         </div>
                     </div>
+                    
+                    <!--TIEMPO-->
                     <div class="col-sm-4">
+                        <!--PANEL-->
                         <div class="panel panel-default box-tiempo">
+                            <!--PANEL BODY-->
                             <div class="panel-body">
+                                
+                                <!--CONTADOR-->
                                 <div class="row">
                                     <div class="col-xs-12">
                                         <?php
@@ -148,6 +167,10 @@
                             </div>
                         </div>
                     </div>
+                    <!--TIEMPO-->
+                    
+                    
+                </div>
                 </div>
                 <!--BOTON REGRESAR-->
                 <div class="row boton-regresar">

@@ -31,8 +31,8 @@ $visitante = Equipo::model()->findByPk($model->id_visitante);
 		        <div class="row">
 			    	<div class="col-md-12">
 			    		<form class="form form-group">
-			    			<input type="number" name="query" id="local" class="col-md-2" placeholder="Local" />
-			    			<input type="number" name="query" id="visita" class="col-md-2" placeholder="Visitante" />
+			    			<input min=0 type="number" name="query" id="local" class="col-md-2" placeholder="Local" />
+			    			<input min=0 type="number" name="query" id="visita" class="col-md-2" placeholder="Visitante" />
 			    			<input type="hidden" name="id" id="id-partido" value="<?php echo $model->id; ?>"/>
 			    			<a class="btn btn-info" id="btn_search_event">Buscar</a>
 						</form>
@@ -40,6 +40,7 @@ $visitante = Equipo::model()->findByPk($model->id_visitante);
 				</div>
 			
 			<?php
+			
 			Yii::app()->clientScript->registerScript('query1',
 				"var ajaxUpdateTimeout;
 				var ajaxRequest;
@@ -78,6 +79,7 @@ $visitante = Equipo::model()->findByPk($model->id_visitante);
 		    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table table-bordered table-hover table-striped">
 		        <tr>
 		            <th scope="col">Usuario</th>
+		            <th scope="col">Email</th>
 		            <th scope="col">Local</th>
 		            <th scope="col">Visitante</th>
 		            <th scope="col">Acción</th>

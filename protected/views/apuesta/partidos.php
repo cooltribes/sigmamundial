@@ -78,12 +78,12 @@ function actual_date()
                             <?php 
                             //FILAS NUEVAS - si es impar
                             if($contPartidos%2!=0){
-                                echo "<div class='row'>";
+                                echo "<div class='row row-fila'>";
                             }
                             $overlay = "";
                             $clase = "";
                             $url = Yii::app()->getBaseUrl(true) . "/apuesta/jugar/" . $partido->id;
-                            if($partido->bloqueado()){
+                            if($partido->bloqueadoApuesta() || $partido->bloqueadoTiempo()){
                                 $overlay = "overlay";
                                 $clase = "bloqueado";
                                 $url = ""; 
@@ -91,87 +91,108 @@ function actual_date()
                             
                             
                             ?>
-                            
-                            <a class="col-xs-12 col-sm-6 col-md-6 <?php echo $clase ?>" <?php echo 'href="'.$url.'"'; ?>>
-                            
-                                <div class="<?php echo $overlay ?>" >
-                                    <div class="panel panel-default box box-partido">
-                                        <div class="panel-body">
-                                            <?php
-                                            $apuesta = Apuesta::model()->findByAttributes(array('id_partido' => $partido->id, 'id_user' => Yii::app()->user->id));
-                                            ?>
+                            <div class="col-xs-12 col-xs-12 col-sm-6 col-md-6">
+                                <div class="row">
+                                    <a class=" link-partido <?php echo $clase ?>" <?php echo 'href="'.$url.'"'; ?>>
+                                        <div class="col-xs-12">
+                                                <div class="<?php echo $overlay ?>" >
+                                                    <div class="panel panel-default box box-partido">
+                                                        <div class="panel-body">
+                                                            <?php
+                                                            $apuesta = Apuesta::model()->findByAttributes(array('id_partido' => $partido->id, 'id_user' => Yii::app()->user->id));
+                                                            ?>
 
-                                            <div class="row"> <?php echo $partido->sede; ?></div>
+                                                            <div class="row"> <?php echo $partido->sede; ?></div>
 
-                                            <div class="row equipos">
-                                                <div class="col-xs-5 col-md-5">
-                                                    <div class='row'><div class="col-xs-12 nombre">
-                                                        <?php
-                                                        $local = Equipo::model()->findByPk($partido->id_local);
-                                                        echo $local->nombre
-                                                        ?>
-                                                    </div></div>
-                                                    
-                                                    <div class='row'><div class="col-xs-12">
-                                                        <?php
-                                                        echo CHtml::image(Yii::app()->getBaseUrl(true)
-                                                                .str_replace(".", "_thumb.", $local->url), $local->nombre);
-                                                        ?>
-                                                    </div></div>
-                                                    
-                                                    <div class='row'><div class="col-xs-12 goles">
-                                                        <?php
-                                                        if (isset($apuesta)){
-                                                            echo $apuesta->local;                                                            
-                                                        }else{
-                                                            echo "-";                                                                                                                        
-                                                        }
-                                                        ?>
-                                                    </div></div>
-                                                </div>
+                                                            <div class="row equipos">
+                                                                <div class="col-xs-5 col-md-5">
+                                                                    <div class='row'><div class="col-xs-12 nombre">
+                                                                        <?php
+                                                                        $local = Equipo::model()->findByPk($partido->id_local);
+                                                                        echo $local->nombre
+                                                                        ?>
+                                                                    </div></div>
 
-                                                <div class="col-xs-2 col-md-2 vs">
-                                                    <h2>VS</h2>
-                                                </div>
+                                                                    <div class='row'><div class="col-xs-12">
+                                                                        <?php
+                                                                        echo CHtml::image(Yii::app()->getBaseUrl(true)
+                                                                                .str_replace(".", "_thumb.", $local->url), $local->nombre);
+                                                                        ?>
+                                                                    </div></div>
 
-                                                <div class="col-xs-5 col-md-5">
-                                                    <div class='row'><div class="col-xs-12 nombre">
-                                                        <?php
-                                                        $visitante = Equipo::model()->findByPk($partido->id_visitante);
-                                                        echo $visitante->nombre . "<br>";
-                                                        ?>
-                                                    </div></div>
-                                                    
-                                                    <div class='row'><div class="col-xs-12">
-                                                        <?php
-                                                        echo CHtml::image(Yii::app()->getBaseUrl(true)
-                                                                .str_replace(".", "_thumb.", $visitante->url), $visitante->nombre);
-                                                        ?>
-                                                    </div></div>
-                                                    
-                                                    <div class='row'><div class="col-xs-12 goles">
-                                                        <?php
-                                                        if (isset($apuesta)){
-                                                            echo $apuesta->visitante;                                                            
-                                                        }else{
-                                                            echo "-";                                                                                                                        
-                                                        }
-                                                        ?>
-                                                    </div></div>
+                                                                    <div class='row'><div class="col-xs-12 goles">
+                                                                        <?php
+                                                                        if (isset($apuesta)){
+                                                                            echo $apuesta->local;                                                            
+                                                                        }else{
+                                                                            echo "-";                                                                                                                        
+                                                                        }
+                                                                        ?>
+                                                                    </div></div>
+                                                                </div>
 
+                                                                <div class="col-xs-2 col-md-2 vs">
+                                                                    <h2>VS</h2>
+                                                                </div>
+
+                                                                <div class="col-xs-5 col-md-5">
+                                                                    <div class='row'><div class="col-xs-12 nombre">
+                                                                        <?php
+                                                                        $visitante = Equipo::model()->findByPk($partido->id_visitante);
+                                                                        echo $visitante->nombre . "<br>";
+                                                                        ?>
+                                                                    </div></div>
+
+                                                                    <div class='row'><div class="col-xs-12">
+                                                                        <?php
+                                                                        echo CHtml::image(Yii::app()->getBaseUrl(true)
+                                                                                .str_replace(".", "_thumb.", $visitante->url), $visitante->nombre);
+                                                                        ?>
+                                                                    </div></div>
+
+                                                                    <div class='row'><div class="col-xs-12 goles">
+                                                                        <?php
+                                                                        if (isset($apuesta)){
+                                                                            echo $apuesta->visitante;                                                            
+                                                                        }else{
+                                                                            echo "-";                                                                                                                        
+                                                                        }
+                                                                        ?>
+                                                                    </div></div>
+
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row"> <?php echo date("h:i a", strtotime($partido->fecha)); ?> </div>
+                                                        </div>                                        
+                                                    </div>
                                                 </div>
                                             </div>
+                                    </a>
+                                    
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 row-tweet">
+                                        
+                                        <?php
+                                        if($partido->bloqueadoApuesta()){
 
-                                            <div class="row"> <?php echo date("h:i a", strtotime($partido->fecha)); ?> </div>
+                                            $apuesta = Apuesta::model()->findByAttributes(array('id_partido' => $partido->id, 'id_user' => Yii::app()->user->id));
 
+                                            $tweet= '<a href="https://twitter.com/share" class="twitter-share-button"
+                                            data-url="http://sigmatiendas.com/mundial"
+                                            data-text="Mi predicción es: '.$apuesta->idPartido->idLocal->nombre.' '.$apuesta->local.' - '.$apuesta->idPartido->idVisitante->nombre.' '.$apuesta->visitante.'. Participa: "
+                                            data-via="SigmaOficial" data-lang="es" data-related="SigmaOficial" data-count="none" data-hashtags="SigmaEsMundial">Twittear</a>';		
 
-
-                                    </div>
+                                            echo $tweet;	
+                                        }
+                                        ?>
+                                        
                                         
                                     </div>
                                 </div>
+                            </div>
                             
-                            </a>
                         
                         <?php
                        
@@ -192,8 +213,16 @@ function actual_date()
                         }
 
                         ?>
+                        
                     </div>
                 </div>
+                
+                <div class="row">
+                    <div class="col-xs-12 row-mensaje-recuerda">
+                        <h3>Recuerda twitear cada resultado para que tus puntos sean válidos</h3>
+                    </div>
+                </div>
+                
             </div>
         </div>
         
@@ -208,3 +237,5 @@ $(document).ready(function(){
     
 });
 </script>
+
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
