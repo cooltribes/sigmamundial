@@ -165,7 +165,19 @@ El usuario ganador debe estar presente en dicho evento para poder reclamar su pr
 En caso de empate de puntos al final de la quiniela, el usuario que esté presente en el evento gana el premio final.
 <br/><br/>
 En caso de empate de puntos y presencia de varios usuarios en el evento, se realizará una trivia frente al público del evento donde deberán responder una ronda de preguntas hasta que finalice un solo usuario como ganador.
+<br/><br/><br/>
+
+Nota al 13 de Junio de 2014
 <br/><br/>
+Debido a un conflicto con las políticas de protección de usuario de Twitter se consideró que la publicación del mensaje de predicción del resultado se realizaría de manera manual y no de manera automática como se tenía previsto, por lo que, en lo subsiguiente para que una predicción sea totalmente válida el usuario debe compartirla en su Twitter mediante los botones habilitados en la aplicación.
+<br/><br/>
+Esto implica que para poder optar por los premios finales por fase y/o el premio final del concurso, las predicciones del usuario deben estar presentes en la cuenta de Twitter con la que realizó el registro en la aplicación. En el caso de que se omita la publicación o la misma resulte eliminada el usuario no podrá reclamar el premio.
+<br/><br/>
+El cupón de descuento sigue siendo automático al acertar un resultado exacto y en él no aplica esta nueva regla.
+<br/><br/>
+Quedan exentos de esta regla los resultados del dia 13 de Junio de 2014 
+
+
 
 <h3><strong>Nota al 13 de Junio de 2014</strong></h3>
 <br/><br/>
