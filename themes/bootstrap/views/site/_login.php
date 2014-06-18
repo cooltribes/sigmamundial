@@ -16,7 +16,7 @@
 
 <div class="form-group">
   <?php 
-  echo $form->textField($model, "username", array());
+  echo $form->emailField($model, "username", array());
   ?>
 </div>       
 <div class="form-group">                            

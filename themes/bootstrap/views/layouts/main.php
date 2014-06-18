@@ -30,9 +30,39 @@
         
         
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
+        
+        <?php 
+            $dias = array(
+                26 => 1,
+                27 => 2,
+                28 => 3,
+                18 => 4,
+                19 => 5,
+                20 => 6,
+                21 => 7,
+                22 => 8,
+                23 => 9,
+                24 => 10,
+                25 => 11,
+                
+            );
+            
+            $var = date("d");
+            $img = $dias[$var];
+            
+        ?>
+        
+        <style>
+            body{
+                background-image: url('/mundial/images/<?php echo $img; ?>.jpg');                
+            }
+        </style>
 </head>
 
 <body>
+    
+    
+    
     <?php 
     $user = User::model()->findByPk(Yii::app()->user->id); 
     ?>
@@ -122,7 +152,7 @@ $this->widget('bootstrap.widgets.BsNavbar', array(
 }
 ?>
     
-<div class="wrap">
+<div id="wrap">
 <div class="container" id="page">       
     
     <div class="row main-header">
