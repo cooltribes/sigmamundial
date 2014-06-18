@@ -217,10 +217,8 @@ function actual_date()
                     </div>
                 </div>
                 
-                <div class="row">
-                    <div class="col-xs-12 row-mensaje-recuerda">
-                        <h3>Recuerda twitear cada resultado para que tus puntos sean válidos</h3>
-                    </div>
+                <div class="col-xs-12 row-mensaje-recuerda">
+                    <h3>Recuerda twitear cada resultado para que tus puntos sean válidos</h3>
                 </div>
                 
             </div>

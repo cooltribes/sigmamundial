@@ -199,11 +199,36 @@ $this->widget('bootstrap.widgets.BsNavbar', array(
 </div>     
 
  <!--footer--> 
-<!--<div id="footer">
-    <p>&copy; <?php echo date('Y'); ?> Sigmasys C.A. | Todos los derechos reservados -
-    Desarrollado por <a href="http://cooltribes.com" title="Connecting true fans" target="_blank">Cooltribes.com</a></p>   
+<div id="footer">
+    
+    <div class="nombre">
+        Sigmasys C.A. <?php echo date('Y'); ?> -
+        Desarrollado por <a class="cooltribes" href="http://cooltribes.com" title="Connecting true fans" target="_blank">Cooltribes.com</a>
+    </div>
+    <div class="links">
+        <?php echo BsHtml::link("Reglas del Juego", array("/site/reglas")) ?>
+        <b>|</b>
+        <?php echo BsHtml::link("Términos y Condiciones", array("/site/terminos_y_condiciones")) ?>
         
-</div>-->
+    </div>
+    <div class="redes">
+        <a href="https://twitter.com/SigmaOficial">
+            <?php echo CHtml::image(Yii::app()->getBaseUrl(true)."/images/twitter.png", "Twitter",
+                        array("height" => 20)); ?>
+        </a>
+        <a href="http://www.facebook.com/Sigmaoficial">
+            <?php echo CHtml::image(Yii::app()->getBaseUrl(true)."/images/facebook.png", "Facebook",
+                        array("height" => 20)); ?>
+        </a>
+        <a href="http://instagram.com/sigmaoficial" >
+            <?php echo CHtml::image(Yii::app()->getBaseUrl(true)."/images/instagram.png", "Facebook",
+                        array("height" => 20)); ?>
+        </a>
+    </div>
+
+    
+        
+</div>
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
     <script src="<?php echo Yii::app()->theme->baseUrl ?>/assets/js/html5shiv.js"></script>
