@@ -221,7 +221,6 @@ function actual_date()
                     <div class="col-xs-12 row-mensaje-recuerda">
                         <h3>Recuerda publicar en Twitter cada resultado para que tus puntos sean válidos</h3>
                     </div>
-                </div>
                 
             </div>
         </div>
