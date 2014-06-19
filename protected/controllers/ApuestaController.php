@@ -91,5 +91,18 @@ class ApuestaController extends Controller
 		}
 		
 	}
+	
+	
+	public function actionDelete($id)
+	{
+		$apuesta = Apuesta::model()->findByPk($id);	
+		$apuesta->delete();
+		
+		Yii::app()->user->setFlash('success',"Apuesta eliminada correctamente.");
+		//echo BsHtml::alert(BsHtml::ALERT_COLOR_SUCCESS, 'Partido eliminado correctamente.');
+		
+		$this->redirect(array('/partido/admin'));
+		
+	}
 
 }
