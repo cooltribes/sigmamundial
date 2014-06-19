@@ -51,8 +51,9 @@ $visitante = Equipo::model()->findByPk($model->id_visitante);
 						$empate = $numClients = Yii::app()->db->createCommand($q3)->queryScalar();
 					?>
 					
-					Porcentajes de apuesta: Local: <?php echo (round(($local/$total)*100)); ?>% | Visitante: <?php echo (round(($visitante/$total)*100)); ?>% | Empate: <?php echo (round(($empate/$total)*100)); ?>% 
-					
+					<strong>Porcentajes de apuesta</strong>: Local: <?php echo (round(($local/$total)*100)); ?>% | Visitante: <?php echo (round(($visitante/$total)*100)); ?>% | Empate: <?php echo (round(($empate/$total)*100)); ?>% 
+					<br/>
+					<strong>Totales</strong>: Local: <?php echo $local; ?> | Visitante: <?php echo $visitante; ?> | Empate: <?php echo $empate; ?> 
 				</div>
 			
 			<?php
