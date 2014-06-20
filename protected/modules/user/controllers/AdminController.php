@@ -25,7 +25,7 @@ class AdminController extends Controller
 	{
 		return array(
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete','create','update','view'),
+				'actions'=>array('admin','delete','create','update','view','apuestas'),
 				'users'=>UserModule::getAdmins(),
 			),
 			array('deny',  // deny all users
@@ -164,6 +164,17 @@ class AdminController extends Controller
 				throw new CHttpException(404,'The requested page does not exist.');
 		}
 		return $this->_model;
+	}
+	
+	public function actionApuestas($id)
+	{
+		$apuestas = new Apuesta;	
+		$apuestas->unsetAttributes();
+		
+		$apuestas->id_user = $id;
+		$dataProvider = $apuestas->search();
+		
+		$this->render('apuestaUsuario', array('user'=>$id, 'dataProvider'=>$dataProvider,));	
 	}
 	
 }

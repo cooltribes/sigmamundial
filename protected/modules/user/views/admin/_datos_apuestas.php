@@ -2,13 +2,12 @@
 
 echo"<tr>";
 
-	echo "<td>".$data->nombre."</td>";
-	echo "<td>".$data->email."</td>";
-	echo "<td>".date('Y-m-d',strtotime($data->fecha_nacimiento))."</td>";
-	echo "<td>".$data->twitter."</td>";
-	echo "<td>".$data->twitter_id."</td>";
+	echo "<td>".$data->id."</td>";
+	echo "<td>".$data->idPartido->idLocal->nombre." - ".$data->idPartido->idVisitante->nombre."</td>";
+	echo "<td>".$data->local."</td>";
+	echo "<td>".$data->visitante."</td>";
 	echo "<td>".$data->puntos."</td>";
-	
+	/*
 	echo '<td>
 
 	<div class="dropdown">
@@ -25,7 +24,7 @@ echo"<tr>";
         <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         </div>		
 			';
-	
+	*/
 echo"</tr>";
 
 ?>
