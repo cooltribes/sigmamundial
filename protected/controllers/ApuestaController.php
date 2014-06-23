@@ -78,8 +78,8 @@ class ApuestaController extends Controller
 					//$result=$twitter->post('statuses/update', array('status' => "Test"));
 					
 					$tweet= '<a href="https://twitter.com/share" class="twitter-share-button"
-							data-url="http://sigmatiendas.com/mundial"
-							data-text="Mi predicción es: '.$apuesta->idPartido->idLocal->nombre.' '.$apuesta->local.' - '.$apuesta->idPartido->idVisitante->nombre.' '.$apuesta->visitante.'. Participa: "
+							data-url="http://sigmatiendas.com/mundial" 
+							data-text="Mi predicción es: '.$apuesta->idPartido->idLocal->hash.' '.$apuesta->local.' - '.$apuesta->idPartido->idVisitante->hash.' '.$apuesta->visitante.'. Participa: "
 							data-via="SigmaOficial" data-lang="es" data-related="SigmaOficial" data-count="none" data-hashtags="SigmaEsMundial">Twittear</a>';					
 					Yii::app()->user->setFlash('success',"Resultado guardado correctamente. Compártelo para participar por nuestros premios. ".$tweet."<br/>");
 					$this->redirect(array('partidos'));
@@ -89,6 +89,19 @@ class ApuestaController extends Controller
 			$partido = Partido::model()->findByPk($id);
 			$this->render('jugar',array('partido'=>$partido,'apuesta'=>$apuesta,));
 		}
+		
+	}
+	
+	
+	public function actionDelete($id)
+	{
+		$apuesta = Apuesta::model()->findByPk($id);	
+		$apuesta->delete();
+		
+		Yii::app()->user->setFlash('success',"Apuesta eliminada correctamente.");
+		//echo BsHtml::alert(BsHtml::ALERT_COLOR_SUCCESS, 'Partido eliminado correctamente.');
+		
+		$this->redirect(array('/partido/admin'));
 		
 	}
 

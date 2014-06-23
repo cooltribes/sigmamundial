@@ -32,6 +32,7 @@
 		    'id'=>'list-auth-usuarios',
 		    'dataProvider'=>$dataProvider,
 		    'itemView'=>'_datos',
+		    'summaryText'=>'', 
 		    'template'=>$template,
 		    'enableSorting'=>'true',
 		    'afterAjaxUpdate'=>" function(id, data) {

@@ -181,7 +181,7 @@ function actual_date()
 
                                             $tweet= '<a href="https://twitter.com/share" class="twitter-share-button"
                                             data-url="http://sigmatiendas.com/mundial"
-                                            data-text="Mi predicción es: '.$apuesta->idPartido->idLocal->nombre.' '.$apuesta->local.' - '.$apuesta->idPartido->idVisitante->nombre.' '.$apuesta->visitante.'. Participa: "
+                                            data-text="Mi predicción es: '.$apuesta->idPartido->idLocal->hash.' '.$apuesta->local.' - '.$apuesta->idPartido->idVisitante->hash.' '.$apuesta->visitante.'. Participa: "
                                             data-via="SigmaOficial" data-lang="es" data-related="SigmaOficial" data-count="none" data-hashtags="SigmaEsMundial">Twittear</a>';		
 
                                             echo $tweet;	
@@ -217,9 +217,10 @@ function actual_date()
                     </div>
                 </div>
                 
-                <div class="col-xs-12 row-mensaje-recuerda">
-                    <h3>Recuerda twitear cada resultado para que tus puntos sean válidos</h3>
-                </div>
+                <div class="row">
+                    <div class="col-xs-12 row-mensaje-recuerda">
+                        <h3>Recuerda publicar en Twitter cada resultado para que tus puntos sean válidos</h3>
+                    </div>
                 
             </div>
         </div>

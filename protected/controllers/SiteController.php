@@ -300,14 +300,14 @@ class SiteController extends Controller
 		$this->render('reglas');
 	}
 	
-	
+	/*
 	public function actionMailTest(){
 		
 		$local = Equipo::model()->findByPk(9);
 		$visitante = Equipo::model()->findByPk(16);
 		$user = User::model()->findByPk(81);
 		
-						/* codigo para traer una gift card */
+						// codigo para traer una gift card 
 						$CuponAEnviar = Cupon::model()->findByAttributes(array('enviado'=>0));
 						$CuponAEnviar->enviado = 1;
 						$CuponAEnviar->fecha_envio = date('Y-m-d');
@@ -391,7 +391,7 @@ class SiteController extends Controller
 		}
 
 	}
-	
+	*/
 	public function actionPosiciones()
 	{
 		$usuario = new User; 
