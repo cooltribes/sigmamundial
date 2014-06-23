@@ -52,7 +52,7 @@ class SiteController extends Controller
 			$user->activkey=UserModule::encrypting(microtime().$user->password);
 			$user->password=UserModule::encrypting($_POST['User']['password']);
 			$user->superuser=0;
-			$user->status=0;
+			$user->status=1;
 			
 			if ($user->save()) {
 				$profile = new Profile;
@@ -66,7 +66,7 @@ class SiteController extends Controller
 					$representante->save();
 				}
 
-				$activation_url = $this->createAbsoluteUrl('/user/activation/activation',array("activkey" => $user->activkey, "email" => $user->email));
+				/*$activation_url = $this->createAbsoluteUrl('/user/activation/activation',array("activkey" => $user->activkey, "email" => $user->email));
 				$body = 'Te has registrado para vivir la experiencia Sigma. Por favor valida tu cuenta haciendo click en el siguiente enlace: <br/><br/><a href="'.$activation_url.'">Click aquí</a>.';
 
 				$message = new YiiMailMessage;
@@ -78,7 +78,7 @@ class SiteController extends Controller
 				
 				$message->addTo($user->email);
 				$message->from = array(Yii::app()->params['adminEmail'] => Yii::app()->params['adminName']);
-				Yii::app()->mail->send($message); 
+				Yii::app()->mail->send($message); */
 				
 				/*if (Yii::app()->controller->module->sendActivationMail) {
 					$activation_url = $this->createAbsoluteUrl('/user/activation/activation',array("activkey" => $model->activkey, "email" => $model->email));
@@ -86,12 +86,12 @@ class SiteController extends Controller
 				}*/
 				
 				//if ((Yii::app()->controller->module->loginNotActiv||(Yii::app()->controller->module->activeAfterRegister&&Yii::app()->controller->module->sendActivationMail==false))&&Yii::app()->controller->module->autoLogin) {
-						$identity=new UserIdentity($user->username,$soucePassword);
+						/*$identity=new UserIdentity($user->username,$soucePassword);
 						$identity->authenticate();
 						Yii::app()->user->login($identity,0);
 						//$this->redirect(Yii::app()->controller->module->returnUrl);
 						Yii::app()->user->setFlash('success', "Por favor <b>revisa tu email</b> para activar tu cuenta. Has sido registrado con éxito.");
-						$this->redirect(array('index'));
+						$this->redirect(array('index'));*/
 				/*} else {
 					if (!Yii::app()->controller->module->activeAfterRegister&&!Yii::app()->controller->module->sendActivationMail) {
 						Yii::app()->user->setFlash('registration',UserModule::t("Thank you for your registration. Contact Admin to activate your account."));
@@ -104,6 +104,19 @@ class SiteController extends Controller
 					}
 					
 				}*/
+
+				$identity=new UserIdentity($user->email, $user->password);
+				$identity->username = $user->email;
+				$identity->password = $user->password;
+				//$identity->setId($find->id);
+						$result = $identity->authenticateOnValidation();
+						$result = Yii::app()->user->login($identity,3600);
+				
+				//var_dump(Yii::app()->user);
+						//var_dump($identity);
+				
+				//Yii::app()->user->setFlash('success','Se ha activado tu cuenta, por favor inicia sesión');
+				$this->redirect(array('index'));
 			}else{
 				$errores = $user->getErrors();
 				if(isset($errores['email'])){
