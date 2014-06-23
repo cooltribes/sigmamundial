@@ -66,19 +66,19 @@ class SiteController extends Controller
 					$representante->save();
 				}
 
-				/*$activation_url = $this->createAbsoluteUrl('/user/activation/activation',array("activkey" => $user->activkey, "email" => $user->email));
-				$body = 'Te has registrado para vivir la experiencia Sigma. Por favor valida tu cuenta haciendo click en el siguiente enlace: <br/><br/><a href="'.$activation_url.'">Click aquí</a>.';
+				$activation_url = $this->createAbsoluteUrl('/user/activation/activation',array("activkey" => $user->activkey, "email" => $user->email));
+				$body = 'Te has registrado para vivir la experiencia Sigma. <br/><br/>Recuerda jugar diariamente en la quiniela. <a href="http://sigmatiendas.com/mundial">Sigma Es Mundial</a>.';
 
 				$message = new YiiMailMessage;
 				$message->view = 'mail_template';
 				 
 				//userModel is passed to the view
-				$message->setSubject('Activa tu cuenta en Sigma Mundial');
+				$message->setSubject('Has creado una cuenta en Sigma Mundial');
 				$message->setBody(array('body'=>$body), 'text/html');
 				
 				$message->addTo($user->email);
 				$message->from = array(Yii::app()->params['adminEmail'] => Yii::app()->params['adminName']);
-				Yii::app()->mail->send($message); */
+				Yii::app()->mail->send($message);
 				
 				/*if (Yii::app()->controller->module->sendActivationMail) {
 					$activation_url = $this->createAbsoluteUrl('/user/activation/activation',array("activkey" => $model->activkey, "email" => $model->email));
