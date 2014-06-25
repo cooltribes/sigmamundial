@@ -512,9 +512,37 @@ a:hover, a:focus{
     }
 }
 
+/*Para las estadisticas y totales del home*/
+.row-stats{
+    margin-top: 1.5em;
+
+    .panel-stats{
+        
+        .panel-nro{
+            .fondo-gris();
+            color: @azul;
+            font-size: 36px;
+            font-weigth: bold;
+            line-height: 50px;
+            text-align: center;
+            
+            border-radius: 10px 10px 0 0;
+            -moz-border-radius: 10px 10px 0 0;
+            -webkit-border-radius: 10px 10px 0 0;
+        }
+        .panel-texto{
+            background-color: @rojo;
+            color: @blanco;
+            line-height: 23px;
+            text-align: center;            
+        }
+    }
+}
+
+
 
 //Media Queries
-//pequeños
+//pequeños (sm)
 @media (min-width: 768px){
 
     /*Encabezado principal*/
@@ -592,6 +620,4 @@ a:hover, a:focus{
             }
         }
     }
-
-
 }
