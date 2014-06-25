@@ -99,36 +99,46 @@ $this->pageTitle = Yii::app()->name;
         
        </div>
       </div>
-<!--        <div class="row row-stats">
+      
+       <div class="row row-stats">
             <div class="col-sm-5 panel-stats">
                 <div class="row panel-nro">
-                    600
+                    <?php echo User::model()->count(); ?>
                 </div>
                 <div class="row panel-texto">
-                    Giftcards enviadas
+                    Usuarios Registrados
                 </div>
             </div>
-            
-            
+
             <div class="col-sm-5 col-sm-offset-2 panel-stats">
                 <div class="row panel-nro">
-                    600
+                    <?php
+                    
+                    $hora = date("Y-m-d H:i:s");
+                    $media = date("Y-m-d H:i:s",strtotime('-30 minutes',strtotime($hora)));
+                    
+						$sql = 'select count(*) from tbl_users where lastvisit_at between "'.$media.'" and "'.$hora.'"'; 
+						$num = Yii::app()->db->createCommand($sql)->queryScalar();
+						echo $num;
+					?>     	
                 </div>
                 <div class="row panel-texto">
-                    Giftcards enviadas
+                    Usuarios En Linea
                 </div>
             </div>
         </div>
+        
         <div class="row row-stats">
             <div class="col-sm-4 col-sm-offset-4 panel-stats">
                 <div class="row panel-nro">
-                    600
+					<?php echo Cupon::model()->countByAttributes(array('enviado'=>1)); ?>
                 </div>
                 <div class="row panel-texto">
-                    Giftcards enviadas
+                    Giftcards Enviadas
                 </div>
             </div>            
-        </div>-->
+        </div>
+        
     </div>
     <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-1 col-md-3 col-md-offset-1 panel-azul login-panel">
         <div class="row">
