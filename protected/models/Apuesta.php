@@ -135,4 +135,28 @@ class Apuesta extends CActiveRecord
 		return $puntos;
 	}//funcion
 	
+	public function posicionesRonda($ronda)
+	{
+		$user_id = Yii::app()->user->id;
+	
+		$sql='	select a.id as id, a.nombre as nombre, a.twitter as twitter, sum(c.puntos) as ronda from tbl_users a, tbl_partido b, tbl_apuesta c
+				where b.ronda = "'.$ronda.'"
+				and b.id = c.id_partido
+				and a.id = c.id_user
+				GROUP BY a.id ORDER BY ronda DESC';
+		
+		$dataProvider=new CSqlDataProvider($sql, array(
+		    'sort'=>array(
+		        'attributes'=>array(
+		             'ronda',
+		        ),
+		    ),
+	        'pagination'=>array(
+		        'pageSize'=>25,
+		    ),
+		));
+
+		return $dataProvider;
+	}
+	
 }
