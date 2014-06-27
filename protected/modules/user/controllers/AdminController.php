@@ -41,8 +41,12 @@ class AdminController extends Controller
 		$usuario = new User;
 		$usuario->unsetAttributes();
 		
+		if(isset($_POST['twitter'])){
+			$usuario->twitter=$_POST['twitter'];
+			Yii::app()->getSession()->add('twitter', $_POST['twitter']);
+		}
+
 		$dataProvider = $usuario->search();
-		
 		$this->render('index', array('model'=>$usuario, 'dataProvider'=>$dataProvider,));		
 	}
 
