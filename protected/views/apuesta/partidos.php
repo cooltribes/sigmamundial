@@ -207,7 +207,7 @@ function actual_date()
                         {
                             echo "<div class='row'>
                                 <h4 class='col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 box no-partidos'>
-                                Lo sentimos. Hoy no se disputará ningún partido.
+                                Hoy no se disputará ningún partido.
                                 </h4></div>";
                             
                         }

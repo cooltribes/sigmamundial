@@ -109,7 +109,7 @@
 		  	<?php
 		
 		$apuesta = new Apuesta;
-		$ronda = "Octavos";
+		$ronda = "Segunda";
 		
 		$data2 = $apuesta->posicionesRonda($ronda);
 		

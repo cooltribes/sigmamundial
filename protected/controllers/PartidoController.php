@@ -50,7 +50,12 @@ class PartidoController extends Controller
 		
 		if(isset($_POST['Partido'])){
 			$partido->attributes = $_POST['Partido'];
-			$partido->ronda = $_POST['Partido']['ronda'];
+			
+			if($_POST['Partido']['ronda'] == "Octavos" || $_POST['Partido']['ronda'] == "Cuartos" || $_POST['Partido']['ronda'] == "Semifinal")
+				$partido->ronda = "Segunda";
+			else
+				$partido->ronda = $_POST['Partido']['ronda'];
+			
 			
 			$partido->fecha = date('Y-m-d H:i:s',strtotime($_POST['Partido']['fecha']));
 			

@@ -197,7 +197,7 @@ $this->widget('bootstrap.widgets.BsNavbar', array(
                     </div>
                     <?php
  						$apuesta = new Apuesta; 
-						$fase="Octavos";                 
+						$fase="Segunda";                 
                     ?>
                     <div class="row text-right user-info">
                         <div class="col-md-12">
