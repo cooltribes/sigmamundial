@@ -232,7 +232,7 @@ class User extends CActiveRecord
 		$criteria->compare('oauth_token',$this->oauth_token);
 		$criteria->compare('oauth_token_secret',$this->oauth_token_secret);
 		$criteria->limit = 25;
-		$criteria->order = "puntos DESC";
+		$criteria->order = "puntos DESC, id";
 		
         return new CActiveDataProvider(get_class($this), array(
             'criteria'=>$criteria,

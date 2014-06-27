@@ -143,7 +143,7 @@ class Apuesta extends CActiveRecord
 				where b.ronda = "'.$ronda.'"
 				and b.id = c.id_partido
 				and a.id = c.id_user
-				GROUP BY a.id ORDER BY ronda DESC';
+				GROUP BY a.id ORDER BY ronda DESC, a.id';
 		
 		$dataProvider=new CSqlDataProvider($sql, array(
 		    'sort'=>array(
