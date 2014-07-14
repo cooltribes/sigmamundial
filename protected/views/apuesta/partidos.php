@@ -19,7 +19,8 @@ function actual_date()
         <div class="row">
             <div class="col-md-12">
                 <div class="col-md-12 panel-header">
-                    <h3>Partidos para hoy - <?php echo actual_date(); ?></h3>                      
+                    <!-- <h3>Partidos para hoy - <?php echo actual_date(); ?></h3>     -->
+                    <h3>Gracias por haber participado</h3>                 
                 </div>
             </div>
         </div>
@@ -202,7 +203,7 @@ function actual_date()
                             } 
                        
                         }
-
+/*
                         if($contPartidos==0)
                         {
                             echo "<div class='row'>
@@ -211,17 +212,31 @@ function actual_date()
                                 </h4></div>";
                             
                         }
-
+*/
+						if($contPartidos==0)
+                        {
+                            echo "<div class='row'>
+                                <h4 class='col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 box no-partidos'>
+                                La competencia ha finalizado.<p><p>
+                                El día 13 de Julio se entregó el premio final, un Smart TV Samsung 50'' a la señora Gladys Bohorquez. Felicidades.
+                                
+                                <br><br>
+                                Gracias a ustedes por confiar en nosotros.<p>
+                                Para futuras actividades sigan a @SigmaOficial
+                                </h4></div>";
+                            
+                        }
+	
                         ?>
                         
                     </div>
                 </div>
                 
-                <div class="row">
-                    <div class="col-xs-12 row-mensaje-recuerda">
+               <div class="row">
+               <!--      <div class="col-xs-12 row-mensaje-recuerda">
                         <h3>Recuerda publicar en Twitter cada resultado para que tus puntos sean válidos</h3>
                     </div>
-                
+               -->
             </div>
         </div>
         
