@@ -63,10 +63,11 @@
                 15 => 6,
                 16 => 7,
                 17 => 8
+                
             );
             
             $var = date("d");
-            $img = $dias[$var];
+            $img = $dias[intval($var)];
             
         ?>
         
