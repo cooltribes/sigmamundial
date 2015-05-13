@@ -113,7 +113,7 @@ return array(
 		// uncomment the following to use a MySQL database
 		
 		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=db_mundialsigma',
+			'connectionString' => 'mysql:host=localhost;dbname=db_copaamerica',
 			'emulatePrepare' => true,
 			'username' => 'sigmatiendas',
 			'password' => 'DFRG5%re',
