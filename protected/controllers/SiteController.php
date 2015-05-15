@@ -67,54 +67,26 @@ class SiteController extends Controller
 				}
 
 				$activation_url = $this->createAbsoluteUrl('/user/activation/activation',array("activkey" => $user->activkey, "email" => $user->email));
-				$body = 'Te has registrado para vivir la experiencia Sigma. <br/><br/>Recuerda jugar diariamente en la quiniela. <a href="http://sigmatiendas.com/mundial">Sigma Es Mundial</a>.';
+				$body = 'Te has registrado para vivir la experiencia Sigma. <br/><br/>Recuerda jugar diariamente en la quiniela. <a href="'.Yii::app()->params['landingpage'].'">Sigma Es Copa America</a>.';
 
 				$message = new YiiMailMessage;
 				$message->view = 'mail_template';
 				 
 				//userModel is passed to the view
-				$message->setSubject('Has creado una cuenta en Sigma Mundial');
+				$message->setSubject('Has creado una cuenta para participar en la Quiniela Gratis.');
 				$message->setBody(array('body'=>$body), 'text/html');
 				
 				$message->addTo($user->email);
 				$message->from = array(Yii::app()->params['adminEmail'] => Yii::app()->params['adminName']);
 				Yii::app()->mail->send($message);
-				
-				/*if (Yii::app()->controller->module->sendActivationMail) {
-					$activation_url = $this->createAbsoluteUrl('/user/activation/activation',array("activkey" => $model->activkey, "email" => $model->email));
-					UserModule::sendMail($model->email,UserModule::t("You registered from {site_name}",array('{site_name}'=>Yii::app()->name)),UserModule::t("Please activate you account go to {activation_url}",array('{activation_url}'=>$activation_url)));
-				}*/
-				
-				//if ((Yii::app()->controller->module->loginNotActiv||(Yii::app()->controller->module->activeAfterRegister&&Yii::app()->controller->module->sendActivationMail==false))&&Yii::app()->controller->module->autoLogin) {
-						/*$identity=new UserIdentity($user->username,$soucePassword);
-						$identity->authenticate();
-						Yii::app()->user->login($identity,0);
-						//$this->redirect(Yii::app()->controller->module->returnUrl);
-						Yii::app()->user->setFlash('success', "Por favor <b>revisa tu email</b> para activar tu cuenta. Has sido registrado con éxito.");
-						$this->redirect(array('index'));*/
-				/*} else {
-					if (!Yii::app()->controller->module->activeAfterRegister&&!Yii::app()->controller->module->sendActivationMail) {
-						Yii::app()->user->setFlash('registration',UserModule::t("Thank you for your registration. Contact Admin to activate your account."));
-					} elseif(Yii::app()->controller->module->activeAfterRegister&&Yii::app()->controller->module->sendActivationMail==false) {
-						Yii::app()->user->setFlash('registration',UserModule::t("Thank you for your registration. Please {{login}}.",array('{{login}}'=>CHtml::link(UserModule::t('Login'),Yii::app()->controller->module->loginUrl))));
-					} elseif(Yii::app()->controller->module->loginNotActiv) {
-						Yii::app()->user->setFlash('registration',UserModule::t("Thank you for your registration. Please check your email or login."));
-					} else {
-						Yii::app()->user->setFlash('registration',UserModule::t("Thank you for your registration. Please check your email."));
-					}
-					
-				}*/
 
 				$identity=new UserIdentity($user->email, $user->password);
 				$identity->username = $user->email;
 				$identity->password = $user->password;
 				//$identity->setId($find->id);
-						$result = $identity->authenticateOnValidation();
-						$result = Yii::app()->user->login($identity,3600);
-				
-				//var_dump(Yii::app()->user);
-						//var_dump($identity);
-				
+				$result = $identity->authenticateOnValidation();
+				$result = Yii::app()->user->login($identity,3600);
+		
 				//Yii::app()->user->setFlash('success','Se ha activado tu cuenta, por favor inicia sesión');
 				$this->redirect(array('index'));
 			}else{

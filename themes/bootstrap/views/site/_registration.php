@@ -30,7 +30,12 @@ if($verified){
 		));
 		?>
 	</div>       
-	
+	<div class="form-group">                            
+		<?php echo $form->textField($model, "cedula", array(
+			"disabled" => $disabled,
+			"required" => true,
+		)); ?>                 
+	</div>  
 	<div class="form-group">                         
 		<?php echo $form->dateField($model, "fecha_nacimiento", array(
 			"disabled" => $disabled,
@@ -62,6 +67,13 @@ if($verified){
 		<?php echo $form->hiddenField($model, "oauth_token_secret"); ?>
 	</div>
 
+	<div class="form-group">                            
+		<?php echo $form->textField($model, "ciudad", array(
+			"disabled" => $disabled,
+			"required" => true,
+		)); ?>                 
+	</div>  
+
 	<div class="form-group" style="display:none;" id="nombre_representante">                            
 		<?php echo $form->textField($representante, "nombre", array(
 			"disabled" => $disabled,
@@ -78,7 +90,7 @@ if($verified){
 			"color" => BsHtml::BUTTON_COLOR_DANGER,
 			'size' => BsHtml::BUTTON_SIZE_LARGE,
 			"disabled" => $disabled,
-		)); ?>
+		)); ?> 
 
 	</div>
 	<?php $this->endWidget(); ?>

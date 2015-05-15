@@ -84,9 +84,9 @@ return array(
 	    ),
 		'twitter' => array(
                 'class' => 'ext.yiitwitteroauth.YiiTwitter',
-                'consumer_key' => 'evTmWmbK39TOdGIIQxEG8bcNx',
-                'consumer_secret' => 'BcOf1cMSHHuSroJ5NoVkjlVIxn5bTeTPWtCVpJga1bgJwJ3TQC',
-                'callback' => 'http://sigmatiendas.com/mundial/',
+                'consumer_key' => 'v8nOnOC8qFETXtNKypXmH2odg',
+                'consumer_secret' => 'CdbDemu1JmCYot4lnJGekxvqU1vWvAO9iOf3VqpHLo3YRH0wdS',
+                'callback' => 'http://sigmatiendas.com/develop-quinielagratis/',
         ),
 		
             
@@ -158,6 +158,7 @@ return array(
 	'params'=>array(
 		// this is used in contact page
 		'adminEmail'=>'info@sigmatiendas.com',
-		'adminName' => 'Sigma Es Mundial',
+		'adminName' => 'Sigma es Copa America',
+		'landingpage' => 'http://sigmatiendas.com/develop-quinielagratis/',
 	),
 );
