@@ -37,7 +37,7 @@ $this->pageTitle = Yii::app()->name;
         <div class="col-md-4 col-md-offset-2 panel-gris register-panel no_horizontal_padding">
             <div class="panel-header">
                     <?php if(!$verified){ ?>
-                        <h3>Crea tu cuenta con Twitter</h3>
+                        <h3>Inscríbete</h3>
                     <?php } if($verified){ ?>
                         <h3>Completa tus datos</h3>
                     <?php } ?>                        
@@ -45,9 +45,9 @@ $this->pageTitle = Yii::app()->name;
             <div class="row-fluid">
             <div class="col-md-10 col-md-offset-1">
                     <?php
-            
+             
                     if(!$verified){
-                                echo BsHtml::linkButton('Regístrate con Twitter', array(
+                                echo BsHtml::linkButton('Conéctate con Twitter', array(
                                     'color' => BsHtml::BUTTON_COLOR_INFO,
                                     'url' => array(
                                                 '/user/registration/twitter'
@@ -64,34 +64,35 @@ $this->pageTitle = Yii::app()->name;
                                 'verified'=>$verified,
                                 'representante'=>$representante,
                             ));
-                    }
+                   }
                ?> 
              </div>
              </div> 
             
-            
+             
            
         
-        
+         
         </div>
         
-        <div class="col-md-3 panel-content panel-azul margin_left_small">
+        <div class="col-md-3 panel-content panel-azul margin_left_small no_horizontal_padding">
             <div class="panel-header">
                 <h3>Ingresa</h3>
             </div>
+            <div class="col-md-10 col-md-offset-1">
             <?php
                         $this->renderPartial('_login',array(
                             'model'=>$login,
                             'verified'=>$verified,
                         ));
                         ?>
-        
+            </div>
         </div> 
     
     
     
     
-    </div>
+    </div>  
 
 
 

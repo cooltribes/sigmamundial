@@ -262,7 +262,7 @@ $this->widget('bootstrap.widgets.BsNavbar', array(
 </div>     
 <div class="main-title">
 
-</div> 
+</div>  
 <?php 
     $date=round((strtotime('2015-06-23 00:00:00')-strtotime(date('Y-m-d h:i:s')))/ (60 * 60 * 24));
     if($date>0):
@@ -270,21 +270,24 @@ $this->widget('bootstrap.widgets.BsNavbar', array(
  <h1 class="countdown">Faltan <?php echo $date ?> días</h1>
 <?php endif; ?>
  <!--footer--> 
-<div id="footer">
-    <h3 class="text-center no_margin_top">
-        Acierta los resultados de los partidos de la Copa América y gana un TV 40" 
+<div id="footer" class="row-fluid">
+    <h3 class="text-center">
+        Acierta los resultados de los partidos de la Copa América y gana un TV 40" <img src="<?php echo Yii::app()->baseUrl; ?>/images/samsung.png" height="35px"/>
     </h3>
-    <div>
-        <small>Sigmasys C.A. - J-29468637-0</small>
+    <div class="col-md-6 text-left"> 
+        Sigmasys C.A. - J-29468637-0
+    </div>  
+    <div class="col-md-6 links no_margin_top text-right">
+    <a href="<?php echo Yii::app()->baseUrl; ?>/site/reglas">Reglas del Juego</a>        <b>|</b>
+        <a href="<?php echo Yii::app()->baseUrl; ?>/site/terminos_y_condiciones">Términos y Condiciones</a>    
     </div>
-        
-</div>
+         
+</div> 
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!--[if lt IE 9]>
+<!--[if lt IE 9]> 
     <script src="<?php echo Yii::app()->theme->baseUrl ?>/assets/js/html5shiv.js"></script>
     <script src="<?php echo Yii::app()->theme->baseUrl ?>/assets/js/respond.min.js"></script>
-<![endif]-->
-
+<![endif]-->   
 <script>
  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
