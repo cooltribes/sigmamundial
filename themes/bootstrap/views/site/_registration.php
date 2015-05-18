@@ -60,7 +60,7 @@ if($verified){
 		<?php echo $form->hiddenField($model, "twitter"); ?>
 		<?php echo $form->hiddenField($model, "oauth_token"); ?>
 		<?php echo $form->hiddenField($model, "oauth_token_secret"); ?>
-	</div>
+	</div>  
 
 	<div class="form-group" style="display:none;" id="nombre_representante">                            
 		<?php echo $form->textField($representante, "nombre", array(
@@ -76,7 +76,7 @@ if($verified){
 
 		<?php echo BsHtml::submitButton("Registrarse", array(
 			"color" => BsHtml::BUTTON_COLOR_DANGER,
-			'size' => BsHtml::BUTTON_SIZE_LARGE,
+		
 			"disabled" => $disabled,
 		)); ?>
 
