@@ -30,9 +30,8 @@
 
 <div class="form-group text-center">
 
-  <?php echo BsHtml::submitButton("Entrar a jugar", array(
+  <?php echo BsHtml::submitButton("Entrar", array(
     "color" => BsHtml::BUTTON_COLOR_DANGER,
-    'size' => BsHtml::BUTTON_SIZE_LARGE,
   )); ?>
 
 </div>

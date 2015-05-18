@@ -67,13 +67,26 @@
             );
             
             $var = date("d");
-            $img = $dias[intval($var)];
+           // $img = $dias[intval($var)];
+           $img = "fondo";
             
         ?>
         
         <style>
             body{
-                background-image: url('/mundial/images/<?php echo $img; ?>.jpg');                
+                background-image: url('<?php echo Yii::app()->baseUrl."/images/".$img; ?>.jpg');                
+            }
+            .countdown{
+                color: #fff;
+                text-shadow: 0 0 5px rgba(0,0,0,.5);
+                text-align: center;
+                font-weight: 700;
+                font-size: 43px;
+                 
+            }
+            #footer{
+                background-color: #ba1928;
+                height: 65px;
             }
         </style>
 </head>
@@ -176,15 +189,16 @@ $this->widget('bootstrap.widgets.BsNavbar', array(
     
     <div class="row main-header">
         <div class="col-xs-12 col-sm-3 col-md-3 logo">
-            <a href="http://sigmatiendas.com">
-                <?php echo CHtml::image(Yii::app()->getBaseUrl(true)."/images/logo.png", "Logo",
-                        array("height" => 73)); ?>                            
+          <!--    <a href="http://sigmatiendas.com">
+                <?php /* echo CHtml::image(Yii::app()->getBaseUrl(true)."/images/logo.png", "Logo",
+                        array("height" => 73)); */ ?>                            
             </a>
+           -->
         </div>
         
         <div class="col-xs-12 col-sm-6 col-md-6 text-center main-title">
-            <h1>Vive la &Sigma;xperiencia</h1>
-            <h2 class="no_margin_top">#SigmaEsMundial</h2>
+            <h1>#QuinielaGratis</h1>
+           
         </div>
         
         <?php if(!Yii::app()->user->isGuest){ ?>
@@ -246,33 +260,22 @@ $this->widget('bootstrap.widgets.BsNavbar', array(
     
 <div id="push"></div>
 </div>     
+<div class="main-title">
 
+</div> 
+<?php 
+    $date=round((strtotime('2015-06-23 00:00:00')-strtotime(date('Y-m-d h:i:s')))/ (60 * 60 * 24));
+    if($date>0):
+?>
+ <h1 class="countdown">Faltan <?php echo $date ?> días</h1>
+<?php endif; ?>
  <!--footer--> 
 <div id="footer">
-    
-    <div class="nombre">
-        Sigmasys C.A. <?php echo date('Y'); ?> -
-        Desarrollado por <a class="cooltribes" href="http://cooltribes.com" title="Connecting true fans" target="_blank">Cooltribes.com</a>
-    </div>
-    <div class="links">
-        <?php echo BsHtml::link("Reglas del Juego", array("/site/reglas")) ?>
-        <b>|</b>
-        <?php echo BsHtml::link("Términos y Condiciones", array("/site/terminos_y_condiciones")) ?>
-        
-    </div>
-    <div class="redes">
-        <a href="https://twitter.com/SigmaOficial">
-            <?php echo CHtml::image(Yii::app()->getBaseUrl(true)."/images/twitter.png", "Twitter",
-                        array("height" => 20)); ?>
-        </a>
-        <a href="http://www.facebook.com/Sigmaoficial">
-            <?php echo CHtml::image(Yii::app()->getBaseUrl(true)."/images/facebook.png", "Facebook",
-                        array("height" => 20)); ?>
-        </a>
-        <a href="http://instagram.com/sigmaoficial" >
-            <?php echo CHtml::image(Yii::app()->getBaseUrl(true)."/images/instagram.png", "Facebook",
-                        array("height" => 20)); ?>
-        </a>
+    <h3 class="text-center no_margin_top">
+        Acierta los resultados de los partidos de la Copa América y gana un TV 40" 
+    </h3>
+    <div>
+        <small>Sigmasys C.A. - J-29468637-0</small>
     </div>
         
 </div>
