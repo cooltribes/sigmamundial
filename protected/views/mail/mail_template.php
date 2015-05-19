@@ -50,16 +50,16 @@
 		<td width="4%">
 		</td>
 			<td height="120" width="80%">Si recibes este correo es porque estas registrado en <br/> 
-				<a href="http://sigmatiendas.com/mundial" style="text-decoration: none;" >
+				<a href="<?php echo Yii::app()->params['landingpage']; ?>" style="text-decoration: none;" >
 				<span style="font-weight:bold; color: #FFF;text-decoration: underline;">			
-	 				 sigmatiendas.com
+	 				 Sigmatiendas.com
 	 			</span>
 	 			</a>
 	 		</td>
 			<td height="120" align="right">Vive la experiencia<br/>
-			<a href="https://twitter.com/search?q=%23SigmaEsMundial" style="text-decoration: none;" >
+			<a href="https://twitter.com/search?q=%23QuinielaGratis" style="text-decoration: none;" >
 				<span style="font-weight:bold; color: #FFF;text-decoration: underline;">			
-	 				#SigmaEsMundial
+	 				#QuinielaGratis
 	 			</span>
 	 		</a></td>
 		</tr>

@@ -3,6 +3,7 @@ assets/*
 protected/runtime/*
 !protected/runtime/.gitignore
 protected/data/*.db
+protected/config/main.php
 themes/classic/views/
 /nbproject/private/
-nbproject
+nbproject 

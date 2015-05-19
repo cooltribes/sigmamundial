@@ -1,8 +1,9 @@
 <?php
 
 class SiteController extends Controller
-{
-	/**
+{ 
+
+	/** 
 	 * Declares class-based actions.
 	 */
 	public function actions()
@@ -20,14 +21,13 @@ class SiteController extends Controller
 			),
 		);
 	}
-
+   
 	/**
 	 * This is the default 'index' action that is invoked
 	 * when an action is not explicitly requested by users.
 	 */
 	public function actionIndex()
-	{
-            
+	{     
         if(!Yii::app()->user->isGuest){
             $this->redirect(array("apuesta/partidos"));
         }
@@ -35,7 +35,7 @@ class SiteController extends Controller
 		// using the default layout 'protected/views/layouts/main.php'
 		$user = new User;
 		$representante = new Representante;
-		$login = new UserLogin;
+		$login = new UserLogin; 
 
 		if(isset($_POST['User'])){
 			$user->attributes=$_POST['User'];
@@ -78,7 +78,32 @@ class SiteController extends Controller
 				
 				$message->addTo($user->email);
 				$message->from = array(Yii::app()->params['adminEmail'] => Yii::app()->params['adminName']);
-				Yii::app()->mail->send($message);
+				Yii::app()->mail->send($message); 
+
+				$nombres = explode(" ", $user->nombre);
+				$first;
+				$last;
+ 
+				if(count($nombres)>2){
+					$first = $nombres[0];
+					$last = $nombres[1]." ".$nombres[2];
+				}else{
+					$first = $nombres[0];
+					$last = $nombres[1];
+				} 
+
+				//API key para lista de Personaling en Mailchimp
+                $MailChimp = new MailChimp(Yii::app()->params['MailchimpApiKey']); 
+
+                $result = $MailChimp->call('lists/subscribe', array(
+                    'id' => Yii::app()->params['MailchimpList'],
+                    'email' => array('email' => $user->email),
+                    'merge_vars' => array('FNAME' => $first, 'LNAME' => $last),
+                    'update_existing' => true,
+                    'replace_interests' => false,
+                    'double_optin' => false, 
+                    'send_welcome' => false,
+                ));
 
 				$identity=new UserIdentity($user->email, $user->password);
 				$identity->username = $user->email;
@@ -377,6 +402,41 @@ class SiteController extends Controller
 
 	}
 	*/
+
+	/*
+   	public function actionPrueba(){
+
+   		//API key para lista de Personaling en Mailchimp
+        $MailChimp = new MailChimp(Yii::app()->params['MailchimpApiKey']);
+
+			$nombres = explode(" ", "Daniel Duque Contreras");
+				$first;
+				$last;
+ 
+				if(count($nombres)>2){
+					$first = $nombres[0];
+					$last = $nombres[1]." ".$nombres[2];
+				}else{
+					$first = $nombres[0];
+					$last = $nombres[1];
+				} 
+
+
+       	$result = $MailChimp->call('lists/subscribe', array(
+                    'id' => Yii::app()->params['MailchimpList'],
+                    'email' => array('email'=>"dduques@upsidecorp.ch"),
+                    'merge_vars' => array('FNAME' => $first, 'LNAME' => $last), 
+                    'update_existing' => true,
+                    'replace_interests' => false,
+                    'double_optin' => false, 
+                    'send_welcome' => false,
+                ));
+
+        var_dump($result);
+        Yii::app()->end(); 
+   	}
+*/
+	
 	public function actionPosiciones()
 	{
 		$usuario = new User; 
