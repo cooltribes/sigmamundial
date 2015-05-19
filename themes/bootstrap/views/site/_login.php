@@ -11,28 +11,36 @@
       'class'=>'form',
       ),
 )); ?>
+<style>
+    .input-quiniela{
+      width: 100%;
+      padding: 3px 10px;
+      height: 28px;
+    } 
+
+</style>
 
 <?php echo $form->errorSummary(array($model)); ?>
 
 <div class="form-group">
   <?php 
-  echo $form->emailField($model, "username", array());
+  echo $form->emailField($model, "username", array("class"=> "input-quiniela"));
   ?>
 </div>       
 <div class="form-group">                            
-  <?php echo $form->passwordField($model, "password", array()); ?>                                                                                               
+  <?php echo $form->passwordField($model, "password", array("class"=> "input-quiniela")); ?>                                                                                               
 </div>
 
-<div class="form-group link-recovery">                            
-  <?php echo BsHtml::link("Recuperar Contraseña", array("/user/recovery"), array()); ?>  
-
+<div class="form-group link-recovery text-center">                            
+    <small>
+    <?php echo BsHtml::link("Recuperar Contraseña", array("/user/recovery"), array()); ?>
+    </small>
 </div>
 
 <div class="form-group text-center">
 
-  <?php echo BsHtml::submitButton("Entrar a jugar", array(
+  <?php echo BsHtml::submitButton("Entrar", array(
     "color" => BsHtml::BUTTON_COLOR_DANGER,
-    'size' => BsHtml::BUTTON_SIZE_LARGE,
   )); ?>
 
 </div>

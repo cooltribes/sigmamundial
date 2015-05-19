@@ -3,9 +3,8 @@
 
 $this->pageTitle = Yii::app()->name;
 ?>
-
-<div class="row">
-    <?php
+<div class="container">
+<?php
     if (Yii::app()->user->hasFlash('recoveryMessage')) { 
         ?>
         <div class="alert in alert-block fade alert-success text_align_center margin_bottom_large col-sm-8 col-sm-offset-2">
@@ -33,168 +32,74 @@ $this->pageTitle = Yii::app()->name;
     }
     ?>
     
+    <div class="row-fluid">
     
-    <div class="col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-1 col-md-4 col-md-offset-2">
-       
-     <div class="row">
-      <div class="col-md-12 panel-gris register-panel">
-
-        <div class="row">
-            <div class="col-md-12">
-                <div class="col-md-12 panel-header">
+        <div class="col-md-4 col-md-offset-2 panel-gris register-panel no_horizontal_padding">
+            <div class="panel-header">
                     <?php if(!$verified){ ?>
-                    	<h3>Crea tu cuenta con Twitter</h3>
+                        <h3>Inscríbete</h3>
                     <?php } if($verified){ ?>
-                    	<h3>Completa tus datos</h3>
-                    <?php } ?>	                      
-                </div>
+                        <h3>Completa tus datos</h3>
+                    <?php } ?>                        
             </div>
-        </div>
-        <div class="row panel-content">
-            <div class="col-md-12">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">                            
-                            <?php
-                            if(!$verified){
-                                echo BsHtml::linkButton('Regístrate con Twitter', array(
+            <div class="row-fluid">
+            <div class="col-md-10 col-md-offset-1">
+                    <?php
+             
+                    if(!$verified){
+                                echo BsHtml::linkButton('Conéctate con Twitter', array(
                                     'color' => BsHtml::BUTTON_COLOR_INFO,
                                     'url' => array(
                                                 '/user/registration/twitter'
                                             ),
-                                    'class' => 'btn-block boton-twitter',
+                                    'class' => 'btn-block boton-twitter margin_bottom_small',
                                     'icon' => '',
 //                                    'htmlOptions' => array(
 //                                        'class' => ''
 //                                    );
-                                ));
-                            }
-                            ?>
-                        </div>                        
-                        <?php
-                        if($verified){
+                                )); 
+                    }else{
                             $this->renderPartial('_registration',array(
                                 'model'=>$user,
                                 'verified'=>$verified,
                                 'representante'=>$representante,
                             ));
-                        }
-                        ?>                         
-                        <div class="form-group text-center about-link">      
-                            Al registrarte estás indicando
-                                que has leído y aceptado las 
-                                <?php echo BsHtml::link("Condiciones de Uso", array("site/terminos_y_condiciones"), array()); ?>
-                                y
-                                <?php echo BsHtml::link("Reglas del Juego", array("site/reglas"), array()); ?>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                   }
+               ?> 
+             </div>
+             </div> 
             
+             
+           
+        
+         
         </div>
         
-        
-        
-        
-        
-       </div>
-      </div>
-      
-       <div class="row row-stats">
-            <div class="col-sm-5 panel-stats">
-                <div class="row panel-nro">
-                    <?php echo User::model()->count(); ?>
-                </div>
-                <div class="row panel-texto">
-                    Usuarios Registrados
-                </div>
+        <div class="col-md-3 panel-content panel-azul margin_left_small no_horizontal_padding">
+            <div class="panel-header">
+                <h3>Ingresa</h3>
             </div>
-
-            <div class="col-sm-5 col-sm-offset-2 panel-stats">
-                <div class="row panel-nro">
-                    <?php
-                    
-                    $hora = date("Y-m-d H:i:s");
-                    $media = date("Y-m-d H:i:s",strtotime('-30 minutes',strtotime($hora)));
-                    
-						$sql = 'select count(*) from tbl_users where lastvisit_at between "'.$media.'" and "'.$hora.'"'; 
-						$num = Yii::app()->db->createCommand($sql)->queryScalar();
-						echo $num;
-					?>     	
-                </div>
-                <div class="row panel-texto">
-                    Usuarios En Linea
-                </div>
-            </div>
-        </div>
-        
-        <div class="row row-stats">
-            <div class="col-sm-4 col-sm-offset-4 panel-stats">
-                <div class="row panel-nro">
-					<?php echo Cupon::model()->countByAttributes(array('enviado'=>1)); ?>
-                </div>
-                <div class="row panel-texto">
-                    Giftcards Enviadas
-                </div>
-            </div>            
-        </div>
-        
-    </div>
-    <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-1 col-md-3 col-md-offset-1 panel-azul login-panel">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="col-md-12 panel-header">
-                    <h3>Ingresa</h3>                      
-                </div>
-            </div>
-        </div>
-        <div class="row panel-content">
-            <div class="col-md-12">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h3>Si ya estás registrado ingresa con tu cuenta</h3>                                                                  
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <?php
+            <div class="col-md-10 col-md-offset-1">
+            <?php
                         $this->renderPartial('_login',array(
                             'model'=>$login,
                             'verified'=>$verified,
                         ));
                         ?>
-                    </div>
-                </div>
             </div>
-        </div>
-    </div>
+        </div> 
+    
+    
+    
+    
+    </div>  
+
+
+
+
+
+
+
 </div>
 
-<script>
-$('#User_fecha_nacimiento').on('blur', function(){
-    var res = $(this).val().split("-");
 
-    if (checkAge(new Date(res[0], res[1], res[2]), 18)) {
-        console.log('mayor');
-        $('#nombre_representante').hide();
-        $('#email_representante').hide();
-    } else {
-        console.log('menor');
-        $('#nombre_representante').show();
-        $('#email_representante').show();
-    }
-
-    
-});
-
-function checkAge(dateofbirth) {
-    var yd, md, dd, now = new Date();
-    yd = now.getUTCFullYear()-dateofbirth.getUTCFullYear();
-    md = now.getUTCMonth()-dateofbirth.getUTCMonth();
-    dd = now.getUTCDate()-dateofbirth.getUTCDate();
-    console.log(yd+' - '+md+' - '+dd);
-    if(yd < 18) return false; else return true;;
-    if(md < 0) return false;
-    return dd >= 0;
-}
-</script>

@@ -2238,13 +2238,14 @@ fieldset[disabled] .btn-warning.active {
   border-color: #eea236;
 }
 .btn-warning .badge {
-  color: #f0ad4e;
+  color: #f0ad4e; 
   background-color: #ffffff;
 }
 .btn-danger {
   color: #ffffff;
   background-color: #ba1928;
-  border-color: #ffffff;
+  border-radius: 0px;
+  border-color: transparent;
 }
 .btn-danger:hover,
 .btn-danger:focus,
@@ -2254,6 +2255,7 @@ fieldset[disabled] .btn-warning.active {
   color: #ffffff;
   background-color: #961420;
   border-color: #e0e0e0;
+  text-decoration: underline;
 }
 .btn-danger:active,
 .btn-danger.active,
@@ -4432,10 +4434,12 @@ a.thumbnail.active {
 }
 .alert .alert-link {
   font-weight: bold;
+  
 }
 .alert > p,
 .alert > ul {
-  margin-bottom: 0;
+  margin-bottom: 0; 
+  list-style: none;
 }
 .alert > p + p {
   margin-top: 5px;

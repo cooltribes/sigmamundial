@@ -4,7 +4,7 @@
 
 /*--- @ ---*/
 @rojo: #ba1928;
-@azul: #005b8a;
+@azul: #082b61;
 @gris-viejo: #cdcdcd;
 @gris: #e2e2e2;
 @gris-hover: #cacaca;
@@ -14,7 +14,7 @@
 @negro: #000;
 
 /****************  MISCELANEOS *********************/
-/* Margins */
+/* Margins */  
 .margin_top{margin-top:2.18em}
 .margin_left{margin-left:2.18em}
 .margin_right{margin-right:2.18em}
@@ -107,6 +107,30 @@
 .padding_small{padding:1em}
 .padding_xsmall{padding:0.5em}
 
+
+.no_padding{  padding: 0px !important; }
+.no_margin{  margin: 0px !important; }
+
+.no_horizontal_padding
+{   padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+.no_horizontal_margin
+{   margin-left: 0px !important;
+    margin-right: 0px !important;
+}
+
+.no_vertical_padding{
+    padding-top: 0px !important;
+    padding-bottom: 0px !important; 
+}
+.no_vertical_margin{  
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;  
+}
+
+
+
 /********* Cambios para bootstrap *******/
 .dropdown-menu > li > a:hover,
 .dropdown-menu > li > a:focus {
@@ -174,16 +198,14 @@ body{
 }
 
 #push,
-#footer {
-    height: 60px;
-}
+
 
 #footer{
     color: @blanco;
     text-align: center;    
     font-size: 11px;
     padding: 7px 25px 7px;
-    height: auto;
+    height: 80px;
     .fondo-azul();
 
     a{
@@ -212,12 +234,13 @@ body{
 }
 
 a{
-    color:@azul;
+    color:#eee;
     .transition_all
+    text-decoration: underline;
 }
 a:hover, a:focus{
-  color:@azul;
-  text-decoration: none;
+  color:#eee;
+  
 }
 
 
@@ -271,7 +294,7 @@ a:hover, a:focus{
 
     background-color: @rojo;
     color: @blanco;
-    margin: -31px 0 18px 0;
+    margin: 0px 0 18px 0;
     padding: 1px 0;
 
     h3{
@@ -335,6 +358,14 @@ a:hover, a:focus{
 
     input[type="date"]:focus:before, input[type="date"]:valid:before {
         content: "";
+    }
+    .input-quiniela, #UserLogin_password, #UserLogin_username{
+      width: 100%;
+      padding: 3px 10px;
+      height: 28px;
+    }
+    .input-group-addon{
+      padding: 3px 10px !important;
     }
 
 }
