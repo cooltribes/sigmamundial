@@ -16,7 +16,7 @@
       width: 100%;
       padding: 3px 10px;
       height: 28px;
-    } 
+    }  
 
 </style>
 
