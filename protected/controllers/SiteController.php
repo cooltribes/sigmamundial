@@ -67,7 +67,7 @@ class SiteController extends Controller
 				}
 
 				$activation_url = $this->createAbsoluteUrl('/user/activation/activation',array("activkey" => $user->activkey, "email" => $user->email));
-				$body = 'Te has registrado para vivir la experiencia Sigma. <br/><br/>Recuerda jugar diariamente en la quiniela. <a href="'.Yii::app()->params['landingpage'].'">Sigma Es Copa America</a>.';
+				$body = 'Te has registrado para vivir la experiencia Sigma con la #QuinielaGratis de la Copa America.<br/><br/>Recuerda jugar diariamente en la quiniela. <a href="'.Yii::app()->params['landingpage'].'">Sigma Es Copa America</a>.';
 
 				$message = new YiiMailMessage;
 				$message->view = 'mail_template';
@@ -83,14 +83,16 @@ class SiteController extends Controller
 				$nombres = explode(" ", $user->nombre);
 				$first;
 				$last;
- 
+ 				
+ 				$first = $nombres[0];
+
 				if(count($nombres)>2){
-					$first = $nombres[0];
 					$last = $nombres[1]." ".$nombres[2];
-				}else{
-					$first = $nombres[0];
+				}else if(count($nombres)>1){
 					$last = $nombres[1];
-				} 
+				}else{
+					$last = " ";
+				}
 
 				//API key para lista de Personaling en Mailchimp
                 $MailChimp = new MailChimp(Yii::app()->params['MailchimpApiKey']); 
@@ -436,7 +438,7 @@ class SiteController extends Controller
         Yii::app()->end(); 
    	}
 */
-	
+
 	public function actionPosiciones()
 	{
 		$usuario = new User; 
