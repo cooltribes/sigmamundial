@@ -7,28 +7,19 @@ $this->breadcrumbs = array(
     'Error',
 );
 ?>
-<div class="col-md-6 col-md-offset-3 panel-azul panel-error">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="col-md-12 panel-header">
-                <h3>Error</h3>                      
-            </div>
-        </div>
-    </div>
-    <div class="row panel-content">
-        <div class="col-md-12">
-            <div class="row codigo">
-                <div class="col-sm-10 col-sm-offset-1">
-                    <?php echo $code; ?>
+<div class="row-fluid">
+<div class="col-md-offset-3 col-md-6">
+<div class="panel-azul panel-error no_horizontal_padding">
+            <div class="panel-header">
+                <h2>Error</h2>
+            </div>                      
 
-                </div>
-            </div>
-            <div class="row mensaje">
-                <div class="col-sm-10 col-sm-offset-1">
-                    <?php echo CHtml::encode($message); ?>
+             <h1 class="codigo"> <?php echo $code; ?></h1>      
 
-                </div>
-            </div>
-        </div>
-    </div>
+                <h3 class="margin_top_small"><?php echo CHtml::encode($message); ?></h3> 
+</div> 
+
 </div>
+</div>
+
+       

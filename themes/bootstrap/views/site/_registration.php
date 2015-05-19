@@ -28,7 +28,7 @@ if($verified){
 		echo $form->textField($model, "nombre", array(
 			"disabled" => $disabled, "class"=> 'input-quiniela' 
 		));
-		?>
+		?> 
 	</div>       
 	<div class="form-group">                            
 		<?php echo $form->textField($model, "cedula", array(

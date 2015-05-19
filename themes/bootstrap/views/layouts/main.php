@@ -236,12 +236,8 @@ $this->widget('bootstrap.widgets.BsNavbar', array(
                     ?>
                     <div class="row text-right user-info">
                         <div class="col-md-12">
-                            Pts. Totales: <strong><?php echo $user->puntos; ?></strong>
-                            <?php if($apuesta->puntosFase($fase)!=null ){ ?>
-                                Pts. en Fase: <strong><?php echo $apuesta->puntosFase($fase); ?></strong>
-                            <?php }else{ ?>                                             
-                                Pts. en Fase: <strong>0</strong>
-                            <?php } ?>
+                            Puntos: <strong><?php echo $user->puntos; ?></strong>
+                            
                         </div>
                     </div>                    
                 </div>
