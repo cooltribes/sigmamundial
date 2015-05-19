@@ -197,16 +197,19 @@ body{
     margin: 0 auto -35px;
 }
 
+.footer{
+  width: 100%;
+    height: auto;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
 #push,
-
-
 #footer{
     color: @blanco;
     text-align: center;    
     font-size: 11px;
-    padding: 7px 25px 7px;
-    height: 80px;
-    .fondo-azul();
+    background-color: #ba1928;   
 
     a{
         color: @blanco;
@@ -235,15 +238,29 @@ body{
 
 a{
     color:#eee;
-    .transition_all
     text-decoration: underline;
+    .transition_all
+    
 }
 a:hover, a:focus{
   color:#eee;
+  text-decoration: underline;
   
 }
 
+a.bluelink{
+    color: @azul;
+    text-decoration: underline;
+    .transition_all
+    
+}
+a.bluelink:hover, a.bluelink:focus{
+  color: @azul;
+  text-decoration: underline;
+  
+}
 
+ 
 
 /*Encabezado principal*/
 .main-header{
@@ -287,6 +304,8 @@ a:hover, a:focus{
 /*Paneles*/
 
 .panel-azul{
+     height: 240px;
+     margin-left: 2em;
     .fondo-azul();
 }
 
@@ -330,6 +349,7 @@ a:hover, a:focus{
 
 }
 .register-panel{
+    min-height: 240px; 
     color: @azul;
 
     .boton-twitter{
@@ -340,11 +360,12 @@ a:hover, a:focus{
     }
     .about-link{
         font-size: 12px;
-        margin-bottom: 10px;
+        margin-bottom: 10px; 
         margin-top: 34px;
         a{
-            text-decoration: underline;
+            text-decoration: underline; 
             font-weight: bold;
+            color: @azul;
             &:hover{
                 color: lighten(@azul, 10%);
             }
@@ -570,7 +591,9 @@ a:hover, a:focus{
     }
 }
 
-
+#page #content{
+  margin-bottom: 180px;
+}
 
 //Media Queries
 //pequeños (sm)
@@ -630,7 +653,6 @@ a:hover, a:focus{
     }
 
     #footer{
-        height: 35px;
         .nombre{
             float: left; 
             margin-top: 3px;
@@ -652,3 +674,22 @@ a:hover, a:focus{
         }
     }
 }
+@media (max-width: 990px){
+  .footer{
+    bottom: auto;
+    h3{
+      font-size: 14px;  
+    }
+  }
+  .panel-azul{
+    margin-left:0px;
+  }
+}
+
+@media (max-height: 800px){
+  #page #content{
+    margin-bottom: 180px;
+  }
+
+}
+

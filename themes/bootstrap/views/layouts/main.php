@@ -84,10 +84,6 @@
                 font-size: 43px;
                  
             }
-            #footer{
-                background-color: #ba1928;
-                height: 65px;
-            }
         </style>
 </head>
 
@@ -183,11 +179,17 @@ $this->widget('bootstrap.widgets.BsNavbar', array(
 
 }
 ?>
+<style>
+#wrappin{
+    min-height: 100%;
+    position: relative;
+    height:auto;
+ }
+</style>
     
-<div id="wrap">
-<div class="container" id="page">       
-    
-    <div class="row main-header">
+<div id="wrappin" class="clearfix">
+<div class="main-header">
+    <div class="row">
         <div class="col-xs-12 col-sm-3 col-md-3 logo">
           <!--    <a href="http://sigmatiendas.com">
                 <?php /* echo CHtml::image(Yii::app()->getBaseUrl(true)."/images/logo.png", "Logo",
@@ -229,16 +231,16 @@ $this->widget('bootstrap.widgets.BsNavbar', array(
                         </div>
                     </div>
                     <?php
- 						$apuesta = new Apuesta; 
-						$fase="Segunda";                 
+                        $apuesta = new Apuesta; 
+                        $fase="Segunda";                 
                     ?>
                     <div class="row text-right user-info">
                         <div class="col-md-12">
                             Pts. Totales: <strong><?php echo $user->puntos; ?></strong>
                             <?php if($apuesta->puntosFase($fase)!=null ){ ?>
-                            	Pts. en Fase: <strong><?php echo $apuesta->puntosFase($fase); ?></strong>
-                            <?php }else{ ?>	                                            
-                            	Pts. en Fase: <strong>0</strong>
+                                Pts. en Fase: <strong><?php echo $apuesta->puntosFase($fase); ?></strong>
+                            <?php }else{ ?>                                             
+                                Pts. en Fase: <strong>0</strong>
                             <?php } ?>
                         </div>
                     </div>                    
@@ -248,41 +250,48 @@ $this->widget('bootstrap.widgets.BsNavbar', array(
         <?php } ?>
         
     </div>
-    
-    
-    <?php echo $content; ?>
 
-    <div class="clear"></div>
-    
 
-</div> 
-    <!-- page -->
-    
-<div id="push"></div>
-</div>     
-<div class="main-title">
-
-</div>  
+</div>
+<div class="container" id="page">
+      <?php echo $content; ?>
+</div>
+<div class="footer">
 <?php 
-    $date=round((strtotime('2015-06-23 00:00:00')-strtotime(date('Y-m-d h:i:s')))/ (60 * 60 * 24));
+    $date=round((strtotime('2015-06-11 00:00:00')-strtotime(date('Y-m-d h:i:s')))/ (60 * 60 * 24));
     if($date>0):
 ?>
- <h1 class="countdown">Faltan <?php echo $date ?> días</h1>
-<?php endif; ?>
- <!--footer--> 
-<div id="footer" class="row-fluid">
-    <h3 class="text-center">
+
+
+ <?php endif; ?>
+  <h1 class="countdown margin_top_xsmall">Faltan <?php echo $date ?> días</h1>
+ <div id="footer" class="row-fluid clearfix"> 
+    <h3 class="text-center no_margin_bottom">
         Acierta los resultados de los partidos de la Copa América y gana un TV 40" <img src="<?php echo Yii::app()->baseUrl; ?>/images/samsung.png" height="35px"/>
     </h3>
-    <div class="col-md-6 text-left"> 
-        Sigmasys C.A. - J-29468637-0
-    </div>  
-    <div class="col-md-6 links no_margin_top text-right">
-    <a href="<?php echo Yii::app()->baseUrl; ?>/site/reglas">Reglas del Juego</a>        <b>|</b>
-        <a href="<?php echo Yii::app()->baseUrl; ?>/site/terminos_y_condiciones">Términos y Condiciones</a>    
+    <div class="row-fluid clearfix margin_bottom_xsmall">
+        <div class="col-md-6 col-xs-6 text-left"> 
+            Sigmasys C.A. - J-29468637-0
+        </div>  
+        <div class="col-md-6 col-xs-6 text-right">
+        <a href="<?php echo Yii::app()->baseUrl; ?>/site/reglas">Reglas del Juego</a>        <b>|</b>
+            <a href="<?php echo Yii::app()->baseUrl; ?>/site/terminos_y_condiciones">Términos y Condiciones</a>    
+        </div>
     </div>
          
-</div> 
+</div>
+
+</div>
+</div>
+    
+
+
+
+
+ <!--footer--> 
+
+
+ 
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]> 
     <script src="<?php echo Yii::app()->theme->baseUrl ?>/assets/js/html5shiv.js"></script>

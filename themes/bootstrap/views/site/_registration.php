@@ -17,7 +17,7 @@ if($verified){
 		),
 		'htmlOptions' => array(
                     'enctype'=>'multipart/form-data',
-                    'class'=>'form',
+                    'class'=>'form margin_bottom_xlarge',
                     ),
 	)); ?>
 
@@ -72,7 +72,7 @@ if($verified){
 			"disabled" => $disabled, "class"=> 'input-quiniela',
 			"required" => true,
 		)); ?>                 
-	</div>   
+	</div>      
 
 	<div class="form-group" style="display:none;" id="nombre_representante">                            
 		<?php echo $form->textField($representante, "nombre", array(

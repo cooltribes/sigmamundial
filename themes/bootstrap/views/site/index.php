@@ -57,8 +57,15 @@ $this->pageTitle = Yii::app()->name;
 //                                    'htmlOptions' => array(
 //                                        'class' => ''
 //                                    );
-                                )); 
-                    }else{
+                                ));
+
+                       ?>
+                       <script>
+                       $('#page #content').css('margin-bottom','0px');
+                       
+                       </script>
+                       <?php 
+                    }else{ 
                             $this->renderPartial('_registration',array(
                                 'model'=>$user,
                                 'verified'=>$verified,
@@ -66,16 +73,23 @@ $this->pageTitle = Yii::app()->name;
                             ));
                    }
                ?> 
+               <div class="text-center about-link">      
+                            Al registrarte estás indicando
+                                que has leído y aceptado las 
+                                <?php echo BsHtml::link("Condiciones de Uso", array("site/terminos_y_condiciones"), array('class'=>'bluelink')); ?>
+                                y
+                                <?php echo BsHtml::link("Reglas del Juego", array("site/reglas"), array('class'=>'bluelink')); ?>
+               </div>
              </div>
              </div> 
             
              
-           
+            
         
          
         </div>
         
-        <div class="col-md-3 panel-content panel-azul margin_left_small no_horizontal_padding">
+        <div class="col-md-3 panel-content panel-azul no_horizontal_padding">
             <div class="panel-header">
                 <h3>Ingresa</h3>
             </div>
