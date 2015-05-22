@@ -67,7 +67,7 @@ class SiteController extends Controller
 				}
 
 				$activation_url = $this->createAbsoluteUrl('/user/activation/activation',array("activkey" => $user->activkey, "email" => $user->email));
-				$body = 'Te has registrado para vivir la experiencia Sigma con la #QuinielaGratis de la Copa America.<br/><br/>Recuerda jugar diariamente en la quiniela. <a href="'.Yii::app()->params['landingpage'].'">Sigma Es Copa America</a>.';
+				$body = 'Te has registrado para vivir la experiencia Sigma con la #QuinielaGratis de la Copa America CHILE 2015.<br/><br/>Recuerda jugar diariamente en la quiniela. <a href="'.Yii::app()->params['landingpage'].'">Sigma Es Copa America</a>.';
 
 				$message = new YiiMailMessage;
 				$message->view = 'mail_template';

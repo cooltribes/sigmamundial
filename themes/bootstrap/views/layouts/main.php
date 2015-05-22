@@ -185,7 +185,7 @@ $this->widget('bootstrap.widgets.BsNavbar', array(
     position: relative;
     height:auto;
  }
-</style>
+</style> 
     
 <div id="wrappin" class="clearfix">
 <div class="main-header">
@@ -257,10 +257,10 @@ $this->widget('bootstrap.widgets.BsNavbar', array(
     $date=round((strtotime('2015-06-11 00:00:00')-strtotime(date('Y-m-d h:i:s')))/ (60 * 60 * 24));
     if($date>0):
 ?>
-
+    <h1 class="countdown margin_top_xsmall">Faltan <?php echo $date ?> días</h1>
 
  <?php endif; ?>
-  <h1 class="countdown margin_top_xsmall">Faltan <?php echo $date ?> días</h1>
+  
  <div id="footer" class="row-fluid clearfix"> 
     <h3 class="text-center no_margin_bottom">
         Acierta los resultados de los partidos de la Copa América y gana un TV 40" <img src="<?php echo Yii::app()->baseUrl; ?>/images/samsung.png" height="35px"/>

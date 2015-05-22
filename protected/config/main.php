@@ -113,7 +113,7 @@ return array(
 		// uncomment the following to use a MySQL database
 		
 		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=db_copaamerica',
+			'connectionString' => 'mysql:host=localhost;dbname=db_copaamericaDEV',
 			'emulatePrepare' => true,
 			'username' => 'sigmatiendas',
 			'password' => 'DFRG5%re',
@@ -158,7 +158,7 @@ return array(
 	'params'=>array(
 		// this is used in contact page
 		'adminEmail'=>'info@sigmatiendas.com',
-		'adminName' => 'Sigma es Copa America', 
+		'adminName' => 'Sigma es Fútbol', 
 		'landingpage' => 'http://sigmatiendas.com/develop-quinielagratis/',
 		'MailchimpList' => '01fb385d10',
 		'MailchimpApiKey' => '3cd27d1aec9f2476f6e43388a3b10520-us10', 
