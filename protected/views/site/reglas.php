@@ -13,7 +13,7 @@ $this->pageTitle=Yii::app()->name . ' - Términos y Condiciones.';
     ?>
 </div>
 <div class="row">    
-    <div class="col-md-8 col-md-offset-2 panel-gris panel-reglas">
+    <div class="col-md-8 col-md-offset-2 panel-gris panel-reglas no_horizontal_padding">
         <!--HEADER-->
         <div class="row">
             <div class="col-md-12">
@@ -150,7 +150,7 @@ En caso de empate de puntos y presencia de varios usuarios en el evento, se real
                     <div class="col-md-12">
                         <?php
                         echo BsHtml::linkButton('Regresar', array(
-                            'color' => BsHtml::BUTTON_COLOR_PRIMARY,
+                            'class'=>'btn btn-danger',
                             'url' => array("/"),
                         ));
                         ?>

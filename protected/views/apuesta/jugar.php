@@ -11,7 +11,7 @@
 
         <!--CONTENT-->
         <div class="row panel-content">
-            <div class="col-md-12">
+            <div class="col-md-12"> 
                 <!--ALERTS-->
                 <div class="row">
                     <div class="col-md-12">
@@ -74,7 +74,7 @@
                                             <div class="col-xs-12">
                                                 <?php
                                                 echo CHtml::image(Yii::app()->getBaseUrl(true)
-                                                        . str_replace(".", "_thumb.", $local->url), $local->nombre);
+                                                        .  $local->url, $local->nombre);
                                                 ?>
                                             </div>
                                         </div>                                       
@@ -98,7 +98,7 @@
                                             <div class="col-xs-12">
                                                 <?php
                                                 echo CHtml::image(Yii::app()->getBaseUrl(true)
-                                                        . str_replace(".", "_thumb.", $visitante->url), $visitante->nombre);
+                                                        . $visitante->url, $visitante->nombre);
                                                 ?>
                                             </div></div>
                                     </div>

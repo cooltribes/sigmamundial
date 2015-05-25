@@ -3,7 +3,7 @@ $this->pageTitle=Yii::app()->name . ' - Términos y Condiciones.';
 ?>
 
 <div class="row">    
-    <div class="col-md-8 col-md-offset-2 panel-gris panel-terminos">
+    <div class="col-md-8 col-md-offset-2 panel-gris panel-terminos no_horizontal_padding">
         <!--HEADER-->
         <div class="row">
             <div class="col-md-12">
@@ -18,10 +18,10 @@ $this->pageTitle=Yii::app()->name . ' - Términos y Condiciones.';
             <div class="col-md-12">
                 <!--TEXTO-->
                 <div class="row">
-                    <div class="col-sm-10 col-sm-offset-1">
-                        <textarea class="form-control" rows="15" readonly>
+                    <div class="col-sm-10 col-sm-offset-1" style="color:#082b61">
+
                           
-                          Términos y Condiciones Generales  
+                        
                           
                           
 1 Objeto de las Condiciones de Uso – Ámbito de aplicación 
@@ -223,7 +223,7 @@ Procesamos la información que recolectemos de usted de acuerdo con el derecho a
                           
                           
                           
-                        </textarea>
+
                     </div>
                 </div>
                 <!--BOTON-->
@@ -231,7 +231,7 @@ Procesamos la información que recolectemos de usted de acuerdo con el derecho a
                     <div class="col-md-12">
                         <?php
                         echo BsHtml::linkButton('Regresar', array(
-                            'color' => BsHtml::BUTTON_COLOR_PRIMARY,
+                            'class' => "btn btn-danger",
                             'url' => array("/"),
                         ));
                         ?>

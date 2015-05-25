@@ -8,9 +8,9 @@
 	
 	
 	<table width="120" height="60"><tr>
-		<td width="40"><a href="https://twitter.com/SigmaOficial"><img src="http://sigmatiendas.com/mundial/images/twitter.png" height="36px" width="36px" style="margin-top:12px" /></a></td>
-		<td width="40"><a href="http://www.facebook.com/Sigmaoficial"><img src="http://sigmatiendas.com/mundial/images/facebook.png" height="36px" width="36px" style="margin-top:12px" /></a></td>
-		<td width="40"><a href="http://instagram.com/sigmaoficial" ><img src="http://sigmatiendas.com/mundial/images/instagram.png" width="36px" height="36px" style="margin-top:12px" /></a>		
+		<td width="40"><a href="https://twitter.com/SigmaTiendas"><img src="<?php echo Yii::app()->getBaseUrl(true) ?>/images/twitter.png" height="36px" width="36px" style="margin-top:12px" /></a></td>
+		<td width="40"><a href="http://www.facebook.com/SigmaTiendas"><img src="<?php echo Yii::app()->getBaseUrl(true) ?>/images/facebook.png" height="36px" width="36px" style="margin-top:12px" /></a></td>
+		<td width="40"><a href="http://instagram.com/sigmatiendas" ><img src="<?php echo Yii::app()->getBaseUrl(true) ?>/images/instagram.png" width="36px" height="36px" style="margin-top:12px" /></a>		
 		</td>
 		</tr>
 	</table>	
@@ -18,7 +18,7 @@
 		<table width="100%">
 		<tr>
 			<td width="3%" height="105" ></td>
-			<td>	<a href="http://sigmatiendas.com/mundial" ><img src="http://sigmatiendas.com/mundial/images/logo.png" height="63px" width="165px" /></a>
+			<td>	<a href="<?php echo Yii::app()->getBaseUrl(true) ?>" ><img src="<?php echo Yii::app()->getBaseUrl(true) ?>/images/logo.png" height="63px" width="165px" /></a>
 			</td>
 		</tr>
 	</table>

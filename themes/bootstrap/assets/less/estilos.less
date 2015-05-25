@@ -324,6 +324,7 @@ a.bluelink:hover, a.bluelink:focus{
 }
 
 .panel-gris{
+    color: @azul;
     .fondo-gris();
     .panel-content{        
 
@@ -675,13 +676,16 @@ a.bluelink:hover, a.bluelink:focus{
     }
 }
 @media (max-width: 990px){
+  .register-panel{
+    min-height: 185px; 
+  }
   .footer{
-    bottom: auto;
+    bottom: 0px;
     h3{
       font-size: 14px;  
     }
   }
-  .panel-azul{
+  .panel-azul{  
     margin-left:0px;
   }
 }
