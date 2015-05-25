@@ -1,4 +1,3 @@
-
 <div class="well">
 	<div class="row padding_left_large padding_right_large">
 		<div class="col-md-12">
@@ -22,18 +21,14 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
 	<div class="form-group">
 		<label>Sede</label>  
 		<?php echo $form->dropDownList($model, 'sede', array(
-			    'Sao Paulo'=>'Sao Paulo',
-			    'Natal'=>'Natal',
-			    'Fortaleza'=>'Fortaleza',
-			    'Manaos'=>'Manaos',
-			    'Brasilia'=>'Brasilia',
-			    'Recife'=>'Recife',
-			    'Salvador'=>'Salvador',
-			    'Cuiaba'=>'Cuiabá',
-			    'Rio de Janeiro'=>'Rio de Janeiro',
-			    'Porto Alegre'=>'Porto Alegre',
-			    'Curitiba'=>'Curitiba',
-			    'Belo Horizonte'=>'Belo Horizonte',
+			    'Antofagasta'=>'Antofagasta',
+			    'La Serena'=>'La Serena',
+			    'Viña del Mar'=>'Viña del Mar',
+			    'Santiago'=>'Santiago',
+			    'Temuco	'=>'Temuco',
+			    'Rancagua'=>'Rancagua',
+			    'Valparaiso'=>'Valparaiso',
+			    'Concepción'=>'Concepción', 
 			), array(
 			    'empty' => 'Seleccione la sede del encuentro.'
 			));
@@ -70,13 +65,7 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
 	<div class="form-group">
 		<label>Ronda</label>
 		<?php echo $form->dropDownList($model, 'ronda', array(
-			    'Primera'=>'Primera ronda',
-			    'Octavos'=>'Octavos de final',
-			    'Cuartos'=>'Cuartos de final',
-			    'Semifinal'=>'Semifinal',
-			    'Final'=>'Final'
-			), array(
-			    'empty' => 'Seleccione la ronda.'
+			    ' '=>'General',
 			));
 		?>
 	</div>

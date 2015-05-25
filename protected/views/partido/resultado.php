@@ -67,7 +67,7 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
 			$texto = $local->nombre;
 			?>
 	
-			<label><?php echo CHtml::image(Yii::app()->getBaseUrl(true).str_replace(".","_thumb.",$local->url), $local->nombre, array('width'=>40, 'height'=>25))." ".$texto;?></label>
+			<label><?php echo CHtml::image(Yii::app()->getBaseUrl(true).str_replace(".","_thumb.",$local->url), $local->nombre)." ".$texto;?></label>
 			
 			<?php
 			
@@ -83,7 +83,7 @@ $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
 			$texto = $visitante->nombre;
 			?>
 			
-			<label><?php echo $texto." ".CHtml::image(Yii::app()->getBaseUrl(true).str_replace(".","_thumb.",$visitante->url), $visitante->nombre, array('width'=>40, 'height'=>25));?></label>
+			<label><?php echo $texto." ".CHtml::image(Yii::app()->getBaseUrl(true).str_replace(".","_thumb.",$visitante->url), $visitante->nombre);?></label>
 			
 			<?php
 				echo $form->numberField($model, 'gol_visitante', array(
