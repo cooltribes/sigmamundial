@@ -1,3 +1,14 @@
+<style>
+textarea{
+    resise: none;
+}
+#emailInvite-form_bulkEmailList{
+    background: white;
+}
+#emailInvite-form_bulkEmails{
+    border:1px dotted #ccc ;
+}
+</style>
 <?php
 $this->breadcrumbs=array(
     "Invitar amigos",
@@ -6,22 +17,25 @@ $this->breadcrumbs=array(
 $create_time = strtotime($model->create_at);
 $create_date = date('j M Y', $create_time);
 ?>
-<div class="container">
-    <div class="row-fluid">
-        <div class="col-md-9">
-                <div class="page-header">
-                    <h1>Invita tus amigos a participar en la #QuinielaGratis</h1>
+
+<div class="row">
+
+    <div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1 col-xs-12 col-xs-offset-0 panel-gris no_horizontal_padding">
+        
+                <div class="col-md-12 panel-header">
+           
+                      <h3>Invita tus amigos a participar en la #QuinielaGratis</h3> 
                 </div>
+                
                 <?php 
                       $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
                           'id'=>'emailInvite-form',
                           'action' => $this->createUrl('sendEmailInvs'),
-                          'htmlOptions'=>array('class'=>'form-stacked braker_horz_top_1 no_margin_bottom'),
+                          'htmlOptions'=>array('class'=>'form-stacked braker_horz_top_1 padding_left padding_right'),
                       ));
                 ?>
-                    <fieldset>
-                        <div class="row">
-                            <div class="col-md-8">                            
+              
+                                        
                                 <div class="control-group">
                                     <label class="control-label required">Ingresa los correos electrónicos de tus amigos: </label>
                                     <div class="controls">
@@ -38,27 +52,26 @@ $create_date = date('j M Y', $create_time);
                                         <span class="help-block error" id="User_emails_em_" style="display: none;"> Debes ingresar al menos una dirección de correo electrónico </span>
                                     </div>
                                 </div>
-                                <div class="control-group">
+                                <div class="control-group clearfix">
                                     <label class="control-label required">Escribe un mensaje personal: </label>
                                     <div class="controls">
                                         <?php 
                                        echo CHtml::textArea('invite-message',"",
-                                       array('class' => 'col-md-8', 'rows' => '4','placeholder'=>"Escribe algo para invitar a tus amigos"));
+                                       array('class' => 'col-md-12', 'rows' => '4','placeholder'=>"Escribe algo para invitar a tus amigos"));
                                        ?>
                                        <span class="help-block error" id="invite_mess_em_" style="display: none;"> Debes escribir un mensaje </span>
                                     </div>    
                                 </div>                            
-                            </div>
+                         
+                        <div class="form-actions text-center"> 
+                            <a id="enviarInvitaciones" class="btn btn-danger margin_bottom margin_top_small">Enviar invitaciones</a> 
                         </div>
-                        <div class="form-actions"> 
-                            <a id="enviarInvitaciones" class="btn-large btn btn-danger offset5">Enviar invitaciones</a> 
-                        </div>
-                    </fieldset>
-                <?php $this->endWidget(); ?>   
-            </div>            
-        </div>
-    </div>
-<!-- /container -->
+          
+                <?php $this->endWidget(); ?>
+                
+                
+     </div>
+</div>
 
 <script type="text/javascript">
     $('#enviarInvitaciones').click(function(ev){

@@ -11,7 +11,7 @@ function actual_date()
     return $date;  
 }
 $contPartidos=count($partidos);
-$days= -1;//round((strtotime('2015-06-11 00:00:00')-strtotime(date('Y-m-d h:i:s')))/ (60 * 60 * 24));
+$days= round((strtotime('2015-06-11 00:00:00')-strtotime(date('Y-m-d h:i:s')))/ (60 * 60 * 24));
 ?>
 
 <div class="row">
