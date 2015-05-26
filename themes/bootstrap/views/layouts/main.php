@@ -157,16 +157,14 @@ $this->widget('bootstrap.widgets.BsNavbar', array(
                 
 				array(
                     'label' => 'Partidos',
-                    'url' => '/mundial/partido/admin',
+                    'url' => Yii::app()->baseUrl.'/partido/admin',
                     'pull' => BsHtml::NAVBAR_NAV_PULL_RIGHT,
-                
             	),
             	
             	array(
                     'label' => 'Usuarios',
-                    'url' => '/mundial/user/admin',
+                    'url' => Yii::app()->baseUrl.'/user/admin',
                     'pull' => BsHtml::NAVBAR_NAV_PULL_RIGHT,
-                
             	),
 				
             'htmlOptions' => array(

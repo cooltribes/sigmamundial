@@ -21,7 +21,76 @@ class SiteController extends Controller
 			),
 		);
 	}
-   
+
+    public function actionInvitar()
+    {
+        $model = User::model()->findByPk(Yii::app()->user->id);        
+        $this->render('invitar',array(
+            'model'=>$model,
+            'profile'=>$model->profile,
+        ));
+    }
+    
+    /**
+	* Envia las invitaciones por email
+	*/
+	public function actionSendEmailInvs()
+	{	
+    	$result = array();   
+        if(isset($_POST['User']['emailList']) ){
+                
+	        $emails = $_POST['User']['emailList'];                
+	        $textoMensaje = isset($_POST['invite-message'])? $_POST['invite-message'] : "";
+	        $model = User::model()->findByPk(Yii::app()->user->id);        
+                
+            //Cada email de la lista de invitados
+            foreach ($emails as $email) {   
+                $requestId = UserModule::encrypting($email.$model->id);
+                $registration_url = $this->createAbsoluteUrl('/site/index', array("email" => $email, "requestId" => $requestId));
+                
+                #Mail de invitación a cada uno
+				$message = new YiiMailMessage;				
+				$message->view = "mail_template";
+				$subject = '¡Te han invitado a jugar en la Quiniela Gratis de Sigma Tiendas!';
+				$body = "¡Hola! Tienes una invitación para registrate en la Quiniela Gratis de la Copa America que trae Sigmatiendas.com para ti.
+						<strong>".$model->nombre.".</strong><br/><br/><i>".$textoMensaje."</i><br/><br/> Empieza a realizar tus pronosticos para los partidos diarios y gana un TV de 39 pulgadas.<br/>
+						Registrate usando el siguiente enlace: <br/><br/><a href='".$registration_url."'>Clic Aquí</a>";
+				$params = array('subject'=>$subject, 'body'=>$body);
+				$message->subject    = $subject; 
+				$message->setBody($params, 'text/html');                
+				$message->addTo($email);
+				$message->from = array('info@sigmatiendas.com' => 'Sigma es Fútbol');
+				Yii::app()->mail->send($message);
+                
+                //Guardar la invitacion en BD
+                $invitation = Invitacion::model()->findByAttributes(array('user_id'=>$model->id, 'request_id'=>$requestId));                                       
+                
+                if(!$invitation){
+                    $invitation = new Invitacion();
+                    $invitation->user_id = $model->id;
+                    $invitation->email_invitado = $email;                    
+                    $invitation->request_id = $requestId;
+                    $invitation->fecha = date('Y-m-d H:i:s');                                           
+                }else{
+                    $invitation->fecha = date('Y-m-d H:i:s');                       
+                }
+                 $invitation->save();
+            }
+                
+            $result['status'] = 'success';
+            $result['redirect'] = $this->createUrl('apuesta/partidos');
+            Yii::app()->user->updateSession();
+            Yii::app()->user->setFlash('success', '¡Se han enviado tus invitaciones!');
+                
+        }else{
+           $result['status'] = 'error';
+           $result['message'] = 'Debes ingresar al menos una dirección email';
+        }
+          
+        echo function_exists('json_encode') ? json_encode($result) : CJSON::encode($result);                
+        Yii::app()->end();             
+	}
+
 	/**
 	 * This is the default 'index' action that is invoked
 	 * when an action is not explicitly requested by users.
@@ -36,6 +105,12 @@ class SiteController extends Controller
 		$user = new User;
 		$representante = new Representante;
 		$login = new UserLogin; 
+
+		#Si llega de invitacion se guardan en sesion
+		if (isset($_GET['requestId']) && isset($_GET['email'])) { 
+			Yii::app()->session['requestId'] = $_GET['requestId'];
+			Yii::app()->session['email'] = $_GET['email'];	 
+		}
 
 		if(isset($_POST['User'])){
 			$user->attributes=$_POST['User'];
@@ -67,10 +142,10 @@ class SiteController extends Controller
 				}
 
 				$activation_url = $this->createAbsoluteUrl('/user/activation/activation',array("activkey" => $user->activkey, "email" => $user->email));
-				$body = 'Te has registrado para vivir la experiencia Sigma con la #QuinielaGratis de la Copa America CHILE 2015.<br/><br/>Recuerda jugar diariamente en la quiniela. <a href="'.Yii::app()->params['landingpage'].'">Sigma Es Copa America</a>.';
+				$body = 'Te has registrado para vivir la experiencia Sigma con la #QuinielaGratis de la Copa America Chile 2015.<br/><br/>Recuerda jugar diariamente en la quiniela. <a href="'.Yii::app()->params['landingpage'].'">Sigma Es Fútbol</a>.';
 
 				$message = new YiiMailMessage;
-				$message->view = 'mail_template';
+				$message->view = 'mail_template'; 
 				 
 				//userModel is passed to the view
 				$message->setSubject('Has creado una cuenta para participar en la Quiniela Gratis.');
@@ -106,6 +181,23 @@ class SiteController extends Controller
                     'double_optin' => false, 
                     'send_welcome' => false,
                 ));
+
+                //Si se registra por invitación
+	            if (isset(Yii::app()->session['requestId']) && isset(Yii::app()->session['email'])) { 
+
+	                $invitation = Invitacion::model()->findByAttributes(array('request_id' => Yii::app()->session['requestId']));
+	                if($invitation && $invitation->email_invitado == $user->email){
+	                    $invitation->estado = 1;
+	                    $invitation->save();
+	                }
+
+	                #Quitando las variables de sesion
+	                unset(Yii::app()->session['email']);
+	                unset(Yii::app()->session['requestId']);
+	                
+	                #enviar correo con 1% de descuento al que envio la invitacion
+
+	            }
 
 				$identity=new UserIdentity($user->email, $user->password);
 				$identity->username = $user->email;
