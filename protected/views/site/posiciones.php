@@ -1,3 +1,16 @@
+<style>
+.table-striped > tbody > tr:nth-child(2n) > td, .table-striped > tbody > tr:nth-child(2n) > th {
+   background-color: #a5c4d6;
+}
+.table-striped > tbody > tr > th{
+    color: white;
+    background-color: #ba1928 !important;
+}
+.table-striped > tbody > tr> td > a, .table-striped > tbody > tr > td > a:hover{
+    color: #082b61;
+}
+</style>
+
 <div class="row">
 
 	<div class="col-md-12 panel-gris" style="margin-bottom: 2em;">
@@ -14,12 +27,12 @@
 		<div class="alert alert-info" role="alert" style="text-align: center;"> Recuerda publicar tus predicciones en Twitter para poder participar por los premios.</div>
 		
 		<!-- Nav tabs -->
-		<ul class="nav nav-tabs" role="tablist">
+	<!--  	<ul class="nav nav-tabs" role="tablist">
 		  <li class="active"><a href="#general" role="tab" data-toggle="tab">General</a></li>
 		  <li><a href="#primera" role="tab" data-toggle="tab">Primera Ronda</a></li>
 		  <li><a href="#segunda" role="tab" data-toggle="tab">Segunda Ronda</a></li>
 		</ul>
-		
+	-->	
 		<!-- Tab panes -->
 		<div class="tab-content">
 			
@@ -63,7 +76,7 @@
 				?>
 		  		
 		  	</div>
-		  <div class="tab-pane" id="primera">
+		<!--    <div class="tab-pane" id="primera">
 		 		<?php
 		
 				$apuesta = new Apuesta;
@@ -144,7 +157,7 @@
 				
 				?>
 		
-		  </div>
+		  </div> -->
 		</div>
 		
 		</div>

@@ -10,18 +10,11 @@
         <?php
     } else {
         ?>
-        <div class="col-md-6 col-md-offset-3 panel-azul">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="col-md-12 panel-header">
-                        <h3>Cambiar contraseña</h3>                      
-                    </div>
-                </div>
-            </div>
-            <div class="row panel-content">
-                <div class="col-md-12">
-                    <div class="row">
-                        <div class="col-sm-10 col-sm-offset-1">
+         <div class="col-md-6 col-md-offset-3">
+        <div class="panel-azul no_horizontal_padding">
+          <div class="panel-header"> 
+                        <h3>Establece tu contraseña</h3>                      
+          </div>
                             <?php $form2=$this->beginWidget('bootstrap.widgets.BsActiveForm', array(
                                 //'action'=>'user/login',
                                 //'layout' => BsHtml::FORM_LAYOUT_HORIZONTAL,
@@ -36,13 +29,13 @@
 
                             <?php echo $form2->errorSummary(array($form)); ?>
 
-                            <div class="form-group">
+                            <div class="form-group padding_left padding_right">
                               <?php 
                               echo $form2->passwordField($form, "password", array());
                               ?>
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group padding_left padding_right">
                               <?php 
                               echo $form2->passwordField($form, "verifyPassword", array());
                               ?>
@@ -50,16 +43,13 @@
 
                             <div class="form-group text-center">
                               <?php echo BsHtml::submitButton("Guardar", array(
-                                "color" => BsHtml::BUTTON_COLOR_DANGER,
-                                'size' => BsHtml::BUTTON_SIZE_LARGE,
+                                "class"=>'btn btn-danger'
                               )); ?>
                             </div>
                             <?php $this->endWidget(); ?>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                            </div>
         </div>
+                       
         <?php
     }
     ?>
