@@ -88,9 +88,34 @@ if($verified){
 
 		<?php echo BsHtml::submitButton("Registrarse", array(
 			"color" => BsHtml::BUTTON_COLOR_DANGER,
-		
+			'id' => 'verificar',
 			"disabled" => $disabled,
 		)); ?> 
 
 	</div>
 	<?php $this->endWidget(); ?>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(function() {
+
+            $("#verificar").click(function(e){
+            	if($('#nombre_representante').is(':hidden')){
+	                var age = 18; 
+	                var mydate = new Date($("#User_fecha_nacimiento").val());
+	                mydate.setFullYear(mydate.getFullYear());
+	                var currdate = new Date();
+	                currdate.setFullYear(currdate.getFullYear() - age);
+	                if ((currdate - mydate) < 0){
+	                	e.preventDefault();
+	                    alert("Lo sentimos, el registro es para mayores de edad. Incluye los datos de tu representante");
+	                    $("#email_representante").show("slow");
+	                    $("#nombre_representante").show("slow");
+	                    $("#Representante_email").attr('required','required');
+	                    $("#Representante_nombre").attr('required','required');
+	                } 
+	            }
+            });   
+        });
+	});
+</script>
