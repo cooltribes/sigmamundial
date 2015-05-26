@@ -183,6 +183,10 @@ $this->widget('bootstrap.widgets.BsNavbar', array(
     position: relative;
     height:auto;
  }
+.toHome,.toHome:hover, .toHome:focus, .toHome:visited{
+text-decoration: none;
+
+}
 </style> 
     
 <div id="wrappin" class="clearfix">
@@ -197,7 +201,7 @@ $this->widget('bootstrap.widgets.BsNavbar', array(
         </div>
         
         <div class="col-xs-12 col-sm-6 col-md-6 text-center main-title">
-            <h1>#QuinielaGratis</h1>
+            <a class="toHome" href="<?php echo Yii::app()->baseUrl; ?>"><h1>#QuinielaGratis</h1></a>
            
         </div>
         
@@ -233,11 +237,15 @@ $this->widget('bootstrap.widgets.BsNavbar', array(
                         $fase="Segunda";                 
                     ?>
                     <div class="row text-right user-info">
-                        <div class="col-md-12">
+                        <div class="col-md-7 col-xs-7 text-left">
+                           <small><a href="../site/posiciones">Tabla de posiciones</a></small>
+                            
+                        </div>
+                        <div class="col-md-5 col-xs-5">
                             Puntos: <strong><?php echo $user->puntos; ?></strong>
                             
                         </div>
-                    </div>                    
+                    </div>                     
                 </div>
             </div>
         </div>

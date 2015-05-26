@@ -14,43 +14,6 @@ $contPartidos=count($partidos);
 $days= -1;//round((strtotime('2015-06-11 00:00:00')-strtotime(date('Y-m-d h:i:s')))/ (60 * 60 * 24));
 ?>
 
-<style>
-.versus{
-  line-height: 70px;
-  vertical-align: middle;
-  color: #ba1928;
-  font-weight: bolder;
-  font-size:20px;
-  
-}
-.marcador{
-  color: #082b61;
-  font-size: 28px;
-  font-weight: bolder;
-
-}
-.bandera{
-    width:100%;
-    margin-bottom:5px;
-}
-a{
-    text-decoration:none;
-}
-
-.btn-twitter{
-background-image: url(../images/twitter_transparente.png);
-  background-size: 15px 15px;
-  background-repeat: no-repeat;
-  background-position: 8px 8px;
-  padding-left: 30px;
-}
-.sede{
-      font-size:20px;
-}
-
-
-</style>
-
 <div class="row">
 
     <div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1 col-xs-12 col-xs-offset-0 panel-gris no_horizontal_padding">
