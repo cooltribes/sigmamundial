@@ -263,7 +263,7 @@ $this->widget('bootstrap.widgets.BsNavbar', array(
   
  <div id="footer" class="row-fluid clearfix"> 
     <h3 class="text-center no_margin_bottom">
-        Acierta los resultados de los partidos de la Copa América y gana un TV 40" <img src="<?php echo Yii::app()->baseUrl; ?>/images/samsung.png" height="35px"/>
+        Acierta los resultados de los partidos de la Copa América y gana un TV 39" <img src="<?php echo Yii::app()->baseUrl; ?>/images/samsung.png" height="35px"/>
     </h3>
     <div class="row-fluid clearfix margin_bottom_xsmall">
         <div class="col-md-6 col-xs-6 text-left"> 

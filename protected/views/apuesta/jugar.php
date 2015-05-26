@@ -1,51 +1,50 @@
-<div class="row">    
-    <div class="col-md-8 col-md-offset-2 panel-gris panel-apuesta">
-        <!--HEADER-->
-        <div class="row">
-            <div class="col-md-12">
+<style>
+.versus{
+  line-height: 170px;
+  vertical-align: middle;
+  color: #ba1928;
+  font-weight: bolder;
+  font-size:20px;
+  
+}
+.marcador{
+  color: #082b61;
+  font-size: 28px;
+  font-weight: bolder;
+
+}
+.bandera{
+    width:100%;
+   margin-bottom:5px;
+}
+a{
+text-decoration:none;
+}
+
+.btn-twitter{
+background-image: url(../images/twitter_transparente.png);
+  background-size: 21px 21px;
+  background-repeat: no-repeat;
+  background-position: 4px 7px;
+  padding-left: 30px;
+}
+.sede{
+      font-size:20px;
+}
+
+
+</style>
+
+<div class="row">
+
+    <div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1 col-xs-12 col-xs-offset-0 panel-gris no_horizontal_padding">
+        
                 <div class="col-md-12 panel-header">
-                    <h3>Partido</h3>                      
+           
+                      <h3>Partido</h3> 
                 </div>
-            </div>
-        </div>
-
-        <!--CONTENT-->
-        <div class="row panel-content">
-            <div class="col-md-12"> 
-                <!--ALERTS-->
-                <div class="row">
-                    <div class="col-md-12">
-                        <?php if (Yii::app()->user->hasFlash('success')) { ?>
-                            <div class="alert in alert-block fade alert-success text_align_center">
-                                <?php echo Yii::app()->user->getFlash('success'); ?>
-                            </div>
-                        <?php } ?>
-                        <?php if (Yii::app()->user->hasFlash('error')) { ?>
-                            <div class="alert in alert-block fade alert-error text_align_center">
-                                <?php echo Yii::app()->user->getFlash('error'); ?>
-                            </div>
-                        <?php } ?>
-                    </div>
-                </div>
-
-                <!--TITULO-->
-                <div class="row titulo">
-                    <div class="col-sm-6 col-sm-offset-1">
-                        <h3>Tu resultado del juego</h3>
-                    </div>
-                </div>
-
-                <!--PARTIDO-->
-                <div class="row partido">
-                    <!--APUESTA-->
-                    <div class="col-sm-6 col-sm-offset-1">
-                        
-                        <!--PANEL-->
-                        <div class="panel panel-default box box-partido">
-                            
-                            <!--PANEL BODY-->
-                            <div class="panel-body">
-                                <?php
+                <div class="margin_top">
+                    <?php
                                 $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
                                     'layout' => BsHtml::FORM_LAYOUT_HORIZONTAL,
                                     'enableAjaxValidation' => false,
@@ -55,140 +54,90 @@
                                         'enctype' => 'multipart/form-data',
                                     )
                                 ));
-                                ?>
-                                <div class="row"><?php echo $partido->sede; ?></div>
+                    ?>
+                    
+                    <?php
+                    $local = Equipo::model()->findByPk($partido->id_local);
+                    
+                    ?>
+                   
+                    <?php
+                    $visitante = Equipo::model()->findByPk($partido->id_visitante);
+                    
+                    ?>
+                   
+                    
+                    
+                    <div class="text-center margin_bottom_xsmall sede">
+                                <b><?php  echo $partido->sede." - ".date('H:i', strtotime($partido->fecha)); ?> </b>
+                             </div>
+                                                      
+                                 
+                                 <div class="row-fluid clearfix">
+                                     <div class="col-md-10 col-md-offset-1 col-xs-12 col-xs-offset-0">
+                                        <div class="row-fluid">
+                                            <div class="col-xs-5 text-center">
+                                                <?php 
+                                                echo CHtml::image(Yii::app()->getBaseUrl(true).$local->url, $local->nombre,array('class'=>'bandera'));
+                                               ?> <span class="marcador">
+                                                <?php
+                                                echo $local->nombre; 
+                                                 echo $form->numberField($apuesta, 'local', array(
+                                                    'placeholder' => 'Goles',
+                                                    'min' => 0,
+                                                    'class' => 'form-control text-center'
+                                                ));
+                                                
+                                                
+                                                ?>
+                                              </span>
+                                            </div>
+                                            <div class="col-xs-2 text-center versus">
+                                            VS
+                                            </div>
+                                            <div class="col-xs-5 text-center">
+                                            <?php 
+                                                echo CHtml::image(Yii::app()->getBaseUrl(true).$visitante->url, $visitante->nombre,array('class'=>'bandera'));
+                                              ?>
+                                              <span class="marcador">
+                                                <?php
+                                                    echo $visitante->nombre;
+                                                    echo $form->numberField($apuesta, 'visitante', array(
                                 
-                                <div class="row equipos">
-                                    <div class="col-xs-5">
-                                        <!--nombre-->
-                                        <div class='row'>
-                                            <div class="col-xs-12 nombre">
-                                                <?php
-                                                $local = Equipo::model()->findByPk($partido->id_local);
-                                                echo $local->nombre
-                                                ?>
+                                                        'placeholder' => 'Goles',
+                                                        'min' => 0,
+                                                        'class' => 'form-control text-center'
+                                                    ));
+                                                    ?>
+                                              </span>
+                                              
                                             </div>
+                                        
                                         </div>
-                                        <!--bandera-->
-                                        <div class='row'>
-                                            <div class="col-xs-12">
-                                                <?php
-                                                echo CHtml::image(Yii::app()->getBaseUrl(true)
-                                                        .  $local->url, $local->nombre);
-                                                ?>
-                                            </div>
-                                        </div>                                       
-
-                                    </div> 
-                                    <div class="col-xs-2 col-md-2 vs">
-                                        <h2>VS</h2>
-                                    </div>
-
-                                    <div class="col-xs-5 col-md-5">
-                                        <div class='row'>
-                                            <div class="col-xs-12 nombre">
-                                                <?php
-                                                $visitante = Equipo::model()->findByPk($partido->id_visitante);
-                                                echo $visitante->nombre;
-                                                ?>
-                                            </div>
-                                        </div>
-
-                                        <div class='row'>
-                                            <div class="col-xs-12">
-                                                <?php
-                                                echo CHtml::image(Yii::app()->getBaseUrl(true)
-                                                        . $visitante->url, $visitante->nombre);
-                                                ?>
-                                            </div></div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <?php echo date("h:i a", strtotime($partido->fecha)); ?>
-                                </div>
-                                <div class="row equipos">
-                                    <div class="col-xs-5">
-                                        <?php
-                                        echo $form->numberField($apuesta, 'local', array(
-//                                            'placeholder' => 'Goles de ' . $local->nombre,
-                                            'placeholder' => 'Goles',
-                                            'min' => 0,
-                                            'class' => 'form-control text-center'
-                                        ));
-                                        ?>
-                                    </div>
-                                    <div class="col-xs-5 col-xs-offset-2">
-                                        <?php
-                                        echo $form->numberField($apuesta, 'visitante', array(
-//                                            'placeholder' => 'Goles de ' . $visitante->nombre,
-                                            'placeholder' => 'Goles',
-                                            'min' => 0,
-                                            'class' => 'form-control text-center'
-                                        ));
-                                        ?>
-                                    </div>
-                                </div>
-                                <div class="row boton-apostar">
-                                    <div class="col-xs-12">
-                                        <?php
-                                        echo BsHtml::submitButton('Enviar resultado', array(
-                                            'color' => BsHtml::BUTTON_COLOR_PRIMARY
-                                        ));
-                                        ?>
-                                    </div>
-                                </div>
-                                <?php
-                                $this->endWidget();
-                                ?> 
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!--TIEMPO-->
-                    <div class="col-sm-4">
-                        <!--PANEL-->
-                        <div class="panel panel-default box-tiempo">
-                            <!--PANEL BODY-->
-                            <div class="panel-body">
-                                
-                                <!--CONTADOR-->
-                                <div class="row">
-                                    <div class="col-xs-12">
-                                        <?php
-                                        $this->widget('ext.duciscounter.DucisCounter', array(
-                                            'start_timestamp' => strtotime(date("Y-m-d 00:00:00")),
-                                            'end_timestamp' => strtotime('-10 minutes', strtotime($partido->fecha)),
-                                            'now' => strtotime('-30 minutes', strtotime(date('Y-m-d H:i:s')))
-                                                )
-                                        );
-                                        ?>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--TIEMPO-->
+                                     
+                                     </div>
+                                 
+                                 </div>
                     
                     
-                </div>
-                </div>
-                <!--BOTON REGRESAR-->
-                <div class="row boton-regresar">
-                    <div class="col-md-12">
-                        <?php
-                        echo BsHtml::linkButton('Regresar', array(
-                            'color' => BsHtml::BUTTON_COLOR_PRIMARY,
-                            'url' => array("apuesta/partidos"),
+                    
+                    
+                    <div class="text-center padding_bottom margin_top">
+                    
+                    <?php
+                        echo BsHtml::submitButton('Enviar resultado', array(
+                            'class' => "btn-danger"
                         ));
-                        ?>
+                    ?>
                     </div>
+                    <?php
+                    $this->endWidget();
+                  ?>
+                
+                                     
                 </div>
-
-
-
-            </div>
-        </div>
+           
+           
     </div>
-
+        
 </div>
-

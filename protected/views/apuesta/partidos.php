@@ -11,7 +11,7 @@ function actual_date()
     return $date;  
 }
 $contPartidos=count($partidos);
-$days= round((strtotime('2015-06-11 00:00:00')-strtotime(date('Y-m-d h:i:s')))/ (60 * 60 * 24));
+$days= -1;//round((strtotime('2015-06-11 00:00:00')-strtotime(date('Y-m-d h:i:s')))/ (60 * 60 * 24));
 ?>
 
 <style>
@@ -31,17 +31,17 @@ $days= round((strtotime('2015-06-11 00:00:00')-strtotime(date('Y-m-d h:i:s')))/ 
 }
 .bandera{
     width:100%;
-   margin-bottom:5px;
+    margin-bottom:5px;
 }
 a{
-text-decoration:none;
+    text-decoration:none;
 }
 
 .btn-twitter{
 background-image: url(../images/twitter_transparente.png);
-  background-size: 21px 21px;
+  background-size: 15px 15px;
   background-repeat: no-repeat;
-  background-position: 4px 7px;
+  background-position: 8px 8px;
   padding-left: 30px;
 }
 .sede{
@@ -56,7 +56,7 @@ background-image: url(../images/twitter_transparente.png);
     <div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1 col-xs-12 col-xs-offset-0 panel-gris no_horizontal_padding">
         
                 <div class="col-md-12 panel-header">
-               <?php if($days<1 && $days>-29): ?>
+               <?php if($days<1&&$days>-30): ?> 
                       <h3>Apuesta del día - <?php echo date('d/m/Y'); ?></h3>  
                     
                <?php else: ?>
@@ -99,7 +99,8 @@ background-image: url(../images/twitter_transparente.png);
                                                 <?php 
                                                 echo CHtml::image(Yii::app()->getBaseUrl(true).$local->url, $local->nombre,array('class'=>'bandera'));
                                                ?> <span class="marcador">
-                                                <?php echo isset($apuesta)?$apuesta->visitante:"-"; ?>
+                                               <?php echo isset($apuesta)?$apuesta->local:"-"; ?>
+                                                
                                               </span>
                                             </div>
                                             <div class="col-xs-2 text-center versus">
@@ -110,7 +111,8 @@ background-image: url(../images/twitter_transparente.png);
                                                 echo CHtml::image(Yii::app()->getBaseUrl(true).$visitante->url, $visitante->nombre,array('class'=>'bandera'));
                                               ?>
                                               <span class="marcador">
-                                                <?php echo isset($apuesta)?$apuesta->local:"-"; ?>
+                                                <?php echo isset($apuesta)?$apuesta->visitante:"-"; ?>
+                                                
                                               </span>
                                               
                                             </div>
