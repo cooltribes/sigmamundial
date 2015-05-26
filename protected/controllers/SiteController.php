@@ -399,50 +399,52 @@ class SiteController extends Controller
 	{
 		$this->render('terminos');
 	}
+	
 	public function actionReglas()
 	{   
 		$this->render('reglas');
 	}
 	
-	/*
+	public function actionGiftCard(){   
+		$this->render('giftcard');
+	}
+
+	
 	public function actionMailTest(){
 		
 		$local = Equipo::model()->findByPk(9);
-		$visitante = Equipo::model()->findByPk(16);
-		$user = User::model()->findByPk(81);
+		$visitante = Equipo::model()->findByPk(10);
+		$user = User::model()->findByPk(23);
 		
-						// codigo para traer una gift card 
-						$CuponAEnviar = Cupon::model()->findByAttributes(array('enviado'=>0));
-						$CuponAEnviar->enviado = 1;
-						$CuponAEnviar->fecha_envio = date('Y-m-d');
-						$CuponAEnviar->save();
-												
-						// enviar mails a los ganadores
+// enviar mails a los ganadores
 						$message = new YiiMailMessage;				
 						$message->view = "mail_template";
-						$subject = '¡Has ganado en Sigma Es Mundial!';
+						$subject = '¡Has ganado en Sigma Es Fútbol!';
 						
 						$body = "<table>
 								<tr><td height='40' colspan='2'> ¡Hola <strong>".$user->nombre."</strong>! </td></tr>
-								<tr><td colspan='2'>Sigma te premia por haber acertado el resultado del partido obsequiandote una Gift Card de Bs. 300.</td></tr>
+								<tr><td colspan='2'>Sigma te premia por haber acertado el resultado del partido obsequiandote un porcentaje de descuento sobre tu compra.</td></tr>
 								
 								<tr><td colspan='2'> Encuentro: ".$local->nombre." 3 - 1 ".$visitante->nombre."</td></tr>
 								
-								<tr><td colspan='2'>Comienza a disfrutar de tu Gift Card usándola en cualquier sucursal del pais o en nuestra web http://sigmatiendas.com </td></tr>
 								<tr><td colspan='2'>(Para ver la Gift Card permite mostrar las imagenes de este correo) </td></tr>
 								<br/>
 								
-								<tr><td colspan='2' align='center'>".CHtml::image(Yii::app()->getBaseUrl(true)."/images/giftcard.png")."</td></tr>
-								<tr>
-									<td colspan='4'><strong>Código: </strong><br/>".$CuponAEnviar->codigo."</td> 
-									<td colspan='4'></td>
-									<td colspan='4'></td>
-									<td colspan='4'>Para: ".$user->nombre."<br/>Mensaje: Ganaste en la quiniela</td>
-								</tr>
-								<tr><td align='center' height='30' colspan='2'>Válida desde 12-06-2014 hasta 12-08-2014</td></tr>
+								<tr><td colspan='2' align='center'>".CHtml::image(Yii::app()->getBaseUrl(true)."/images/giftcard.jpg")."</td></tr>
 								
-								<tr><td colspan='2' align='center' height='40'>NORMAS DE USO: 1.- Válido en todas las sucursales Sigma a nivel nacional y en portal web. <br/>
-								2.- Canjeable solo en compras con un monto mayor a Bs. 2.000,00. 3.- Sólo se podrá utilizar un gift card por factura.
+								<tr><td colspan='2' align='center' height='40'>Normas de la GiftCard Sigma Systems Copa América 2015:
+								<br/>
+								1.- Válidas hasta el 04 de agosto 2015. <br/>
+								2.- Las GiftCards son <strong>acumulables, personales e intransferibles</strong>. <br/>
+								3.- Cada una está valorada en <strong>1% de descuento</strong> y sólo son enviadas al haber acertado de resultado del partido.<br/>
+								4.- Cada persona podrá acumular hasta un máximo de 26% de descuento. <br/>
+								5.- Exclusivo para la persona portadora de la Cédula de identidad inscrita en el concurso. <br/>
+								6.- Las GiftCard son de uso exclusivo de personas naturales. <br/>
+								7.- Los cupones de descuento no se pueden usar sin un código de compra. <br/>
+								8.- Al finalizar se les hará llegar a todos los participantes una Giftcard con código de compra y también mostrará en letras grandes el descuento acumulado para poder realizar compras de productos Samsung*.<br/>
+								<br/>Más detalles de estas en: <a href='".Yii::app()->baseUrl."/site/giftcard'>Normas para el uso de la GiftCard</a><br/>
+								<small>* y Productos de otras marcas que encuentren en la tienda.</small><br/>
+
 								</td></tr>
 								<tr><td colspan='2' align='center' height='40'>
 									San Cristóbal: Centro Comercial Las Lomas, Local L-30  / Centro Sambil, Nivel Autopista, Local T-88<br/>
@@ -458,10 +460,10 @@ class SiteController extends Controller
 						$message->subject    = $subject;
 						$message->setBody($params, 'text/html');                
 						$message->addTo("dduque@upsidecorp.ch");
-						$message->from = array('info@sigmatiendas.com' => 'Sigma Es Mundial');
+						$message->from = array('info@sigmatiendas.com' => 'Sigma Es Fútbol');
 						Yii::app()->mail->send($message);
 	}
-	
+	/*
 	public function actionActualizarPuntos(){
 		
 		

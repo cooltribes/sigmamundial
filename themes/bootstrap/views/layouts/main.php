@@ -268,8 +268,9 @@ $this->widget('bootstrap.widgets.BsNavbar', array(
             Sigmasys C.A. - J-29468637-0
         </div>  
         <div class="col-md-6 col-xs-6 text-right">
+        <a href="<?php echo Yii::app()->baseUrl; ?>/site/giftcard">Normas de Giftcard</a>        <b>|</b>
         <a href="<?php echo Yii::app()->baseUrl; ?>/site/reglas">Reglas del Juego</a>        <b>|</b>
-            <a href="<?php echo Yii::app()->baseUrl; ?>/site/terminos_y_condiciones">Términos y Condiciones</a>    
+        <a href="<?php echo Yii::app()->baseUrl; ?>/site/terminos_y_condiciones">Términos y Condiciones</a>    
         </div>
     </div>
          
