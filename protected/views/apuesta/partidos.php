@@ -11,7 +11,7 @@ function actual_date()
     return $date;  
 }
 $contPartidos=count($partidos);
-$days= round((strtotime('2015-06-11 00:00:00')-strtotime(date('Y-m-d h:i:s')))/ (60 * 60 * 24));
+$days= -1; //round((strtotime('2015-06-11 00:00:00')-strtotime(date('Y-m-d h:i:s')))/ (60 * 60 * 24));
 ?>
 
 <div class="row">
@@ -90,11 +90,17 @@ $days= round((strtotime('2015-06-11 00:00:00')-strtotime(date('Y-m-d h:i:s')))/ 
                                     <?php
                  
                                    if($partido->bloqueadoApuesta()){                                           
-        
-                                         $tweet= '<a href="https://twitter.com/share" class="btn btn-danger btn-twitter"
-                                        data-url="http://sigmatiendas.com/mundial"
+                                        
+                                          $tweet= '<a href="https://twitter.com/share" class="twitter-share-button"
+                                          data-url="'.Yii::app()->params['landingPage'].'" 
+                                          data-text="Mi predicción es: '.$apuesta->idPartido->idLocal->hash.' '.$apuesta->local.' - '.$apuesta->idPartido->idVisitante->hash.' '.$apuesta->visitante.'. Participa: "
+                                          data-via="SigmaOficial" data-lang="es" data-related="SigmaOficial" data-count="none" data-hashtags="SigmaEsFutbol">Twittear</a>';        
+
+
+                                         /*$tweet= '<a href="https://twitter.com/share" class="btn btn-danger btn-twitter"
+                                        data-url="'.Yii::app()->params['landingPage'].'"
                                         data-text="Mi predicción es: '.$apuesta->idPartido->idLocal->hash.' '.$apuesta->local.' - '.$apuesta->idPartido->idVisitante->hash.' '.$apuesta->visitante.'. Participa: "
-                                        data-via="SigmaOficial" data-lang="es" data-related="SigmaOficial" data-count="none" data-hashtags="SigmaEsMundial">Publicar</a>';      
+                                        data-via="SigmaOficial" data-lang="es" data-related="SigmaOficial" data-count="none" data-hashtags="SigmaEsFutbol">Publicar</a>';      */
         
                                         echo $tweet;   
                                     }else{?>
