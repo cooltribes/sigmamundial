@@ -1,3 +1,16 @@
+<style>
+.val{
+font-size: 20px !important;
+line-height: 0px;
+color: #082b61;
+}
+
+.valType{
+font-size: 10px !important;
+
+}
+
+</style>
 <div class="row">
 
     <div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1 col-xs-12 col-xs-offset-0 panel-gris no_horizontal_padding">
@@ -79,13 +92,44 @@
                                         </div>
                                      
                                      </div>
+                                 <div class="col-md-12 text-center">
+                                 <div class="clearfix">
+                                     <div>                                
+                                            <div class="text-center">Tienes</div>
+                                            <div class="clearfix contadorReloj">
+                                           <?php
+                                            $this->widget('ext.duciscounter.DucisCounter', array(
+                                                'start_timestamp' => strtotime(date("Y-m-d 00:00:00")),
+                                                'end_timestamp' => strtotime('-10 minutes', strtotime($partido->fecha)),
+                                                'now' => strtotime('-30 minutes', strtotime(date('Y-m-d H:i:s')))
+                                                    )
+                                            );
+                                            ?>
+                                            </div>
+                                            <div class="text-center">
+                                                para enviar tu resultado 
+                                            </div>
+                                     </div>  
+                                </div>      
+                                
+                                    
+     
+                                   
+                                                                 
+                             </div>
                                  
-                                 </div>
+                         </div>
+                    
+             
+                                
+                        
+                                  
+                                       
+                                   
+                   
                     
                     
-                    
-                    
-                    <div class="text-center padding_bottom margin_top">
+                    <div class="text-center padding_bottom margin_top_small">
                     
                     <?php
                         echo BsHtml::submitButton('Enviar resultado', array(
