@@ -70,7 +70,7 @@ $create_date = date('j M Y', $create_time);
                 <?php $this->endWidget(); ?>
                 
                 
-     </div>
+     </div> 
 </div>
 
 <script type="text/javascript">

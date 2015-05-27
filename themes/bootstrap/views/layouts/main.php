@@ -177,18 +177,7 @@ $this->widget('bootstrap.widgets.BsNavbar', array(
 
 }
 ?>
-<style>
-#wrappin{
-    min-height: 100%;
-    position: relative;
-    height:auto;
- }
-.toHome,.toHome:hover, .toHome:focus, .toHome:visited{
-text-decoration: none;
 
-}
-</style> 
-    
 <div id="wrappin" class="clearfix">
 <div class="main-header">
     <div class="row">

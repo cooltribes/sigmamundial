@@ -40,6 +40,7 @@ $this->pageTitle = Yii::app()->name;
                         <h3>Inscríbete</h3>
                     <?php } if($verified){ ?>
                         <h3>Completa tus datos</h3>
+                        
                     <?php } ?>                        
             </div>
             <div class="row-fluid">
