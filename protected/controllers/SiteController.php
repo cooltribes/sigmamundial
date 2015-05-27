@@ -79,7 +79,7 @@ class SiteController extends Controller
                 
             $result['status'] = 'success';
             $result['redirect'] = $this->createUrl('apuesta/partidos');
-            Yii::app()->user->updateSession();
+            
             Yii::app()->user->setFlash('success', '¡Se han enviado tus invitaciones!');
                 
         }else{
@@ -121,7 +121,8 @@ class SiteController extends Controller
 			$user->nombre=$_POST['User']['nombre'];
 			$user->oauth_token=$_POST['User']['oauth_token'];
 			$user->oauth_token_secret=$_POST['User']['oauth_token_secret'];
-			
+			$user->ciudad = $_POST['User']['ciudad'];
+
 			//if($model->validate()&&$profile->validate()){
 			$soucePassword = $_POST['User']['password'];
 			$user->activkey=UserModule::encrypting(microtime().$user->password);
@@ -139,15 +140,25 @@ class SiteController extends Controller
 					$representante->attributes=$_POST['Representante'];
 					$representante->user_id = $user->id;
 					$representante->save();
+
+					$body = $user->email.' te ha indicado como su representante para vivir la experiencia Sigma con la #QuinielaGratis de la Copa America Chile 2015.<br/><br/>
+							Recuerda jugar diariamente en la quiniela. <a href="'.Yii::app()->params['landingpage'].'">Sigma Es Fútbol</a>.';
+
+					$message = new YiiMailMessage;
+					$message->view = 'mail_template';
+					$message->setSubject('Has creado una cuenta para participar en la Quiniela Gratis.');
+					$message->setBody(array('body'=>$body), 'text/html');
+					
+					$message->addTo($representante->email);
+					$message->from = array(Yii::app()->params['adminEmail'] => Yii::app()->params['adminName']);
+					Yii::app()->mail->send($message);
 				}
 
-				$activation_url = $this->createAbsoluteUrl('/user/activation/activation',array("activkey" => $user->activkey, "email" => $user->email));
 				$body = 'Te has registrado para vivir la experiencia Sigma con la #QuinielaGratis de la Copa America Chile 2015.<br/><br/>Recuerda jugar diariamente en la quiniela. <a href="'.Yii::app()->params['landingpage'].'">Sigma Es Fútbol</a>.';
 
 				$message = new YiiMailMessage;
 				$message->view = 'mail_template'; 
 				 
-				//userModel is passed to the view
 				$message->setSubject('Has creado una cuenta para participar en la Quiniela Gratis.');
 				$message->setBody(array('body'=>$body), 'text/html');
 				
@@ -189,14 +200,60 @@ class SiteController extends Controller
 	                if($invitation && $invitation->email_invitado == $user->email){
 	                    $invitation->estado = 1;
 	                    $invitation->save();
+
+	                    #Quitando las variables de sesion
+		                unset(Yii::app()->session['email']);
+		                unset(Yii::app()->session['requestId']);
+		                
+		                #revisar cuantas invitaciones
+		                if(Invitacion::invitacionesValidas() < 5){
+
+			                #enviar correo con 1% de descuento al que envio la invitacion  
+			                $message = new YiiMailMessage;				
+							$message->view = "mail_template";
+							$subject = '¡Has ganado en Sigma Es Fútbol!';
+							
+							$body = "<table>
+									<tr><td height='40' colspan='2'> ¡Hola <strong>".$user->nombre."</strong>! </td></tr>
+									<tr><td colspan='2'>Sigma te premia ya que tu invitado <strong>".$invitation->email_invitado."</strong> se registró en la Quiniela.</td></tr>
+									
+									<tr><td colspan='2'>(Para ver la Gift Card permite mostrar las imagenes de este correo) </td></tr>
+									<br/>
+									
+									<tr><td colspan='2' align='center'>".CHtml::image(Yii::app()->getBaseUrl(true)."/images/giftcard.jpg")."</td></tr>
+									
+									<tr><td colspan='2' align='center' height='40'>Normas de la GiftCard Sigma Systems Copa América 2015:
+									<br/>
+									1.- Válidas hasta el 04 de agosto 2015. <br/>
+									2.- Las GiftCards son <strong>acumulables, personales e intransferibles</strong>. <br/>
+									3.- Cada una está valorada en <strong>1% de descuento</strong> y sólo son enviadas al haber acertado de resultado del partido.<br/>
+									4.- Cada persona podrá acumular hasta un máximo de 26% de descuento. <br/>
+									5.- Exclusivo para la persona portadora de la Cédula de identidad inscrita en el concurso. <br/>
+									6.- Las GiftCard son de uso exclusivo de personas naturales. <br/>
+									7.- Los cupones de descuento no se pueden usar sin un código de compra. <br/>
+									8.- Al finalizar se les hará llegar a todos los participantes una Giftcard con código de compra y también mostrará en letras grandes el descuento acumulado para poder realizar compras de productos Samsung*.<br/>
+									<br/>Más detalles de estas en: <a href='".Yii::app()->baseUrl."/site/giftcard'>Normas para el uso de la GiftCard</a>
+									<small>* y Productos de otras marcas que encuentren en la tienda.</small>
+
+									</td></tr>
+									<tr><td colspan='2' align='center' height='40'>
+										San Cristóbal: Centro Comercial Las Lomas, Local L-30  / Centro Sambil, Nivel Autopista, Local T-88<br/>
+										5ta Avenida,  C.C. Shopping Center, L-23  / Mérida: C.C. Plaza Mayor, Lp-4 / El Vigia: C. C. Traki, F-01<br/>
+										Nueva Tienda Interactiva: Centro Comercial Plaza, Nivel Concordia, Local 73. San Cristóbal<br/>
+									</td></tr>
+									<tr><td colspan='2' align='center' height='40'>
+										SigmaSys C.A. www.sigmatiendas.com <br/>info@sigmatiendas.com
+									</td></tr>
+									</table> 
+									";
+							$params = array('subject'=>$subject, 'body'=>$body);
+							$message->subject    = $subject;
+							$message->setBody($params, 'text/html');                
+							$message->addTo($invitacion->user->email);
+							$message->from = array('info@sigmatiendas.com' => 'Sigma Es Fútbol');
+							Yii::app()->mail->send($message);
+						}
 	                }
-
-	                #Quitando las variables de sesion
-	                unset(Yii::app()->session['email']);
-	                unset(Yii::app()->session['requestId']);
-	                
-	                #enviar correo con 1% de descuento al que envio la invitacion
-
 	            }
 
 				$identity=new UserIdentity($user->email, $user->password);

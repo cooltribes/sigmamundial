@@ -113,4 +113,9 @@ class Invitacion extends CActiveRecord
     {
         return parent::model($className);
     }
+
+    public static function invitacionesValidas(){
+        $invitaciones = Invitacion::model()->findAllByAttributes(array('user_id'=>Yii::app()->user->id,'estado'=>1));
+        return count($invitaciones);
+    }
 }
