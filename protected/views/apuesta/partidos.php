@@ -95,12 +95,6 @@ $days= -1; //round((strtotime('2015-06-11 00:00:00')-strtotime(date('Y-m-d h:i:s
                                           data-url="'.Yii::app()->params['landingPage'].'" 
                                           data-text="Mi predicción es: '.$apuesta->idPartido->idLocal->hash.' '.$apuesta->local.' - '.$apuesta->idPartido->idVisitante->hash.' '.$apuesta->visitante.'. Participa: "
                                           data-via="SigmaOficial" data-lang="es" data-related="SigmaOficial" data-count="none" data-hashtags="SigmaEsFutbol">Twittear</a>';        
-
-
-                                         /*$tweet= '<a href="https://twitter.com/share" class="btn btn-danger btn-twitter"
-                                        data-url="'.Yii::app()->params['landingPage'].'"
-                                        data-text="Mi predicción es: '.$apuesta->idPartido->idLocal->hash.' '.$apuesta->local.' - '.$apuesta->idPartido->idVisitante->hash.' '.$apuesta->visitante.'. Participa: "
-                                        data-via="SigmaOficial" data-lang="es" data-related="SigmaOficial" data-count="none" data-hashtags="SigmaEsFutbol">Publicar</a>';      */
         
                                         echo $tweet;   
                                     }else{?>
@@ -111,7 +105,7 @@ $days= -1; //round((strtotime('2015-06-11 00:00:00')-strtotime(date('Y-m-d h:i:s
                                         <?php endif; ?>                                 
                                    <?php }
                                     
-                                        $hours= round((strtotime($partido->fecha)-strtotime(date('Y-m-d h:i:s')))/ (60 * 60));
+                                        $hours = round((strtotime($partido->fecha)-strtotime(date('Y-m-d H:i:s')))/ (60 * 60));
                                         echo $hours>0?"<br/><small><b>Faltan ".$hours." horas</b></small>":"";
                                         ?>
                             </div>

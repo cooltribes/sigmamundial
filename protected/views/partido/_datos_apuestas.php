@@ -5,6 +5,7 @@ echo"<tr>";
 
 	echo "<td>".$user->nombre."</td>";
 	echo "<td>".$user->email."</td>";
+	echo "<td>".$user->cedula."</td>";
 	echo "<td>".$data->local."</td>";
 	echo "<td>".$data->visitante."</td>";	
 	

@@ -122,7 +122,7 @@ class SiteController extends Controller
 			$user->oauth_token=$_POST['User']['oauth_token'];
 			$user->oauth_token_secret=$_POST['User']['oauth_token_secret'];
 			$user->ciudad = $_POST['User']['ciudad'];
-			
+
 			//if($model->validate()&&$profile->validate()){
 			$soucePassword = $_POST['User']['password'];
 			$user->activkey=UserModule::encrypting(microtime().$user->password);

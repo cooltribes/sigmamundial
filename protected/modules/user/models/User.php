@@ -51,7 +51,7 @@ class User extends CActiveRecord
 	/**
 	 * @return array validation rules for model attributes.
 	 */
-	public function rules()
+	public function rules() 
 	{
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.CConsoleApplication
@@ -143,7 +143,7 @@ class User extends CActiveRecord
                 'condition'=>'superuser=1',
             ),
             'notsafe'=>array(
-            	'select' => 'id, username, password, email, activkey, create_at, lastvisit_at, superuser, status, oauth_token, oauth_token_secret, user.twitter_id',
+            	'select' => 'id, username, password, email, activkey, create_at, lastvisit_at, superuser, status, oauth_token, oauth_token_secret, user.twitter_id, user.cedula, user.ciudad',
             ),
         );
     }
@@ -151,8 +151,8 @@ class User extends CActiveRecord
 	public function defaultScope()
     {
         return CMap::mergeArray(Yii::app()->getModule('user')->defaultScope,array(
-            'alias'=>'user',
-            'select' => 'user.id, user.username, user.email, user.create_at, user.lastvisit_at, user.superuser, user.status, user.nombre, user.twitter, user.fecha_nacimiento, user.puntos, user.oauth_token, user.oauth_token_secret, user.twitter_id',
+            'alias'=>'user', 
+            'select' => 'user.id, user.username, user.email, user.create_at, user.lastvisit_at, user.superuser, user.status, user.nombre, user.twitter, user.fecha_nacimiento, user.puntos, user.oauth_token, user.oauth_token_secret, user.twitter_id, user.cedula, user.ciudad',
         ));
     }
 	
@@ -201,6 +201,8 @@ class User extends CActiveRecord
 		$criteria->compare('nombre',$this->nombre);
 		$criteria->compare('oauth_token',$this->oauth_token);
 		$criteria->compare('oauth_token_secret',$this->oauth_token_secret);
+		$criteria->compare('ciudad',$this->ciudad);
+		$criteria->compare('cedula',$this->cedula);
 		
 		$criteria->order = "puntos DESC";
 		
@@ -235,6 +237,9 @@ class User extends CActiveRecord
 		$criteria->compare('nombre',$this->nombre);
 		$criteria->compare('oauth_token',$this->oauth_token);
 		$criteria->compare('oauth_token_secret',$this->oauth_token_secret);
+		$criteria->compare('ciudad',$this->ciudad);
+		$criteria->compare('cedula',$this->cedula);
+
 		$criteria->limit = 25;
 		$criteria->order = "puntos DESC, id";
 		

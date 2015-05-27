@@ -100,7 +100,7 @@ class PartidoController extends Controller
 				$apuestasPartido = Apuesta::model()->findAllByAttributes(array('id_partido'=>$partido->id,'local'=>$partido->gol_local,'visitante'=>$partido->gol_visitante));
 				
 				foreach($apuestasPartido as $ganador){
-					$ganador->estado = 2; // ganador
+					$ganador->estado = 2; // ganador 
 					$ganador->puntos = 3; // Puntos por resultado
 					
 					if($ganador->save()){
@@ -108,16 +108,16 @@ class PartidoController extends Controller
 						
 						array_push($ganadores,array('email'=>$user->email,'nombre'=>$user->nombre,'twitter'=>$user->twitter,));
 						
-						$puntos = $user->puntos + 3;
+						if($user->puntos==0){
+							$puntos = 3;
+						}
+						else{
+							$puntos = $user->puntos + 3;
+						}
+
 						$user->puntos = $puntos;
 						$user->save(); // se actualizan los puntos generales del torneo.
 						
-						/* codigo para traer una gift card 
-						$CuponAEnviar = Cupon::model()->findByAttributes(array('enviado'=>0));
-						$CuponAEnviar->enviado = 1;
-						$CuponAEnviar->fecha_envio = date('Y-m-d');
-						$CuponAEnviar->save();*/
-												
 						// enviar mails a los ganadores
 						$message = new YiiMailMessage;				
 						$message->view = "mail_template";
@@ -188,10 +188,10 @@ class PartidoController extends Controller
 					$message->subject    = $subject;
 					$message->setBody($params, 'text/html');                
 					$message->addTo('rdaza@upsidecorp.ch');
-					$message->from = array('info@sigmatiendas.com' => 'Sigma Es Mundial');
+					$message->from = array('info@sigmatiendas.com' => 'Sigma Es Fútbol');
 					Yii::app()->mail->send($message);
 
-				$ganador=0; // 0 gano loca, 1 gano visita, 2 empate
+				$ganador=0; // 0 gano local, 1 gano visita, 2 empate
 				
 				// revisar los que pegaron ganador			
 				if($partido->gol_local < $partido->gol_visitante)

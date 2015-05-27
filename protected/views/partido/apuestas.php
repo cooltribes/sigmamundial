@@ -98,6 +98,7 @@ $visitante = Equipo::model()->findByPk($model->id_visitante);
 		            <th scope="col">Usuario</th>
 		            <th scope="col">Email</th>
 		            <th scope="col">Local</th>
+		            <th scope="col">Cédula</th>
 		            <th scope="col">Visitante</th>
 		            <th scope="col">Acción</th>
 		        </tr>
