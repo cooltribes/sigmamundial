@@ -216,32 +216,43 @@ class SiteController extends Controller
 							$subject = '¡Has ganado en Sigma Es Fútbol!';
 							
 							$body = "<table>
-									<tr><td height='40' colspan='2'> ¡Hola <strong>".$user->nombre."</strong>! </td></tr>
+									<tr><td height='40' colspan='2'> ¡Hola <strong>".$invitation->user->email."</strong>! </td></tr>
 									<tr><td colspan='2'>Sigma te premia ya que tu invitado <strong>".$invitation->email_invitado."</strong> se registró en la Quiniela.</td></tr>
 									
 									<tr><td colspan='2'>(Para ver la Gift Card permite mostrar las imagenes de este correo) </td></tr>
 									<br/>
 									
-									<tr><td colspan='2' align='center'>".CHtml::image(Yii::app()->getBaseUrl(true)."/images/giftcard.jpg")."</td></tr>
-									
-									<tr><td colspan='2' align='center' height='40'>Normas de la GiftCard Sigma Systems Copa América 2015:
-									<br/>
+									<tr><td colspan='2' align='center' style='padding-bottom:10px'>
+									".CHtml::image(Yii::app()->getBaseUrl(true)."/images/giftcard-amigo.jpg")."</td></tr> 
+
+									<tr><td colspan='2' align='center' style='border-bottom: #ccc solid 1px; padding-bottom:10px'>
+									Aprovecha esta oportunidad con la que pueden ganar todos, invita mas amigos en <a href='".Yii::app()->params['landingpage']."'>Sigma es Futbol</a>
+									</td></tr>
+
+									<tr><td colspan='2' align='center' height='40' style='padding-top:25px; border-bottom: #ccc solid 1px; padding-bottom:25px'>
+	                                <div style='text-align:center; font-size:16px; font-weight: bold'>
+	                                    Normas de la GiftCard Amigo Sigma Systems Copa América 2015:
+	                                </div>
+	                                <br/>
+
+									<div style='text-align: left'>
 									1.- Válidas hasta el 04 de agosto 2015. <br/>
 									2.- Las GiftCards son <strong>acumulables, personales e intransferibles</strong>. <br/>
-									3.- Cada una está valorada en <strong>1% de descuento</strong> y sólo son enviadas al haber acertado de resultado del partido.<br/>
-									4.- Cada persona podrá acumular hasta un máximo de 26% de descuento. <br/>
-									5.- Exclusivo para la persona portadora de la Cédula de identidad inscrita en el concurso. <br/>
-									6.- Las GiftCard son de uso exclusivo de personas naturales. <br/>
-									7.- Los cupones de descuento no se pueden usar sin un código de compra. <br/>
-									8.- Al finalizar se les hará llegar a todos los participantes una Giftcard con código de compra y también mostrará en letras grandes el descuento acumulado para poder realizar compras de productos Samsung*.<br/>
-									<br/>Más detalles de estas en: <a href='".Yii::app()->baseUrl."/site/giftcard'>Normas para el uso de la GiftCard</a>
+									3.- Cada una está valorada en <strong>1% de descuento</strong> y sólo son enviadas al haberse inscrito un amigo que tu hayas invitado.<br/>
+									4.- Las GiftCard amigo se pueden sumar a las GiftCard +1% Sigma Systems.<br/>
+									5.- Cada persona podrá acumular hasta un máximo de 4% de descuento con esta GiftCard Amigo. <br/>
+									6.- Las GiftCard no se pueden usar sin un código de compra. <br/>
+									7.- Al finalizar se les hará llegar a todos los participantes una Giftcard con código de compra y también mostrará en letras grandes el descuento acumulado para poder realizar compras de productos Samsung*.<br/>
+									<br/>Para saber mas detalles haz click en: <a href='".Yii::app()->getBaseUrl(true)."/site/giftcard#amigo'>Normas GiftCard Invita amigo</a>
 									<small>* y Productos de otras marcas que encuentren en la tienda.</small>
+									</div>
 
 									</td></tr>
 									<tr><td colspan='2' align='center' height='40'>
+									<small>
 										San Cristóbal: Centro Comercial Las Lomas, Local L-30  / Centro Sambil, Nivel Autopista, Local T-88<br/>
 										5ta Avenida,  C.C. Shopping Center, L-23  / Mérida: C.C. Plaza Mayor, Lp-4 / El Vigia: C. C. Traki, F-01<br/>
-										Nueva Tienda Interactiva: Centro Comercial Plaza, Nivel Concordia, Local 73. San Cristóbal<br/>
+										Nueva Tienda Interactiva: Centro Comercial Plaza, Nivel Concordia, Local 73. San Cristóbal<br/></small>
 									</td></tr>
 									<tr><td colspan='2' align='center' height='40'>
 										SigmaSys C.A. www.sigmatiendas.com <br/>info@sigmatiendas.com
@@ -250,8 +261,8 @@ class SiteController extends Controller
 									";
 							$params = array('subject'=>$subject, 'body'=>$body);
 							$message->subject    = $subject;
-							$message->setBody($params, 'text/html');                
-							$message->addTo($invitacion->user->email);
+							$message->setBody($params, 'text/html');               
+							$message->addTo($invitation->user->email);
 							$message->from = array('info@sigmatiendas.com' => 'Sigma Es Fútbol');
 							Yii::app()->mail->send($message);
 						}
@@ -275,6 +286,8 @@ class SiteController extends Controller
 					Yii::app()->user->setFlash('error', $errores['fecha_nacimiento'][0]);
 				}else if(isset($errores['twitter'])){
 					Yii::app()->user->setFlash('error', $errores['twitter'][0]);
+				}else if(isset($errores['cedula'])){
+					Yii::app()->user->setFlash('error', $errores['cedula'][0]);
 				}else{
 					Yii::app()->user->setFlash('error', "No se completó el registro, por favor intente de nuevo");
 				}

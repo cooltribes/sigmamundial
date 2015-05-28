@@ -122,7 +122,7 @@ $days= -1; //round((strtotime('2015-06-11 00:00:00')-strtotime(date('Y-m-d h:i:s
                                    if($partido->bloqueadoApuesta()){                                           
                                         
                                           $tweet= '<a href="https://twitter.com/share" class="twitter-share-button"
-                                          data-url="'.Yii::app()->params['landingPage'].'" 
+                                          data-url="'.Yii::app()->params['landingpage'].'" 
                                           data-text="Mi predicción es: '.$apuesta->idPartido->idLocal->hash.' '.$apuesta->local.' - '.$apuesta->idPartido->idVisitante->hash.' '.$apuesta->visitante.'. Participa: "
                                           data-via="SigmaOficial" data-lang="es" data-related="SigmaOficial" data-count="none" data-hashtags="SigmaEsFutbol">Twittear</a>';        
         
