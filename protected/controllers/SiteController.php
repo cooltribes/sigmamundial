@@ -139,14 +139,16 @@ class SiteController extends Controller
 				if(isset($_POST['Representante'])){
 					$representante->attributes=$_POST['Representante'];
 					$representante->user_id = $user->id;
-					$representante->save();
+					$representante->save(); 
 
-					$body = $user->email.' te ha indicado como su representante para vivir la experiencia Sigma con la #QuinielaGratis de la Copa America Chile 2015.<br/><br/>
-							Recuerda jugar diariamente en la quiniela. <a href="'.Yii::app()->params['landingpage'].'">Sigma Es Fútbol</a>.';
+					$body = 'Según los datos suministrados el usuario de Twitter @'.$user->twitter.' te ha indicado como representante legal para autorizarlo
+							a participar en el concurso Quiniela Gratis y pueda vivir la experiencia Sigma con la Copa América Chile 2015.<br/><br/>
+							Para conocer mas le invitamos a hacer click en <a href="'.Yii::app()->params['landingpage'].'">Sigma Es Fútbol</a><br/><br/>
+							Si autorizas a @'.$user->twitter.' a participar no debes hacer nada más, en caso contrario responda este correo con el Asunto: NO AUTORIZO.';
 
 					$message = new YiiMailMessage;
 					$message->view = 'mail_template';
-					$message->setSubject('Has creado una cuenta para participar en la Quiniela Gratis.');
+					$message->setSubject($user->nombre.' se inscribió en el concurso Quiniela Gratis');
 					$message->setBody(array('body'=>$body), 'text/html');
 					
 					$message->addTo($representante->email);
@@ -206,7 +208,7 @@ class SiteController extends Controller
 		                unset(Yii::app()->session['requestId']);
 		                
 		                #revisar cuantas invitaciones
-		                if(Invitacion::invitacionesValidas() < 5){
+		                if(Invitacion::invitacionesValidas() < 4){ # maximo 4 correos de descuento
 
 			                #enviar correo con 1% de descuento al que envio la invitacion  
 			                $message = new YiiMailMessage;				
