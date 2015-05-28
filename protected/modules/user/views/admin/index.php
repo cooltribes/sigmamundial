@@ -69,6 +69,7 @@
 	            <th scope="col">Nombre y Apellido</th>
 	            <th scope="col">Email</th>
 	            <th scope="col">Fecha de nacimiento</th>
+	            <th scope="col">Cédula</th>
 	            <th scope="col">Twitter</th>
 	            <th scope="col">Twitter id</th>
 	            <th scope="col">Puntos</th> 
