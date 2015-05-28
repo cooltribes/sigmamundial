@@ -11,7 +11,7 @@ function actual_date()
     return $date;  
 }
 $contPartidos=count($partidos);
-$days= -1;  //round((strtotime('2015-06-11 00:00:00')-strtotime(date('Y-m-d h:i:s')))/ (60 * 60 * 24));
+$days= -1; // round((strtotime('2015-06-11 00:00:00')-strtotime(date('Y-m-d h:i:s')))/ (60 * 60 * 24));
 ?>
 
 <div class="row">
@@ -124,8 +124,10 @@ $days= -1;  //round((strtotime('2015-06-11 00:00:00')-strtotime(date('Y-m-d h:i:
                                         <small>Recuerda twittear tu resultado para participar</small>          
                             <?php                                                 
                                         
+
                                           $tweet= '<div><a href="https://twitter.com/share" class="twitter-share-button"
                                           data-url="'.Yii::app()->params['landingPage'].'" 
+
                                           data-text="Mi predicción es: '.$apuesta->idPartido->idLocal->hash.' '.$apuesta->local.' - '.$apuesta->idPartido->idVisitante->hash.' '.$apuesta->visitante.'. Participa: "
                                           data-via="SigmaOficial" data-lang="es" data-related="SigmaOficial" data-count="none" data-hashtags="SigmaEsFutbol">Twittear</a></div>';        
         

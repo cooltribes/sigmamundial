@@ -5,6 +5,7 @@ echo"<tr>";
 	echo "<td>".$data->nombre."</td>";
 	echo "<td>".$data->email."</td>";
 	echo "<td>".date('Y-m-d',strtotime($data->fecha_nacimiento))."</td>";
+	echo "<td>".$data->cedula."</td>";
 	echo "<td>".$data->twitter."</td>";
 	echo "<td>".$data->twitter_id."</td>";
 	echo "<td>".$data->puntos."</td>";
