@@ -83,7 +83,7 @@ class DucisCounter extends CWidget{
 		}
 		
 		if($this->body == ""){
-			$this->body = "<div class='row text-center' style='color:#fff;' >Tiempo restante para enviar tu resultado:";
+			$this->body = "";
 		}
 		
 		// echo date('Y-m-d H:i:s',  strtotime('2011-04-8 08:29:49')));
@@ -95,8 +95,7 @@ class DucisCounter extends CWidget{
 		}
 		
             echo '
-		<div class="" >	
-		<div class="contenedor">
+	
 		'.$this->body.'
 		<div><!--//-->
 			
@@ -113,7 +112,7 @@ class DucisCounter extends CWidget{
 				</div>
 			</div> 
 			
-			<div class="clock_hours col-md-3">
+			<div class="clock_hours">
 				<div class=""> 
 					
 					<canvas id="canvas_hours" width="40" height="40" style="display:none;"> 
@@ -121,12 +120,12 @@ class DucisCounter extends CWidget{
 					
 					<div>
 						<p class="val">5</p>
-						<p>Horas</p>
+						<p class="valType" >Horas</p>
 					</div>
 				</div>
 			</div>
 			
-		<div class="clock_minutes col-md-3">
+		<div class="clock_minutes">
 			<div class=""> 
 				
 				<canvas id="canvas_minutes" width="40" height="40" style="display:none;"> 
@@ -134,12 +133,12 @@ class DucisCounter extends CWidget{
 				
 				<div>
 					<p class="val">46</p>
-					<p class="">Minutos</p>
+					<p class="valType">Minutos</p>
 				</div>
 			</div>
 		</div>
 		
-		<div class="clock_seconds col-md-3">
+		<div class="clock_seconds">
 			<div class="">
 				
 				<canvas id="canvas_seconds" width="40" height="40" style="display:none;"> 
@@ -147,15 +146,12 @@ class DucisCounter extends CWidget{
 				
 				<div>
 					<p class="val">42</p>
-					<p class="">Segundos</p>
+					<p class="valType">Segundos</p>
 				</div>
 			</div>
 		</div>
 		
-	</div>
-
-	</div>
-	</div>
+    </div>
 		';
         }
     

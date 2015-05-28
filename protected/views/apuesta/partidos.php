@@ -16,6 +16,35 @@ $days= -1; //round((strtotime('2015-06-11 00:00:00')-strtotime(date('Y-m-d h:i:s
 
 <div class="row">
 
+     <?php
+                        if (Yii::app()->user->hasFlash('success')) { 
+                            ?>
+                            <div class="alert in alert-block fade alert-success text_align_center">
+                                <?php echo Yii::app()->user->getFlash('success'); ?>
+                            </div>
+                            <?php
+                        }
+                        ?>
+                        <?php
+                        if (Yii::app()->user->hasFlash('error')) { 
+                            ?>
+                            <div class="alert in alert-block fade alert-danger text_align_center">
+                                <?php echo Yii::app()->user->getFlash('error'); ?>
+                            </div>
+                            <?php
+                        }
+                        ?>
+
+                        <?php
+                        if (Yii::app()->user->hasFlash('danger')) { 
+                            ?>
+                            <div class="alert in alert-block fade alert-danger text_align_center">
+                                <?php echo Yii::app()->user->getFlash('danger'); ?>
+                            </div>
+                            <?php
+                        }
+                        ?>
+
     <div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1 col-xs-12 col-xs-offset-0 panel-gris no_horizontal_padding">
         
                 <div class="col-md-12 panel-header">
@@ -30,6 +59,7 @@ $days= -1; //round((strtotime('2015-06-11 00:00:00')-strtotime(date('Y-m-d h:i:s
                 
                 
                 </div>
+                
                 <div class="margin_top">
                      <?php  if($contPartidos<1 || $days>0): ?>
                         <h3 class="text-center no_vertical_margin">El día de hoy no hay juegos disponibles</h3>
@@ -83,7 +113,7 @@ $days= -1; //round((strtotime('2015-06-11 00:00:00')-strtotime(date('Y-m-d h:i:s
                                         </div>
                                      
                                      </div>
-                                 
+                                  
                                  </div>
                             
                              <div class="tweet text-center">
@@ -124,6 +154,7 @@ $days= -1; //round((strtotime('2015-06-11 00:00:00')-strtotime(date('Y-m-d h:i:s
            
            
     </div>
+   
         
 </div>
 <script type="text/javascript">
@@ -136,4 +167,23 @@ $(document).ready(function(){
 });
 </script>
 
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<!--   <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script> -->
+
+<script>window.twttr = (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.twttr || {};
+  if (d.getElementById(id)) return t;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://platform.twitter.com/widgets.js";
+  fjs.parentNode.insertBefore(js, fjs);
+ 
+  t._e = [];
+  t.ready = function(f) {
+    t._e.push(f);
+  };
+ 
+  return t;
+}(document, "script", "twitter-wjs"));</script>
+
+

@@ -473,7 +473,7 @@ class SiteController extends Controller
 		
 		$local = Equipo::model()->findByPk(9);
 		$visitante = Equipo::model()->findByPk(10);
-		$user = User::model()->findByPk(23);
+		$user = User::model()->findByPk(40);
 		
 // enviar mails a los ganadores
 						$message = new YiiMailMessage;				
@@ -484,15 +484,20 @@ class SiteController extends Controller
 								<tr><td height='40' colspan='2'> ¡Hola <strong>".$user->nombre."</strong>! </td></tr>
 								<tr><td colspan='2'>Sigma te premia por haber acertado el resultado del partido obsequiandote un porcentaje de descuento sobre tu compra.</td></tr>
 								
-								<tr><td colspan='2'> Encuentro: ".$local->nombre." 3 - 1 ".$visitante->nombre."</td></tr>
+								<tr><td colspan='2'> Encuentro: <b>".$local->nombre." 3 - 1 ".$visitante->nombre."</b></td></tr>
 								
 								<tr><td colspan='2'>(Para ver la Gift Card permite mostrar las imagenes de este correo) </td></tr>
 								<br/>
 								
-								<tr><td colspan='2' align='center'>".CHtml::image(Yii::app()->getBaseUrl(true)."/images/giftcard.jpg")."</td></tr>
+								<tr><td colspan='2' align='center' style='border-bottom: #ccc solid 1px; padding-bottom:25px'>"
+						              .CHtml::image(Yii::app()->getBaseUrl(true)."/images/giftcard.jpg")."</td></tr>
 								
-								<tr><td colspan='2' align='center' height='40'>Normas de la GiftCard Sigma Systems Copa América 2015:
+								<tr><td colspan='2' align='center' height='40' style='padding-top:25px; border-bottom: #ccc solid 1px; padding-bottom:25px'>
+								<div style='text-align:center; font-size:16px; font-weight: bold'>
+								    Normas de la GiftCard Sigma Systems Copa América 2015:
+								</div>
 								<br/>
+								<div style='text-align: left'>
 								1.- Válidas hasta el 04 de agosto 2015. <br/>
 								2.- Las GiftCards son <strong>acumulables, personales e intransferibles</strong>. <br/>
 								3.- Cada una está valorada en <strong>1% de descuento</strong> y sólo son enviadas al haber acertado de resultado del partido.<br/>
@@ -503,12 +508,14 @@ class SiteController extends Controller
 								8.- Al finalizar se les hará llegar a todos los participantes una Giftcard con código de compra y también mostrará en letras grandes el descuento acumulado para poder realizar compras de productos Samsung*.<br/>
 								<br/>Más detalles de estas en: <a href='".Yii::app()->baseUrl."/site/giftcard'>Normas para el uso de la GiftCard</a><br/>
 								<small>* y Productos de otras marcas que encuentren en la tienda.</small><br/>
+							     </div>
 
 								</td></tr>
-								<tr><td colspan='2' align='center' height='40'>
+								<tr><td colspan='2' align='center' height='40' style='padding-top:15px'>
+                                <small>
 									San Cristóbal: Centro Comercial Las Lomas, Local L-30  / Centro Sambil, Nivel Autopista, Local T-88<br/>
 									5ta Avenida,  C.C. Shopping Center, L-23  / Mérida: C.C. Plaza Mayor, Lp-4 / El Vigia: C. C. Traki, F-01<br/>
-									Nueva Tienda Interactiva: Centro Comercial Plaza, Nivel Concordia, Local 73. San Cristóbal<br/>
+									Nueva Tienda Interactiva: Centro Comercial Plaza, Nivel Concordia, Local 73. San Cristóbal<br/></small>
 								</td></tr>
 								<tr><td colspan='2' align='center' height='40'>
 									SigmaSys C.A. www.sigmatiendas.com <br/>info@sigmatiendas.com
@@ -518,7 +525,7 @@ class SiteController extends Controller
 						$params = array('subject'=>$subject, 'body'=>$body);
 						$message->subject    = $subject;
 						$message->setBody($params, 'text/html');                
-						$message->addTo("dduque@upsidecorp.ch");
+						$message->addTo("cruiz@upsidecorp.ch");
 						$message->from = array('info@sigmatiendas.com' => 'Sigma Es Fútbol');
 						Yii::app()->mail->send($message);
 	}
