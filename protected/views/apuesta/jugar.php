@@ -50,12 +50,12 @@ font-size: 10px !important;
                                                       
                                  
                                  <div class="row-fluid clearfix">
-                                     <div class="col-md-10 col-md-offset-1 col-xs-12 col-xs-offset-0">
+                                     <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-12 col-xs-offset-0 no_horizontal_padding">
                                         <div class="row-fluid">
-                                            <div class="col-xs-5 text-center">
+                                            <div class="col-xs-5 text-center no_horizontal_padding">
                                                 <?php 
                                                 echo CHtml::image(Yii::app()->getBaseUrl(true).$local->url, $local->nombre,array('class'=>'bandera'));
-                                               ?> <span class="marcador">
+                                               ?> <span class="marcador nombrePais">
                                                 <?php
                                                 echo $local->nombre; 
                                                  echo $form->numberField($apuesta, 'local', array(
@@ -71,11 +71,11 @@ font-size: 10px !important;
                                             <div class="col-xs-2 text-center versus">
                                             VS
                                             </div>
-                                            <div class="col-xs-5 text-center">
+                                            <div class="col-xs-5 text-center no_horizontal_padding">
                                             <?php 
                                                 echo CHtml::image(Yii::app()->getBaseUrl(true).$visitante->url, $visitante->nombre,array('class'=>'bandera'));
                                               ?>
-                                              <span class="marcador">
+                                              <span class="marcador nombrePais">
                                                 <?php
                                                     echo $visitante->nombre;
                                                     echo $form->numberField($apuesta, 'visitante', array(

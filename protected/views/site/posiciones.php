@@ -1,16 +1,3 @@
-<style>
-.table-striped > tbody > tr:nth-child(2n) > td, .table-striped > tbody > tr:nth-child(2n) > th {
-   background-color: #a5c4d6;
-}
-.table-striped > tbody > tr > th{
-    color: white;
-    background-color: #ba1928 !important;
-}
-.table-striped > tbody > tr> td > a, .table-striped > tbody > tr > td > a:hover{
-    color: #082b61;
-}
-</style>
-
 <div class="row">
 
 	<div class="col-md-12 panel-gris" style="margin-bottom: 2em;">

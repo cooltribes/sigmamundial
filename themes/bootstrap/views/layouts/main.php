@@ -236,8 +236,8 @@ $this->widget('bootstrap.widgets.BsNavbar', array(
                         </div>
                     </div>                     
                 </div>
-                <div class="col-md-12 text-right padding_right">
-                    <a href="../site/invitar" title="Invitar amigos" class="linkInvite"><span class="glyphicon glyphicon-plus-sign"></span> Invitar Amigos</a>
+                <div class="col-md-11 text-right no_horizontal_padding">
+                    <a href="<?php echo Yii::app()->baseUrl; ?>/site/invitar" title="Invitar amigos" class="linkInvite"><span class="glyphicon glyphicon-plus-sign"></span> Invitar Amigos</a>
                 </div>
             </div>
         </div>

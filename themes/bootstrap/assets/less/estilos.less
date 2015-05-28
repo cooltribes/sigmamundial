@@ -13,6 +13,10 @@
 @blanco: #fff;
 @negro: #000;
 
+h1{
+  text-transform: none !important;
+}
+
 /****************  MISCELANEOS *********************/
 /* Margins */  
 .margin_top{margin-top:2.18em}
@@ -136,6 +140,31 @@
 .dropdown-menu > li > a:focus {
     color: @blanco;
     .fondo-azul();
+}
+.dropdown{
+  a{
+    color: #082b61;
+  }
+}
+.table-hover > tbody > tr:hover > td, .table-hover > tbody > tr:hover > th{
+  background-color: #3497bd;
+  color: white;
+  a.userLink{
+    color: white;
+  }
+  a.userLink:hover{
+    color: white;
+  } 
+}
+
+
+.table-striped > tbody > tr > th{
+    color: white;
+    background-color: #ba1928 !important;
+}
+.table-striped > tbody > tr> td > a.userLink, .table-striped > tbody > tr > td > a.userLink:hover{
+    color: #082b61;
+    text-decoration: underline;
 }
 
 @font-face {
@@ -304,7 +333,7 @@ a.bluelink:hover, a.bluelink:focus{
 /*Paneles*/
 
 .panel-azul{
-     height: 240px;
+     min-height: 240px;
      margin-left: 2em;
     .fondo-azul();
 }
@@ -592,6 +621,8 @@ a.bluelink:hover, a.bluelink:focus{
     }
 }
 
+
+
 #page #content{
   margin-bottom: 180px;
 }
@@ -674,6 +705,7 @@ a.bluelink:hover, a.bluelink:focus{
             }
         }
     }
+    
 }
 .versus{
   line-height: 70px;
@@ -745,10 +777,27 @@ text-decoration: none;
   font-weight: bold;
   
 }
+#emailInvite-form_bulkEmailList #emailInvite-form_bulkEmails {
+  width: 100%;
+  padding-left: 8px;
+}
+.emailInvite-form_emailEntry{
+  a{
+    color: #444;
+    font-size: 12px;
+    font-weight: 500;
+  } 
+}
 @media (max-width: 400px){
   .contadorReloj{
     margin-left:20%;
   }
+  .nombrePais{
+      font-size: 20px;
+    } 
+   h1{
+     font-size:30px !important;
+   }
   
 }
 

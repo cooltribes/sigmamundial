@@ -11,7 +11,7 @@ function actual_date()
     return $date;  
 }
 $contPartidos=count($partidos);
-$days= -1; //round((strtotime('2015-06-11 00:00:00')-strtotime(date('Y-m-d h:i:s')))/ (60 * 60 * 24));
+$days= -1;  //round((strtotime('2015-06-11 00:00:00')-strtotime(date('Y-m-d h:i:s')))/ (60 * 60 * 24));
 ?>
 
 <div class="row">
@@ -86,9 +86,9 @@ $days= -1; //round((strtotime('2015-06-11 00:00:00')-strtotime(date('Y-m-d h:i:s
                                                       
                                  
                                  <div class="row-fluid clearfix">
-                                     <div class="col-md-10 col-md-offset-1 col-xs-12 col-xs-offset-0">
+                                     <div class="col-md-10 col-md-offset-1 col-xs-12 col-xs-offset-0 no_horizontal_padding">
                                         <div class="row-fluid">
-                                            <div class="col-xs-5 text-center">
+                                            <div class="col-xs-5 text-center no_horizontal_padding">
                                                 <?php 
                                                 echo CHtml::image(Yii::app()->getBaseUrl(true).$local->url, $local->nombre,array('class'=>'bandera'));
                                                ?> <span class="marcador">
@@ -99,7 +99,7 @@ $days= -1; //round((strtotime('2015-06-11 00:00:00')-strtotime(date('Y-m-d h:i:s
                                             <div class="col-xs-2 text-center versus">
                                             VS
                                             </div>
-                                            <div class="col-xs-5 text-center">
+                                            <div class="col-xs-5 text-center no_horizontal_padding">
                                             <?php 
                                                 echo CHtml::image(Yii::app()->getBaseUrl(true).$visitante->url, $visitante->nombre,array('class'=>'bandera'));
                                               ?>
@@ -115,20 +115,24 @@ $days= -1; //round((strtotime('2015-06-11 00:00:00')-strtotime(date('Y-m-d h:i:s
                                      </div>
                                   
                                  </div>
-                            
+                             
                              <div class="tweet text-center">
                                     <?php
                  
-                                   if($partido->bloqueadoApuesta()){                                           
+                                   if($partido->bloqueadoApuesta()){
+                                       ?>
+                                        <small>Recuerda twittear tu resultado para participar</small>          
+                            <?php                                                 
                                         
-                                          $tweet= '<a href="https://twitter.com/share" class="twitter-share-button"
+                                          $tweet= '<div><a href="https://twitter.com/share" class="twitter-share-button"
                                           data-url="'.Yii::app()->params['landingPage'].'" 
                                           data-text="Mi predicción es: '.$apuesta->idPartido->idLocal->hash.' '.$apuesta->local.' - '.$apuesta->idPartido->idVisitante->hash.' '.$apuesta->visitante.'. Participa: "
-                                          data-via="SigmaOficial" data-lang="es" data-related="SigmaOficial" data-count="none" data-hashtags="SigmaEsFutbol">Twittear</a>';        
+                                          data-via="SigmaOficial" data-lang="es" data-related="SigmaOficial" data-count="none" data-hashtags="SigmaEsFutbol">Twittear</a></div>';        
         
                                         echo $tweet;   
-                                    }else{?>
-                                        <a class="<?php echo $clase ?> btn btn-danger" href=<?php echo $url ?>> Apostar  </a>
+                                   
+                                   }else{?>
+                                        <a class="<?php echo $clase ?> btn btn-danger" href=<?php echo $url ?>> Apostar  </a><br/>
                                        <?php if($partido->bloqueadoTiempo()):?> 
                                         
                                         <br/><small><b>Tiempo Agotado</b></small> 
@@ -136,7 +140,7 @@ $days= -1; //round((strtotime('2015-06-11 00:00:00')-strtotime(date('Y-m-d h:i:s
                                    <?php }
                                     
                                         $hours = round((strtotime($partido->fecha)-strtotime(date('Y-m-d H:i:s')))/ (60 * 60));
-                                        echo $hours>0?"<br/><small><b>Faltan ".$hours." horas</b></small>":"";
+                                        echo $hours>0?"<small><b>Faltan ".$hours." horas</b></small>":"";
                                         ?>
                             </div>
                        </article>

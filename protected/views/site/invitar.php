@@ -46,18 +46,20 @@ $create_date = date('j M Y', $create_time);
                                                     'field' => 'emailList',
                                                     'form' => $form,
                                                     'cssInputNew' => '',
+                                                    'htmlOptions' => array('class'=>'form-control')
                                                 )
                                         );
                                         ?>
-                                        <span class="help-block error" id="User_emails_em_" style="display: none;"> Debes ingresar al menos una dirección de correo electrónico </span>
+                                         <span id="mailsInfo" style="display: none;"> <small>Presiona enter o espacio al ingresar un e-mail</small></span> 
+                                        <span class="help-block error" id="User_emails_em_"  style="display: none;"> <b>Debes ingresar al menos una dirección de correo electrónico</b> </span>
                                     </div>
                                 </div>
-                                <div class="control-group clearfix">
+                                <div class="control-group clearfix margin_top_xsmall">
                                     <label class="control-label required">Escribe un mensaje personal: </label>
                                     <div class="controls">
                                         <?php 
                                        echo CHtml::textArea('invite-message',"",
-                                       array('class' => 'col-md-12', 'rows' => '4','placeholder'=>"Escribe algo para invitar a tus amigos"));
+                                       array('class' => 'form-control', 'rows' => '4','placeholder'=>"Escribe algo para invitar a tus amigos"));
                                        ?>
                                        <span class="help-block error" id="invite_mess_em_" style="display: none;"> Debes escribir un mensaje </span>
                                     </div>    
@@ -109,4 +111,6 @@ $create_date = date('j M Y', $create_time);
             }
             });
     });
+
+    $('#emailInvite-form_bulkEmails').focus(function(){$('#mailsInfo').show();});
 </script>
