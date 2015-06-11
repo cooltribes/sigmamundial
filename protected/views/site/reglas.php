@@ -46,7 +46,7 @@ Cada usuario inscrito puede hacer solo un pronóstico de resultado por encuentro
 <br/><br/>
 Los resultados de la predicción del usuario serán publicados en la red social Twitter (previa aprobación del usuario al momento de la inscripción) automáticamente. La predicción será almacenada en los datos del usuario. La publicación en Twitter representa el soporte del usuario.
 <br/><br/>
-Para que un usuario gane con la predicción de un encuentro se tomará en cuenta el resultado del encuentro solo en el tiempo reglamentario (90 minutos) por lo que la predicción se comparará contra dicho resultado sin importar el caso en el que un encuentro continúe en tiempo extra y lanzamientos desde el punto penal. El resultado del partido será publicado en la cuenta oficial de Twitter @SigmaOficial 
+Para que un usuario gane con la predicción de un encuentro se tomará en cuenta el resultado del encuentro solo en el tiempo reglamentario (90 minutos) por lo que la predicción se comparará contra dicho resultado sin importar el caso en el que un encuentro continúe en tiempo extra y lanzamientos desde el punto penal. El resultado del partido será publicado en la cuenta oficial de Twitter @SigmaTiendas 
 <br/><br/>
 Cada acierto de predicción del usuario generará un premio, el cual se hará llegar al correo electrónico ingresado en la inscripción. Además sumará puntos acumulables por todo el torneo para la entrega de premios por fase y un gran premio final.
 <br/><br/>
@@ -104,7 +104,7 @@ Cada usuario podrá realizar una predicción por encuentro para un máximo de 26
 <br/><br/>
 Cada predicción estará identificada con la bandera y nombre del país acompañado de la fecha y hora programada por el organizador, para así evitar confusiones del usuario.
 <br/><br/>
-Cada una de las predicciones deberá ser publicadas en la cuenta de Twitter del usuario, haciendo el uso del Hashtag y menciones a @sigmaoficial. Esta será el comprobante de predicción del usuario. 
+Cada una de las predicciones deberá ser publicadas en la cuenta de Twitter del usuario, haciendo el uso del Hashtag y menciones a @sigmaTiendas. Esta será el comprobante de predicción del usuario. 
 <br/><br/>
 
 <strong>SOBRE GANAR UNA PREDICCIÓN</strong>
