@@ -129,7 +129,7 @@ $days= -1; // round((strtotime('2015-06-11 00:00:00')-strtotime(date('Y-m-d h:i:
                                           data-url="'.Yii::app()->params['landingPage'].'" 
 
                                           data-text="Mi predicción es: '.$apuesta->idPartido->idLocal->hash.' '.$apuesta->local.' - '.$apuesta->idPartido->idVisitante->hash.' '.$apuesta->visitante.'. Participa: "
-                                          data-via="SigmaOficial" data-lang="es" data-related="SigmaOficial" data-count="none" data-hashtags="SigmaEsFutbol">Twittear</a></div>';        
+                                          data-via="SigmaTiendas" data-lang="es" data-related="SigmaTiendas" data-count="none" data-hashtags="SigmaEsFutbol">Twittear</a></div>';        
         
                                         echo $tweet;   
                                    

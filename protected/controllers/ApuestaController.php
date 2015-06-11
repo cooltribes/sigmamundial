@@ -80,7 +80,7 @@ class ApuestaController extends Controller
 					$tweet= '<a href="https://twitter.com/share" class="twitter-share-button"
 							data-url="'.Yii::app()->params['landingpage'].'" 
 							data-text="Mi predicción es: '.$apuesta->idPartido->idLocal->hash.' '.$apuesta->local.' - '.$apuesta->idPartido->idVisitante->hash.' '.$apuesta->visitante.'. Participa: "
-							data-via="SigmaOficial" data-lang="es" data-related="SigmaOficial" data-count="none" data-hashtags="SigmaEsFutbol">Twittear</a>';					
+							data-via="SigmaTiendas" data-lang="es" data-related="SigmaTiendas" data-count="none" data-hashtags="SigmaEsFutbol">Twittear</a>';					
 					Yii::app()->user->setFlash('success',"Resultado guardado correctamente. Compártelo para participar por nuestros premios. ".$tweet."<br/>");
 					$this->redirect(array('partidos'));
 				}
