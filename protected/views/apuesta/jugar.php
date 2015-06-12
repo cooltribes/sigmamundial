@@ -92,7 +92,7 @@ font-size: 10px !important;
                                         </div>
                                      
                                      </div>
-                                 <div class="col-md-12 text-center">
+                                 <div class="col-md-12 col-sm-12 col-xs-12 text-center">
                                  <div class="clearfix">
                                      <div>                                
                                             <div class="text-center">Tienes</div>
@@ -101,7 +101,8 @@ font-size: 10px !important;
                                             $this->widget('ext.duciscounter.DucisCounter', array(
                                                 'start_timestamp' => strtotime(date("Y-m-d 00:00:00")),
                                                 'end_timestamp' => strtotime('-10 minutes', strtotime($partido->fecha)),
-                                                'now' => strtotime('-30 minutes', strtotime(date('Y-m-d H:i:s')))
+                                                //'now' => strtotime(strtotime(date('Y-m-d H:i:s')))
+                                                'now' => strtotime(),
                                                     )
                                             );
                                             ?>
