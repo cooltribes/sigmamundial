@@ -264,4 +264,11 @@ class User extends CActiveRecord
     public function setLastvisit($value) {
         $this->lastvisit_at=date('Y-m-d H:i:s',$value);
     }
+    
+    public function updatePuntos(){
+        $sql="select sum(puntos) from tbl_apuesta where id_user = ".$this->id;
+        $puntos=Yii::app()->db->createCommand($sql)->queryScalar();
+        $this->saveAttributes(array('puntos'=>$puntos));
+       
+    }
 }

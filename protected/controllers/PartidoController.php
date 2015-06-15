@@ -223,14 +223,14 @@ class PartidoController extends Controller
 							
 							$fecha = date('Y-m-d',strtotime($user->fecha_nacimiento));
 							$user->fecha_nacimiento = $fecha;
-							
-							if($user->puntos==0)
+							$user->updatePuntos();
+							/*if($user->puntos==0)
 								$puntos = 1;
 							else
 								$puntos = $user->puntos + 1;
 							
 							$user->puntos = $puntos;
-							$user->save(); // se actualizan los puntos generales del torneo.
+							$user->save(); // se actualizan los puntos generales del torneo.*/
 						}
 							
 						break;
@@ -248,14 +248,14 @@ class PartidoController extends Controller
 							
 							$fecha = date('Y-m-d',strtotime($user->fecha_nacimiento));
 							$user->fecha_nacimiento = $fecha;
-							
-							if($user->puntos==0)
+							$user->updatePuntos();
+							/*if($user->puntos==0)
 								$puntos = 1;
 							else
 								$puntos = $user->puntos + 1;
 							
 							$user->puntos = $puntos;
-							$user->save(); // se actualizan los puntos generales del torneo.
+							$user->save(); // se actualizan los puntos generales del torneo.*/
 						}
 						
 						break; 
@@ -273,14 +273,15 @@ class PartidoController extends Controller
 							
 							$fecha = date('Y-m-d',strtotime($user->fecha_nacimiento));
 							$user->fecha_nacimiento = $fecha;
-							
+							$user->updatePuntos();
+							/*
 							if($user->puntos==0)
 								$puntos = 1;
 							else
 								$puntos = $user->puntos + 1;
 							
 							$user->puntos = $puntos;
-							$user->save(); // se actualizan los puntos generales del torneo.
+							$user->save(); // se actualizan los puntos generales del torneo.*/
 						}
 						 
 						break;

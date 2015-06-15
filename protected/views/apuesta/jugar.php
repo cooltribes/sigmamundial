@@ -101,8 +101,7 @@ font-size: 10px !important;
                                             $this->widget('ext.duciscounter.DucisCounter', array(
                                                 'start_timestamp' => strtotime(date("Y-m-d 00:00:00")),
                                                 'end_timestamp' => strtotime('-10 minutes', strtotime($partido->fecha)),
-                                                //'now' => strtotime(strtotime(date('Y-m-d H:i:s')))
-                                                'now' => strtotime(),
+                                                'now' => strtotime('-0 minutes', strtotime(date('Y-m-d H:i:s')))
                                                     )
                                             );
                                             ?>

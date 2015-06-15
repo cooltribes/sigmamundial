@@ -618,6 +618,8 @@ class SiteController extends Controller
 		$this->render('posiciones', array('model'=>$usuario, 'dataProvider'=>$dataProvider,));	
 		
 	}
+	 
+    
 	
 				
 }

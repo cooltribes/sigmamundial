@@ -22,7 +22,7 @@ class ApuestaController extends Controller
 	{
 		return array(			
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','jugar','partidos'), 
+				'actions'=>array('create','jugar','partidos','updatePuntosUsuarios'), 
 				'users'=>array('@'),
                             
 			),
@@ -104,5 +104,12 @@ class ApuestaController extends Controller
 		$this->redirect(array('/partido/admin'));
 		
 	}
+    public function actionUpdatePuntosUsuarios(){
+       $users=User::model()->findAll();
+       foreach($users as $user){
+           $user->updatePuntos();
+       }
+       
+    }
 
 }
