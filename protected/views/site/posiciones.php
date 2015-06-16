@@ -2,7 +2,7 @@
 
 	<div class="col-md-12 panel-gris" style="margin-bottom: 2em;">
 		<div class="row">
-			<div class="col-md-12">
+			<div class="col-md-12 no_horizontal_padding">
 				<div class="col-md-12 panel-header">
 					<h3>Tabla de posiciones - Top 25</h3>	
 				</div>

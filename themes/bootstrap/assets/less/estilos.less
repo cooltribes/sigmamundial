@@ -172,6 +172,9 @@ h1{
     src: url("../fonts/MyriadPro-BoldCondIt.otf") format("otf");
 }
 
+.logobottom{
+     display:block;
+   }
 
 /****   Estilos propios del proyecto    ****/
 
@@ -299,7 +302,7 @@ a.bluelink:hover, a.bluelink:focus, td>a:hover, td>a:focus{
     margin-bottom: 43px;
     
     .logo{        
-        margin-top: 20px;
+        display: none;
         text-align: center;
     }
     
@@ -633,11 +636,15 @@ a.bluelink:hover, a.bluelink:focus, td>a:hover, td>a:focus{
 //Media Queries
 //pequeños (sm)
 @media (min-width: 768px){
+  
+  .logobottom{
+     display:none;
+   }
 
     /*Encabezado principal*/
     .main-header{  
         .logo{
-            margin-top: 41px;
+            display:block;
             //text-align: ini;
         }
         .main-title{
@@ -800,7 +807,7 @@ text-decoration: none;
     } 
    h1{
      font-size:30px !important;
-   }
+   }  
   
 }
 

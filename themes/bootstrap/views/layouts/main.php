@@ -193,11 +193,11 @@ $this->widget('bootstrap.widgets.BsNavbar', array(
 <div class="main-header">
     <div class="row">
         <div class="col-xs-12 col-sm-3 col-md-3 logo">
-          <!--    <a href="http://sigmatiendas.com">
-                <?php /* echo CHtml::image(Yii::app()->getBaseUrl(true)."/images/logo.png", "Logo",
-                        array("height" => 73)); */ ?>                            
+    <a href="http://sigmatiendas.com">
+                <?php  echo CHtml::image(Yii::app()->theme->getBaseUrl(true)."/assets/images/logo.png", "Logo",
+                         array("height" => 73));  ?>                            
             </a>
-           -->
+         
         </div>
         
         <div class="col-xs-12 col-sm-6 col-md-6 text-center main-title">
@@ -260,13 +260,24 @@ $this->widget('bootstrap.widgets.BsNavbar', array(
 </div>
 <div class="container" id="page">
       <?php echo $content; ?>
+    <div class="col-xs-12 logobottom text-center">
+    <a href="http://sigmatiendas.com">
+                <?php  echo CHtml::image(Yii::app()->theme->getBaseUrl(true)."/assets/images/logo.png", "Logo",
+                         array("height" => 73));  ?>                            
+            </a>
+         
+        </div>
+
 </div>
+
 <div class="footer">
+
 <?php 
     $date=round((strtotime('2015-06-11 00:00:00')-strtotime(date('Y-m-d h:i:s')))/ (60 * 60 * 24));
     if($date>0):
 ?>
     <h1 class="countdown margin_top_xsmall">Faltan <?php echo $date ?> días</h1>
+    
 
  <?php endif; ?>
   
