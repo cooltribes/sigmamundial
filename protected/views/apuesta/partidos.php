@@ -134,10 +134,12 @@ $days= -1; // round((strtotime('2015-06-11 00:00:00')-strtotime(date('Y-m-d h:i:
                                         echo $tweet;   
                                    
                                    }else{?>
-                                        <a class="<?php echo $clase ?> btn btn-danger" href=<?php echo $url ?>> Apostar  </a><br/>
+                                        
                                        <?php if($partido->bloqueadoTiempo()):?> 
                                         
                                         <br/><small><b>Tiempo Agotado</b></small> 
+                                        <?php else:?>
+                                        <a class="<?php echo $clase ?> btn btn-danger" href=<?php echo $url ?>> Apostar  </a><br/>
                                         <?php endif; ?>                                 
                                    <?php }
                                     
